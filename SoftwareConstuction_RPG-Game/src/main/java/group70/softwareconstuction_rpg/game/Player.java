@@ -10,5 +10,9 @@ package group70.softwareconstuction_rpg.game;
  */
 public class Player extends Character{
    
-    
+    public Player(String name, Location location, int health){
+        super(name, location, health);
+    }
+        
+    public void move() {moves++;} //Make a move
 }

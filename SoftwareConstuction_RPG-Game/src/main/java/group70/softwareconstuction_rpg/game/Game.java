@@ -9,36 +9,26 @@ import java.util.ArrayList;
  * @author robin
  */
 public class Game{
-    private int moves = 0; //Then number of moves the player has made
+    protected int moves = 0; //Then number of moves the player has made
     
     
-    enum Direction{
-        NORTH,
-        SOUTH,
-        EAST,
-        WEST
+
+    
+    
+    
+
+    
+    
+    //Functions for generating random numbers
+    public int random(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
     }
     
-    public class Location{
-        int xPosition;
-        int yPosition;
-        
-        Direction heading;
-        
-        public Location(int x, int y){
-            this.xPosition = x;
-            this.yPosition = y;
-        }
-        
-        public void SetHeading(Direction direction){
-            this.heading = direction;
-        }
-        
-        public int[] getCoordinates(){
-            int[] coord = {xPosition, yPosition};
-            return coord;
-        }
+    public int random(int max) {
+        return (int) (Math.random() * max);
     }
     
-    public void move() {this.moves++;} //Make a move
+    public String randomString(String strings[]){
+        return strings[random(strings.length-1)];
+    }
 }
