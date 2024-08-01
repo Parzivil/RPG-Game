@@ -17,12 +17,16 @@ public class SoftwareConstuction_RPGGame {
     
     static Character skelly = new Character("Skeleton", new Location(0, 1), 15);
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         println("THIS IS A TEST, NOT THE GAME");
         
-        print("What is your name? ");
+        String name = player.ask("What is your name? ", scan);
         
-        player = new Player(scan.nextLine(), new Location(0, 0), 55);
+        player = new Player(name, new Location(0, 0), 55);
         
         println("Hello Knight " + player.name);
         
@@ -32,11 +36,21 @@ public class SoftwareConstuction_RPGGame {
         
         player.doDamageWith(sword);
         
+        player.attack(skelly, sword);
+        
     }
     
     //Print functions because I am sick of typing the system out thing
-    public static void print(String str) {System.out.print(str);}
-    public static void println(String str) {System.out.println(str);}
-    
 
+    /**
+     *
+     * @param str
+     */
+    public static void print(String str) {System.out.print(str);}
+
+    /**
+     *
+     * @param str
+     */
+    public static void println(String str) {System.out.println(str);}
 }
