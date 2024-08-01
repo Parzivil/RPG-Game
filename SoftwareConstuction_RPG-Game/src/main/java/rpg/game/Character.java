@@ -41,11 +41,9 @@ public class Character extends Game{
         UNCONSIOUS,
         IMPORTAL
     }
-    
-    //Character Contstructor
 
     /**
-     *
+     *Character Contstructor
      * @param name
      * @param location
      * @param health
@@ -63,10 +61,9 @@ public class Character extends Game{
         else state = State.ALIVE;
     }
     
-    //Move one place in any direction
 
     /**
-     *
+     *Move one place in any direction
      * @param dir
      */
     public void move(Location.Direction dir){
