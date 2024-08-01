@@ -8,6 +8,7 @@ package group70.softwareconstuction_rpg.game;
  *
  * @author robin
  */
-public class Player {
+public class Player extends Character{
+   
     
 }
