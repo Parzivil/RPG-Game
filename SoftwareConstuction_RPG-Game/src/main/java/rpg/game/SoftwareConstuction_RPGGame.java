@@ -6,7 +6,7 @@ package rpg.game;
 import java.util.Scanner;
 /**
  *
- * @author robin
+ * @author robin, matthew
  */
 
 //// EVERYTHING IN HERE CAN BE MODIFYED, CURRENTLY FOR TESTING THINGS ////
