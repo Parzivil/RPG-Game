@@ -13,12 +13,21 @@ import java.util.Scanner;
 
 public class SoftwareConstuction_RPGGame {
     
+    static Event events = new Event();
+    
     Game game = new Game();
     
     static Player player;
     
     static Character skelly = new Character("Skeleton", new Location(0, 1), 15);
 
+    
+   
+    static Enemy skel = new Enemy(skelly, new String[] {"Hello there", "g"});
+    
+    
+    static Chest chst = new Chest();
+    
     /**
      *
      * @param args
@@ -37,6 +46,7 @@ public class SoftwareConstuction_RPGGame {
         
         player.GiveItem(sword);
         
+        System.out.println(chst.location.xPosition);
         
         player.doDamageWith(sword);
         
