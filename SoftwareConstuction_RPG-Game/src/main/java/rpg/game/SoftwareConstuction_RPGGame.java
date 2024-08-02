@@ -12,7 +12,9 @@ import java.util.Scanner;
 //// EVERYTHING IN HERE CAN BE MODIFYED, CURRENTLY FOR TESTING THINGS ////
 
 public class SoftwareConstuction_RPGGame {
-    static Scanner scan = new Scanner(System.in);
+    
+    Game game = new Game();
+    
     static Player player;
     
     static Character skelly = new Character("Skeleton", new Location(0, 1), 15);
@@ -22,9 +24,10 @@ public class SoftwareConstuction_RPGGame {
      * @param args
      */
     public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
         println("THIS IS A TEST, NOT THE GAME");
         
-        String name = player.ask("What is your name? ", scan);
+        String name = ask("What is your name? ", scan);
         
         player = new Player(name, new Location(0, 0), 55);
         
@@ -33,6 +36,7 @@ public class SoftwareConstuction_RPGGame {
         Weapon sword = new Weapon("Sword", player.location, 1, 5, 5);
         
         player.GiveItem(sword);
+        
         
         player.doDamageWith(sword);
         
@@ -53,4 +57,35 @@ public class SoftwareConstuction_RPGGame {
      * @param str
      */
     public static void println(String str) {System.out.println(str);}
+    
+            /**
+     *
+     * @param question
+     * @param scan
+     * @return
+     */
+    public static String ask(String question, Scanner scan){
+        System.out.print(question);
+        return scan.nextLine();
+    } 
+    
+    /**
+     *
+     * @param question
+     * @param scan
+     * @return
+     */
+    public static int askNum(String question, Scanner scan){ 
+        do{
+            System.out.print(question);
+        
+            try{
+                return scan.nextInt(); //Break out of the loop
+            }
+
+            catch(Exception e){
+                System.out.println("\n Input error, try again");         
+            }
+        } while(true);
+    }
 }
