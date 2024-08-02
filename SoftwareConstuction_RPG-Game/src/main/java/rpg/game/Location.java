@@ -22,15 +22,28 @@ public class Location {
         WEST
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     */
     public Location(int x, int y){
         this.xPosition = x;
         this.yPosition = y;
     }
 
+    /**
+     *
+     * @param direction
+     */
     public void setHeading(Direction direction){
         this.heading = direction;
     }
 
+    /**
+     *
+     * @return
+     */
     public int[] getCoordinates(){
         int[] coord = {xPosition, yPosition};
         return coord;

@@ -68,19 +68,19 @@ public class Character extends Game{
      */
     public void move(Location.Direction dir){
         switch(dir){
-            case dir.NORTH:
+            case NORTH:
                 this.location.yPosition++;
             break;
             
-            case dir.SOUTH:
+            case SOUTH:
                 this.location.yPosition--;
             break;
             
-            case dir.EAST:
+            case EAST:
                 this.location.xPosition++;
             break;
             
-            case dir.WEST:
+            case WEST:
                 this.location.xPosition--;
             break;
         }
@@ -143,7 +143,7 @@ public class Character extends Game{
         switch(state){
             
             //Alive
-            case State.ALIVE:
+            case ALIVE:
                 health -= damage; //Change the damage done to the character
         
                 if(health <= 0) this.Kill();
@@ -158,12 +158,12 @@ public class Character extends Game{
             break;
             
             //Dead
-            case State.DEAD:
+            case DEAD:
                 this.Say("I am already dead...");
             break;
             
             //Unconsious 
-            case State.UNCONSIOUS:
+            case UNCONSIOUS:
                 health -= damage; //Change the damage done to the character
         
                 if(health <= 0) this.Kill();
@@ -173,7 +173,7 @@ public class Character extends Game{
             break;
             
             //Imortal
-            case State.IMPORTAL:
+            case IMPORTAL:
                 this.Say(randomString(imortalEmotes));
             break;
         } 

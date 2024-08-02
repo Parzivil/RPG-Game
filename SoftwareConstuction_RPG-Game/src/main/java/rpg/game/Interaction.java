@@ -16,6 +16,13 @@ public class Interaction extends Game{
     
     int step = 0;
     
+    /**
+     *
+     * @param conversation
+     * @param location
+     * @param firstCharacter
+     * @param secondCharacter
+     */
     public Interaction(String conversation[], Location location, Character firstCharacter, Character secondCharacter){
         this.conversation = conversation;
         this.location = location;
@@ -23,6 +30,9 @@ public class Interaction extends Game{
         this.secondCharacter = secondCharacter;
     }
     
+    /**
+     *
+     */
     public void next(){
         if(step < conversation.length){
             if(step % 2 == 1){

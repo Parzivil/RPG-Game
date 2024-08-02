@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package rpg.game;
+import java.util.Scanner;
 
 /**
  *
@@ -33,4 +34,6 @@ public class Player extends Character{
     public void attack(Character character, Weapon weapon){
         character.doDamageWith(weapon);
     }
+    
+
 }

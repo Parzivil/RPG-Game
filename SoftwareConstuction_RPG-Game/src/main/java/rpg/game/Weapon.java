@@ -12,6 +12,14 @@ public class Weapon extends Item {
     int range;
     int damage;
     
+    /**
+     *
+     * @param name
+     * @param location
+     * @param weight
+     * @param range
+     * @param damage
+     */
     public Weapon(String name, Location location, float weight, int range, int damage){
         super(name, location, weight);
         this.range = range;
