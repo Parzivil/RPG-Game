@@ -17,8 +17,8 @@ public class Location {
     
     enum Direction{
         NORTH,
-        SOUTH,
         EAST,
+        SOUTH,
         WEST
     }
 
@@ -47,6 +47,11 @@ public class Location {
     public int[] getCoordinates(){
         int[] coord = {xPosition, yPosition};
         return coord;
+    }
+    @Override
+    public String toString()
+    {
+        return (" x = "+xPosition+" y = "+yPosition+" ");
     }
     
 }
