@@ -35,4 +35,11 @@ public class Item extends Game implements Comparable{
     public int compareTo(Object object){
         return object.toString().compareTo(this.name); //Compare the names of objects
     }
+    
+    public String toString(){
+        String combo = "name:" + name + "weight:" + Float.toString(weight);
+        combo += "location:" + location.toString() + "; \n";
+        
+        return combo;
+    }
 }

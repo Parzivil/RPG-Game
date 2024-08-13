@@ -35,5 +35,11 @@ public class Player extends Character{
         character.doDamageWith(weapon);
     }
     
+    public String toString(){
+        String comboString = "";
+        
+        
+        return comboString;
+    }
 
 }

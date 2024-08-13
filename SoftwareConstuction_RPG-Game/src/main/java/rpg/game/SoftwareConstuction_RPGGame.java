@@ -29,7 +29,6 @@ public class SoftwareConstuction_RPGGame {
             difficulty = Game.askNum("Hello "+player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n",scan);
         }
         
-        
         switch(difficulty) //this is the setup for the while game loop
         {
             case Game.EASY: //easy difficulty is a find the door with 3 enemies
@@ -41,12 +40,10 @@ public class SoftwareConstuction_RPGGame {
             }
             case Game.MEDIUM: //medium is find the treasure with 5 enemies
             {
-                
                 break;
             }
             case Game.HARD: //defeat the boss and his 6 henchmen
             {
-                
                 break;
             }
         }
@@ -90,10 +87,7 @@ public class SoftwareConstuction_RPGGame {
                     if(heading.equals(Location.Direction.EAST)){player.location.setHeading(Location.Direction.SOUTH);}
                     if(heading.equals(Location.Direction.WEST)){player.location.setHeading(Location.Direction.NORTH);}
                     break;
-            }
-            
+            } 
         } 
-    }
-
-   
+    } 
 }
