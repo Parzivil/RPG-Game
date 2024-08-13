@@ -29,11 +29,7 @@ public class SoftwareConstuction_RPGGame {
     
     static Player player;
     
-    //static Character skelly = new Character("Skeleton", new Location(0, 1), 15);
-
-    //static Enemy skel = new Enemy(skelly, new String[] {"Hello there", "g"});
-    //static Chest chst = new Chest();
-    
+    //static Character skelly = new Character("Skeleton", new Location(0, 1), 15);    
     /**
      *
      * @param args
