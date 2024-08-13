@@ -13,26 +13,30 @@ import java.util.Scanner;
 
 public class SoftwareConstuction_RPGGame {
     
+    final static int EASY = 1;
+    final static int MEDIUM = 2;
+    final static int HARD = 3;
     static Event events = new Event();
+    final static String OPTIONS = "OPTIONS";
+    final static String ATTACK = "ATTACK";
+    final static String INTERACT = "INTERACT";
+    final static String MOVE_FORWARD = "MOVE FORWARD";
+    final static String MOVE_BACKWARDS = "MOVE BACKWARDS";
+    final static String TURN_LEFT = "TURN LEFT";
+    final static String TURN_RIGHT = "TURN RIGHT";
     
     Game game = new Game();
     
     static Player player;
     
-    static Character skelly = new Character("Skeleton", new Location(0, 1), 15);
-
-    static Enemy skel = new Enemy(skelly, new String[] {"Hello there", "g"});
-    
-    
-    static Chest chst = new Chest();
-    
+    //static Character skelly = new Character("Skeleton", new Location(0, 1), 15);    
     /**
      *
      * @param args
      */
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        println("THIS IS A TEST, NOT THE GAME");
+        /*println("THIS IS A TEST, NOT THE GAME");
         
         String name = ask("What is your name? ", scan);
         
@@ -48,9 +52,87 @@ public class SoftwareConstuction_RPGGame {
         
         player.doDamageWith(sword);
         
-        player.attack(skelly, sword);
+        player.attack(skelly, sword); */
+        boolean game_on = true;
+        String name;
+        int difficulty=0;
+        name = ask("Please enter a name for your character. ",scan);
+        player = new Player(name, new Location(0, 0), 55);
+        player.location.setHeading(Location.Direction.NORTH);
+        while(difficulty <= 0 || difficulty >= 4)
+        {
+            difficulty = askNum("Hello "+player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n",scan);
+        }
+        
+        
+        switch(difficulty) //this is the setup for the while game loop
+        {
+            case EASY: //easy difficulty is a find the door with 3 enemies
+            {
+                Character skelly_1 = new Character("Skeleton", new Location(0, 1), 15);
+                Character skelly_2 = new Character("Skeleton", new Location(0, 1), 15);
+                Character skelly_3 = new Character("Skeleton", new Location(4, 5), 15);
+                break;
+            }
+            case MEDIUM: //medium is find the treasure with 5 enemies
+            {
+                
+                break;
+            }
+            case HARD: //defeat the boss and his 6 henchmen
+            {
+                
+                break;
+            }
+        }
+        while(game_on)
+        {
+            String input;
+            Location.Direction heading = player.location.heading;
+            print("you are at"+player.location.toString());
+            input = ask("What would you like to do? \nFor all the options type 'options'\n",scan);
+            String inputUpperCase = input.toUpperCase();
+            switch(inputUpperCase)
+            {
+                case OPTIONS:
+                    println("Your options are: \nAttack\nInteract\nMove Forward\nMove Backwards\nTurn Left\nTurn Right");
+                case ATTACK:
+                    
+                case INTERACT:
+                    
+                case MOVE_FORWARD:
+                    if(heading.equals(Location.Direction.NORTH)){player.location.yPosition++;}
+                    if(heading.equals(Location.Direction.SOUTH)){player.location.yPosition--;}
+                    if(heading.equals(Location.Direction.EAST)){player.location.xPosition++;}
+                    if(heading.equals(Location.Direction.WEST)){player.location.xPosition--;}
+                    break;
+                case MOVE_BACKWARDS:
+                    if(heading.equals(Location.Direction.NORTH)){player.location.yPosition--;}
+                    if(heading.equals(Location.Direction.SOUTH)){player.location.yPosition++;}
+                    if(heading.equals(Location.Direction.EAST)){player.location.xPosition--;}
+                    if(heading.equals(Location.Direction.WEST)){player.location.xPosition++;}
+                    break;
+                case TURN_LEFT:
+                    if(heading.equals(Location.Direction.NORTH)){player.location.setHeading(Location.Direction.WEST);}
+                    if(heading.equals(Location.Direction.SOUTH)){player.location.setHeading(Location.Direction.EAST);}
+                    if(heading.equals(Location.Direction.EAST)){player.location.setHeading(Location.Direction.NORTH);}
+                    if(heading.equals(Location.Direction.WEST)){player.location.setHeading(Location.Direction.SOUTH);}
+                    break;
+                case TURN_RIGHT:
+                    if(heading.equals(Location.Direction.NORTH)){player.location.setHeading(Location.Direction.EAST);}
+                    if(heading.equals(Location.Direction.SOUTH)){player.location.setHeading(Location.Direction.WEST);}
+                    if(heading.equals(Location.Direction.EAST)){player.location.setHeading(Location.Direction.SOUTH);}
+                    if(heading.equals(Location.Direction.WEST)){player.location.setHeading(Location.Direction.NORTH);}
+                    break;
+            }
+            
+        }
+        
         
     }
+    
+    
+    
     
     //Print functions because I am sick of typing the system out thing
 
