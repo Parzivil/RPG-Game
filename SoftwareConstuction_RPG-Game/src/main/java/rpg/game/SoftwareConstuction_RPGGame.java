@@ -17,12 +17,13 @@ public class SoftwareConstuction_RPGGame {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         
-        boolean game_on = true;
-        String name;
+        boolean game_on = true; //Current Game state
         int difficulty=0;
-        name = Game.ask("Please enter a name for your character. ",scan);
-        player = new Player(name, new Location(0, 0), 55);
-        player.location.setHeading(Location.Direction.NORTH);
+        player = new Player(
+                Game.ask("Please enter a name for your character. ", scan), 
+                new Location(0, 0), 55);
+        player.location.setHeading(Location.Direction.NORTH); //Set default player location
+        
         while(difficulty <= 0 || difficulty >= 4)
         {
             difficulty = Game.askNum("Hello "+player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n",scan);
