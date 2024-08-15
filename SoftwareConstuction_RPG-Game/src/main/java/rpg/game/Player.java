@@ -4,6 +4,7 @@
  */
 package rpg.game;
 import java.util.Scanner;
+import java.util.*;
 
 /**
  *
@@ -35,11 +36,12 @@ public class Player extends Character{
         character.doDamageWith(weapon);
     }
     
-    public String toString(){
-        String comboString = "";
-        
-        
-        return comboString;
+    public Map toJSON(){
+        Map<String, String> map = new HashMap<>();
+        map.put("name", this.name);
+        map.put("health", Integer.toString(this.health));
+        map.put("location", this.location.toString());        
+        return map;
     }
 
 }

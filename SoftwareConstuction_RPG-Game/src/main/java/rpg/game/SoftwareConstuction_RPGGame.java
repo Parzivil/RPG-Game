@@ -14,6 +14,8 @@ import java.util.Scanner;
 public class SoftwareConstuction_RPGGame {
     static Player player;
     
+    static Saver save = new Saver("C:\\Users\\robin\\downloads");
+    
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         
@@ -36,6 +38,7 @@ public class SoftwareConstuction_RPGGame {
                 Character skelly_1 = new Character("Skeleton", new Location(0, 1), 15);
                 Character skelly_2 = new Character("Skeleton", new Location(0, 1), 15);
                 Character skelly_3 = new Character("Skeleton", new Location(4, 5), 15);
+                
                 break;
             }
             case Game.MEDIUM: //medium is find the treasure with 5 enemies
