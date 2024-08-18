@@ -8,7 +8,8 @@ package rpg.game;
  *
  * @author robin
  */
-public class Item extends Game implements Comparable{
+//probable eeds to be abstract
+public abstract class Item extends Game implements Comparable{
     float weight;
     String name;
     
@@ -31,11 +32,12 @@ public class Item extends Game implements Comparable{
      * @param object
      * @return
      */
-    @Override
+    //It didnt like the override function
     public int compareTo(Object object){
         return object.toString().compareTo(this.name); //Compare the names of objects
     }
     
+    @Override
     public String toString(){
         String combo = "name:" + name + "weight:" + Float.toString(weight);
         combo += "location:" + location.toString() + "; \n";

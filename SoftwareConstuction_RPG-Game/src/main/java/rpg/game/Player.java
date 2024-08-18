@@ -12,14 +12,16 @@ import java.util.*;
  */
 public class Player extends Character{
    
+    int score;
     /**
      *
      * @param name
      * @param location
      * @param health
      */
-    public Player(String name, Location location, int health){
-        super(name, location, health);
+    public Player(String name, Location location, int health,int score){
+        super(name, location, health, false);
+        this.score = score;
     }
         
     /**
@@ -43,5 +45,12 @@ public class Player extends Character{
         map.put("location", this.location.toString());        
         return map;
     }
-
+    public int getscore()
+    {
+        return this.score;
+    }
+    
+    
+    
+    
 }

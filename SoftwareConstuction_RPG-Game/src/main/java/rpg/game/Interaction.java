@@ -5,9 +5,9 @@
 package rpg.game;
 
 /**
- *
- * @author Robin
- */
+*
+* @author Robin
+**/
 public class Interaction extends Game{
     Location location; 
     String conversation[]; 

@@ -23,7 +23,7 @@ public class SoftwareConstuction_RPGGame {
         int difficulty=0;
         player = new Player(
                 Game.ask("Please enter a name for your character. ", scan), 
-                new Location(0, 0), 55);
+                new Location(0, 0), 55,0);
         player.location.setHeading(Location.Direction.NORTH); //Set default player location
         
         while(difficulty <= 0 || difficulty >= 4)
@@ -35,9 +35,9 @@ public class SoftwareConstuction_RPGGame {
         {
             case Game.EASY: //easy difficulty is a find the door with 3 enemies
             {
-                Character skelly_1 = new Character("Skeleton", new Location(0, 1), 15);
-                Character skelly_2 = new Character("Skeleton", new Location(0, 1), 15);
-                Character skelly_3 = new Character("Skeleton", new Location(4, 5), 15);
+                Character skelly_1 = new Character("Skeleton", new Location(0,7), 15,false);
+                Character skelly_2 = new Character("Skeleton", new Location(0, 1), 15,false);
+                Character skelly_3 = new Character("Skeleton", new Location(4, 5), 15,false);
                 
                 break;
             }
@@ -53,7 +53,6 @@ public class SoftwareConstuction_RPGGame {
         while(game_on)
         {
             String input;
-            Location.Direction heading = player.location.heading;
             Game.print("you are at"+player.location.toString());
             input = Game.ask("What would you like to do? \nFor all the options type 'options'\n",scan);
             String inputUpperCase = input.toUpperCase();
@@ -63,34 +62,59 @@ public class SoftwareConstuction_RPGGame {
                 case Game.OPTIONS:
                     Game.println("Your options are: \nAttack\nInteract\nMove Forward\nMove Backwards\nTurn Left\nTurn Right");
                 case Game.ATTACK:
-                    
+                    Attack();
+                    break;
                 case Game.INTERACT:
                     
                 case Game.MOVE_FORWARD:
-                    if(heading.equals(Location.Direction.NORTH)){player.location.yPosition++;}
-                    if(heading.equals(Location.Direction.SOUTH)){player.location.yPosition--;}
-                    if(heading.equals(Location.Direction.EAST)){player.location.xPosition++;}
-                    if(heading.equals(Location.Direction.WEST)){player.location.xPosition--;}
+                    MOVE_FORWARD();
                     break;
                 case Game.MOVE_BACKWARDS:
-                    if(heading.equals(Location.Direction.NORTH)){player.location.yPosition--;}
-                    if(heading.equals(Location.Direction.SOUTH)){player.location.yPosition++;}
-                    if(heading.equals(Location.Direction.EAST)){player.location.xPosition--;}
-                    if(heading.equals(Location.Direction.WEST)){player.location.xPosition++;}
+                    MOVE_BACKWARDS();
                     break;
                 case Game.TURN_LEFT:
-                    if(heading.equals(Location.Direction.NORTH)){player.location.setHeading(Location.Direction.WEST);}
-                    if(heading.equals(Location.Direction.SOUTH)){player.location.setHeading(Location.Direction.EAST);}
-                    if(heading.equals(Location.Direction.EAST)){player.location.setHeading(Location.Direction.NORTH);}
-                    if(heading.equals(Location.Direction.WEST)){player.location.setHeading(Location.Direction.SOUTH);}
+                    TURN_LEFT();
                     break;
                 case Game.TURN_RIGHT:
-                    if(heading.equals(Location.Direction.NORTH)){player.location.setHeading(Location.Direction.EAST);}
-                    if(heading.equals(Location.Direction.SOUTH)){player.location.setHeading(Location.Direction.WEST);}
-                    if(heading.equals(Location.Direction.EAST)){player.location.setHeading(Location.Direction.SOUTH);}
-                    if(heading.equals(Location.Direction.WEST)){player.location.setHeading(Location.Direction.NORTH);}
+                    
                     break;
             } 
         } 
+        
     } 
+    public static void Attack()
+    {
+        if(player.location.heading.equals(Location.Direction.NORTH)){int y = player.location.yPosition;}
+        if(player.location.heading.equals(Location.Direction.SOUTH)){player.location.yPosition--;}
+        if(player.location.heading.equals(Location.Direction.EAST)){player.location.xPosition++;}
+        if(player.location.heading.equals(Location.Direction.WEST)){player.location.xPosition--;}
+    }
+    public static void MOVE_FORWARD()
+    {
+        if(player.location.heading.equals(Location.Direction.NORTH)){player.location.yPosition++;}
+        if(player.location.heading.equals(Location.Direction.SOUTH)){player.location.yPosition--;}
+        if(player.location.heading.equals(Location.Direction.EAST)){player.location.xPosition++;}
+        if(player.location.heading.equals(Location.Direction.WEST)){player.location.xPosition--;}
+    }
+    public static void MOVE_BACKWARDS()
+    {
+        if(player.location.heading.equals(Location.Direction.NORTH)){player.location.yPosition--;}
+        if(player.location.heading.equals(Location.Direction.SOUTH)){player.location.yPosition++;}
+        if(player.location.heading.equals(Location.Direction.EAST)){player.location.xPosition--;}
+        if(player.location.heading.equals(Location.Direction.WEST)){player.location.xPosition++;}
+    }
+    public static void TURN_LEFT()
+    {
+        if(player.location.heading.equals(Location.Direction.NORTH)){player.location.setHeading(Location.Direction.WEST);}
+        if(player.location.heading.equals(Location.Direction.SOUTH)){player.location.setHeading(Location.Direction.EAST);}
+        if(player.location.heading.equals(Location.Direction.EAST)){player.location.setHeading(Location.Direction.NORTH);}
+        if(player.location.heading.equals(Location.Direction.WEST)){player.location.setHeading(Location.Direction.SOUTH);}
+    }
+    public static void TURN_RIGHT()
+    {
+    if(player.location.heading.equals(Location.Direction.NORTH)){player.location.setHeading(Location.Direction.EAST);}
+    if(player.location.heading.equals(Location.Direction.SOUTH)){player.location.setHeading(Location.Direction.WEST);}
+    if(player.location.heading.equals(Location.Direction.EAST)){player.location.setHeading(Location.Direction.SOUTH);}
+    if(player.location.heading.equals(Location.Direction.WEST)){player.location.setHeading(Location.Direction.NORTH);}
+    }
 }

@@ -10,6 +10,7 @@ public class Character extends Game{
     private ArrayList<Item> inventory = new ArrayList<Item>(); //Stores players items
     private State state;
     int health;
+    boolean boss;
     
     private int unconsiousLimit = 3;
     
@@ -17,7 +18,7 @@ public class Character extends Game{
     public String deathEmotes[] = {"Oh man"};
     public String damageEmotes[] = {"Ouch", "Far out that hurt", "Man"};
     public String imortalEmotes[] = {"Hahaha nice try", "Really trying to attack an imortal?"};
-    public String uncontiousEmotes[] = {"Ooof"};
+    public String unconsciousEmotes[] = {"Ooof"};
     
     enum State{
         ALIVE,
@@ -27,16 +28,16 @@ public class Character extends Game{
     }
 
     /**
-     *Character Contstructor
+     *Character Constructor
      * @param name
      * @param location
      * @param health
      */
-    public Character(String name, Location location, int health){
+    public Character(String name, Location location, int health, boolean boss){
         this.name = name;
         this.location = location;
         this.health = health;
-        
+        this.boss = boss;
         
         //Depending on the health given in the constructor sets the state
         if(health == 0) state = State.DEAD;
@@ -73,10 +74,10 @@ public class Character extends Game{
     //Change the default limit
 
     /**
-     * Set the value which bellow the character becomes Unconsious
+     * Set the value which bellow the character becomes Unconscious
      * @param limit
      */
-    public void setUnconsiousLimit(int limit){
+    public void setUnconsciousLimit(int limit){
         this.unconsiousLimit = limit;
     }
 
@@ -86,15 +87,15 @@ public class Character extends Game{
      * Array order:
      *  1. Death
      *  2. Damage
-     *  3. Imortal
-     *  4. Unconsious 
+     *  3. Immortal
+     *  4. Unconscious 
      * @param emotes
      */
     public void setEmotes(String emotes[][]){
         this.deathEmotes = emotes[0];
         this.damageEmotes = emotes[1];
         this.imortalEmotes = emotes[2];
-        this.uncontiousEmotes = emotes[3];
+        this.unconsciousEmotes = emotes[3];
     }
     
     /**
@@ -133,7 +134,7 @@ public class Character extends Game{
                 if(health <= 0) this.Kill();
                 else if(health < unconsiousLimit) {
                     state = State.UNCONSIOUS;
-                    this.Say(randomString(uncontiousEmotes));
+                    this.Say(randomString(unconsciousEmotes));
                     System.out.println(this.name + " goes unconsious");
                 }
                 else{
@@ -152,7 +153,7 @@ public class Character extends Game{
         
                 if(health <= 0) this.Kill();
                 else{
-                    this.Say(randomString(uncontiousEmotes));
+                    this.Say(randomString(unconsciousEmotes));
                 }
             break;
             
