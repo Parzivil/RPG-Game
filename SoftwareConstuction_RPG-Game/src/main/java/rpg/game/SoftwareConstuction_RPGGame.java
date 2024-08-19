@@ -3,6 +3,7 @@
  */
 
 package rpg.game;
+import java.util.ArrayList;
 import java.util.Scanner;
 /**
  *
@@ -25,6 +26,7 @@ public class SoftwareConstuction_RPGGame {
                 Game.ask("Please enter a name for your character. ", scan), 
                 new Location(0, 0), 55,0);
         player.location.setHeading(Location.Direction.NORTH); //Set default player location
+        ArrayList<Character> enemies = new ArrayList<>();
         
         while(difficulty <= 0 || difficulty >= 4)
         {
@@ -35,15 +37,21 @@ public class SoftwareConstuction_RPGGame {
         {
             case Game.EASY: //easy difficulty is a find the door with 3 enemies
             {
-                Character skelly_1 = new Character("Skeleton", new Location(0,7), 15,false);
-                Character skelly_2 = new Character("Skeleton", new Location(0, 1), 15,false);
-                Character skelly_3 = new Character("Skeleton", new Location(4, 5), 15,false);
                 
+                enemies.add(new Character("Skeleton", new Location(0,0), 15,false));
+                enemies.add(new Character("Skeleton", new Location(0,0), 15,false));
+                enemies.add(new Character("Skeleton", new Location(0,0), 15,false));
+                for(Character e : enemies)
+                {
+                    e.location.random_location();
+                }
+                Object Door = new Object("Door",new Location(15,15),true);
                 break;
             }
             case Game.MEDIUM: //medium is find the treasure with 5 enemies
             {
                 break;
+                
             }
             case Game.HARD: //defeat the boss and his 6 henchmen
             {
@@ -67,10 +75,10 @@ public class SoftwareConstuction_RPGGame {
                 case Game.INTERACT:
                     
                 case Game.MOVE_FORWARD:
-                    MOVE_FORWARD();
+                    player.move(player.location.heading);
                     break;
                 case Game.MOVE_BACKWARDS:
-                    MOVE_BACKWARDS();
+                    player.move_back();
                     break;
                 case Game.TURN_LEFT:
                     TURN_LEFT();
@@ -84,24 +92,7 @@ public class SoftwareConstuction_RPGGame {
     } 
     public static void Attack()
     {
-        if(player.location.heading.equals(Location.Direction.NORTH)){int y = player.location.yPosition;}
-        if(player.location.heading.equals(Location.Direction.SOUTH)){player.location.yPosition--;}
-        if(player.location.heading.equals(Location.Direction.EAST)){player.location.xPosition++;}
-        if(player.location.heading.equals(Location.Direction.WEST)){player.location.xPosition--;}
-    }
-    public static void MOVE_FORWARD()
-    {
-        if(player.location.heading.equals(Location.Direction.NORTH)){player.location.yPosition++;}
-        if(player.location.heading.equals(Location.Direction.SOUTH)){player.location.yPosition--;}
-        if(player.location.heading.equals(Location.Direction.EAST)){player.location.xPosition++;}
-        if(player.location.heading.equals(Location.Direction.WEST)){player.location.xPosition--;}
-    }
-    public static void MOVE_BACKWARDS()
-    {
-        if(player.location.heading.equals(Location.Direction.NORTH)){player.location.yPosition--;}
-        if(player.location.heading.equals(Location.Direction.SOUTH)){player.location.yPosition++;}
-        if(player.location.heading.equals(Location.Direction.EAST)){player.location.xPosition--;}
-        if(player.location.heading.equals(Location.Direction.WEST)){player.location.xPosition++;}
+        
     }
     public static void TURN_LEFT()
     {
@@ -112,9 +103,73 @@ public class SoftwareConstuction_RPGGame {
     }
     public static void TURN_RIGHT()
     {
-    if(player.location.heading.equals(Location.Direction.NORTH)){player.location.setHeading(Location.Direction.EAST);}
-    if(player.location.heading.equals(Location.Direction.SOUTH)){player.location.setHeading(Location.Direction.WEST);}
-    if(player.location.heading.equals(Location.Direction.EAST)){player.location.setHeading(Location.Direction.SOUTH);}
-    if(player.location.heading.equals(Location.Direction.WEST)){player.location.setHeading(Location.Direction.NORTH);}
+        if(player.location.heading.equals(Location.Direction.NORTH)){player.location.setHeading(Location.Direction.EAST);}
+        if(player.location.heading.equals(Location.Direction.SOUTH)){player.location.setHeading(Location.Direction.WEST);}
+        if(player.location.heading.equals(Location.Direction.EAST)){player.location.setHeading(Location.Direction.SOUTH);}
+        if(player.location.heading.equals(Location.Direction.WEST)){player.location.setHeading(Location.Direction.NORTH);}
     }
+        
+    public static Character Enemy_CHECK(ArrayList<Character> enemies)
+    {
+        for(Character e : enemies)
+        {
+            int x = e.location.xPosition;
+            int y = e.location.yPosition;
+            if(true)
+            {
+                return e;
+            }
+        }
+        return null;
+    }
+    public static int position_in_front()
+    {
+        int x_pointed;
+        int y_pointed;
+        switch(player.location.heading)
+        {
+            case NORTH :
+                y_pointed = player.location.yPosition;
+                return y_pointed++;
+            
+            case SOUTH:
+                y_pointed = player.location.yPosition;
+                return y_pointed--;
+            
+            case EAST:
+                x_pointed = player.location.xPosition;
+                return x_pointed++;
+            
+            case WEST:
+                x_pointed = player.location.xPosition;
+                return x_pointed--;
+        }
+        return 0;
+    }
+    public static boolean Move_check()
+    {
+        int x;
+        int y;
+        switch(player.location.heading)
+        {
+            case NORTH :
+                y = position_in_front();
+                x = player.location.xPosition;
+                break;
+            case SOUTH:
+                y = position_in_front();
+                x = player.location.xPosition;
+                break;
+            case EAST:
+                x = position_in_front();
+                y = player.location.yPosition;
+                break;
+            case WEST:
+                x = position_in_front();
+                y = player.location.yPosition;
+                break;
+        }
+        return false;
+    }
+    
 }

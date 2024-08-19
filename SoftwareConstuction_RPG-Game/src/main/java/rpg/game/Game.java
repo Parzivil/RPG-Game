@@ -47,7 +47,7 @@ public class Game{
      * @param max
      * @return
      */
-    public int random(int max) {
+    public static int random(int max) {
         return (int) (Math.random() * max);
     }
     

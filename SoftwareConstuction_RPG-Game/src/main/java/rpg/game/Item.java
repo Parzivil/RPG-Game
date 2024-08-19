@@ -9,7 +9,7 @@ package rpg.game;
  * @author robin
  */
 //probable eeds to be abstract
-public abstract class Item extends Game implements Comparable{
+public class Item extends Game implements Comparable{
     float weight;
     String name;
     

@@ -4,7 +4,8 @@ import java.util.ArrayList;
  * Character class for the game
  * @author Robin
  */
-public class Character extends Game{
+//gonna need to implements Runnable
+public class Character extends Game {
     String name;
     Location location;
     private ArrayList<Item> inventory = new ArrayList<Item>(); //Stores players items
@@ -32,6 +33,7 @@ public class Character extends Game{
      * @param name
      * @param location
      * @param health
+     * @param boss
      */
     public Character(String name, Location location, int health, boolean boss){
         this.name = name;
@@ -67,6 +69,29 @@ public class Character extends Game{
             
             case WEST:
                 this.location.xPosition--;
+            break;
+        }
+    }
+    /**
+     *Move one place in the opposite direction they are facing
+     * @param dir
+     */
+    public void move_back(){
+        switch(this.location.heading){
+            case NORTH:
+                this.location.yPosition--;
+            break;
+            
+            case SOUTH:
+                this.location.yPosition++;
+            break;
+            
+            case EAST:
+                this.location.xPosition--;
+            break;
+            
+            case WEST:
+                this.location.xPosition++;
             break;
         }
     }
