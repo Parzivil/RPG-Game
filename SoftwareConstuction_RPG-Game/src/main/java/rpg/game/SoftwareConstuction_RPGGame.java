@@ -27,7 +27,8 @@ public class SoftwareConstuction_RPGGame {
                 new Location(0, 0), 55,0);
         player.location.setHeading(Location.Direction.NORTH); //Set default player location
         ArrayList<Character> enemies = new ArrayList<>();
-        
+        Item bob = new Weapon("Bob",new Location(0,0), 2,2,2);
+        player.GiveItem(bob);
         while(difficulty <= 0 || difficulty >= 4)
         {
             difficulty = Game.askNum("Hello "+player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n",scan);
@@ -46,7 +47,9 @@ public class SoftwareConstuction_RPGGame {
                     e.location.random_location();
                 }
                 Object Door = new Object("Door",new Location(15,15),true);
+                
                 break;
+                
             }
             case Game.MEDIUM: //medium is find the treasure with 5 enemies
             {
@@ -58,6 +61,7 @@ public class SoftwareConstuction_RPGGame {
                 break;
             }
         }
+        
         while(game_on)
         {
             String input;
@@ -70,7 +74,7 @@ public class SoftwareConstuction_RPGGame {
                 case Game.OPTIONS:
                     Game.println("Your options are: \nAttack\nInteract\nMove Forward\nMove Backwards\nTurn Left\nTurn Right");
                 case Game.ATTACK:
-                    Attack();
+                    Attack(enemies,bob);
                     break;
                 case Game.INTERACT:
                     
@@ -90,9 +94,12 @@ public class SoftwareConstuction_RPGGame {
         } 
         
     } 
-    public static void Attack()
+    public static void Attack(ArrayList<Character> enemies, Weapon bob)
     {
-        
+        if(Enemy_CHECK(enemies) != null)
+        {
+            player.attack(Enemy_CHECK(enemies),bob);;
+        }
     }
     public static void TURN_LEFT()
     {
@@ -111,64 +118,44 @@ public class SoftwareConstuction_RPGGame {
         
     public static Character Enemy_CHECK(ArrayList<Character> enemies)
     {
+        
+        int x_char = 0;
+        int y_char = 0;
+        switch(player.location.heading)
+        {
+            case NORTH:
+                y_char = player.location.yPosition + 1;
+                x_char = player.location.xPosition;
+                break;
+            case SOUTH:
+                y_char = player.location.yPosition - 1;
+                x_char = player.location.xPosition;
+                break;
+            case EAST:
+                x_char = player.location.xPosition + 1;
+                y_char = player.location.yPosition;
+                break;
+            case WEST:
+                x_char =  player.location.xPosition - 1;
+                y_char = player.location.yPosition;
+                break;
+        }
         for(Character e : enemies)
         {
             int x = e.location.xPosition;
             int y = e.location.yPosition;
-            if(true)
+            if((y_char == y) && (x_char == x))
             {
                 return e;
             }
         }
         return null;
     }
-    public static int position_in_front()
+
+    public static boolean check()
     {
-        int x_pointed;
-        int y_pointed;
-        switch(player.location.heading)
-        {
-            case NORTH :
-                y_pointed = player.location.yPosition;
-                return y_pointed++;
-            
-            case SOUTH:
-                y_pointed = player.location.yPosition;
-                return y_pointed--;
-            
-            case EAST:
-                x_pointed = player.location.xPosition;
-                return x_pointed++;
-            
-            case WEST:
-                x_pointed = player.location.xPosition;
-                return x_pointed--;
-        }
-        return 0;
-    }
-    public static boolean Move_check()
-    {
-        int x;
-        int y;
-        switch(player.location.heading)
-        {
-            case NORTH :
-                y = position_in_front();
-                x = player.location.xPosition;
-                break;
-            case SOUTH:
-                y = position_in_front();
-                x = player.location.xPosition;
-                break;
-            case EAST:
-                x = position_in_front();
-                y = player.location.yPosition;
-                break;
-            case WEST:
-                x = position_in_front();
-                y = player.location.yPosition;
-                break;
-        }
+
+        
         return false;
     }
     
