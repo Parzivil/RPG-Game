@@ -8,7 +8,8 @@ import java.util.ArrayList;
 public class Character extends Game {
     String name;
     Location location;
-    private ArrayList<Item> inventory = new ArrayList<Item>(); //Stores players items
+    ArrayList<Item> inventory = new ArrayList<Item>(); //Stores players items
+    private Item main_hand;
     private State state;
     int health;
     boolean boss;
@@ -56,18 +57,22 @@ public class Character extends Game {
     public void move(Location.Direction dir){
         switch(dir){
             case NORTH:
+                //unless y = 15
                 this.location.yPosition++;
             break;
             
             case SOUTH:
+                //unless y = -15
                 this.location.yPosition--;
             break;
             
             case EAST:
+                //unless x = 15
                 this.location.xPosition++;
             break;
             
             case WEST:
+                //unless x = -15 - print out there is a wall in the way
                 this.location.xPosition--;
             break;
         }
@@ -79,18 +84,22 @@ public class Character extends Game {
     public void move_back(){
         switch(this.location.heading){
             case NORTH:
+                //unless y = -15
                 this.location.yPosition--;
             break;
             
             case SOUTH:
+                //unless y = 15
                 this.location.yPosition++;
             break;
             
             case EAST:
+                //unless y = -15
                 this.location.xPosition--;
             break;
             
             case WEST:
+                //unless y = 15
                 this.location.xPosition++;
             break;
         }
@@ -221,5 +230,29 @@ public class Character extends Game {
     public void Say(String message){
         System.out.print(this.name + ": ");
         System.out.println(message);
+    }
+    /**
+     * Shows the Inventory of the character
+     * 
+     */
+    public String Show_Inventory()
+    {
+        int i = 0;
+        StringBuilder line = (new StringBuilder());
+        for(Item I : inventory)
+        {
+            line.append(i+", "+I+"\n");
+            i++;
+        }
+        return line.toString();
+    }
+
+    public void equip(Item itm)
+    {
+        this.main_hand = itm;
+    }
+    public Item get_main_hand()
+    {
+        return this.main_hand;
     }
 }

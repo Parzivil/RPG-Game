@@ -16,7 +16,6 @@ public class Saver extends Game{
     private String path;
     private Writer write;
     
-    
     public Saver(String path){
         this.path = path;
         

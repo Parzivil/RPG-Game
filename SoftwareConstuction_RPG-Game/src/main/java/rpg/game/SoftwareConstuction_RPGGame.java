@@ -15,6 +15,8 @@ import java.util.Scanner;
 public class SoftwareConstuction_RPGGame {
     static Player player;
     
+    
+    
     static Saver save = new Saver("C:\\Users\\robin\\downloads");
     
     public static void main(String[] args) {
@@ -27,7 +29,7 @@ public class SoftwareConstuction_RPGGame {
                 new Location(0, 0), 55,0);
         player.location.setHeading(Location.Direction.NORTH); //Set default player location
         ArrayList<Character> enemies = new ArrayList<>();
-        Item bob = new Weapon("Bob",new Location(0,0), 2,2,2);
+        Weapon bob = new Weapon("Wooden Sword of weakness",new Location(20,20), 2,2,2);
         player.GiveItem(bob);
         while(difficulty <= 0 || difficulty >= 4)
         {
@@ -39,9 +41,9 @@ public class SoftwareConstuction_RPGGame {
             case Game.EASY: //easy difficulty is a find the door with 3 enemies
             {
                 
-                enemies.add(new Character("Skeleton", new Location(0,0), 15,false));
-                enemies.add(new Character("Skeleton", new Location(0,0), 15,false));
-                enemies.add(new Character("Skeleton", new Location(0,0), 15,false));
+                enemies.add(new Character("Skeleton", new Location(0,0), 10,false));
+                enemies.add(new Character("Skeleton", new Location(0,0), 10,false));
+                enemies.add(new Character("Skeleton", new Location(0,0), 10,false));
                 for(Character e : enemies)
                 {
                     e.location.random_location();
@@ -72,9 +74,17 @@ public class SoftwareConstuction_RPGGame {
             switch(inputUpperCase)
             {
                 case Game.OPTIONS:
-                    Game.println("Your options are: \nAttack\nInteract\nMove Forward\nMove Backwards\nTurn Left\nTurn Right");
+                    Game.println("Your options are: "
+                            + "\nAttack"
+                            + "\nInteract"
+                            + "\nMove Forward"
+                            + "\nMove Backwards"
+                            + "\nTurn Left"
+                            + "\nTurn Right"
+                            + "\nShow Inventory"
+                            + "\nSet main hand");
                 case Game.ATTACK:
-                    Attack(enemies,bob);
+                    Attack(enemies,(Weapon)player.get_main_hand());
                     break;
                 case Game.INTERACT:
                     
@@ -88,17 +98,25 @@ public class SoftwareConstuction_RPGGame {
                     TURN_LEFT();
                     break;
                 case Game.TURN_RIGHT:
-                    
+                    TURN_RIGHT();
                     break;
+                case Game.SHOW_INVENTORY:
+                    Game.print(player.Show_Inventory());
+                    break;
+                case Game.SET_MAIN_HAND:
+                    String in = Game.ask("What would you like to be in your hand?\n(Using the number)\n"+ player.Show_Inventory(),scan);
+                    int h = Integer.valueOf(in);
+                    player.equip(player.inventory.get(h));
+                   
             } 
         } 
         
     } 
-    public static void Attack(ArrayList<Character> enemies, Weapon bob)
+    public static void Attack(ArrayList<Character> enemies, Weapon Wep)
     {
         if(Enemy_CHECK(enemies) != null)
         {
-            player.attack(Enemy_CHECK(enemies),bob);;
+            player.attack(Enemy_CHECK(enemies),Wep);;
         }
     }
     public static void TURN_LEFT()
@@ -150,13 +168,6 @@ public class SoftwareConstuction_RPGGame {
             }
         }
         return null;
-    }
-
-    public static boolean check()
-    {
-
-        
-        return false;
     }
     
 }
