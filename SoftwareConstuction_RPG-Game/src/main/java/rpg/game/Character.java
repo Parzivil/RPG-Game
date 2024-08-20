@@ -1,5 +1,7 @@
 package rpg.game;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 /**
  * Character class for the game
  * @author Robin
@@ -254,5 +256,22 @@ public class Character extends Game {
     public Item get_main_hand()
     {
         return this.main_hand;
+    }
+    
+    public Map toJSON(){
+        Map<String, String> map = new HashMap<>();
+        map.put("name", this.name);
+        map.put("health", Integer.toString(this.health));
+        map.put("location", this.location.toString());  
+        return map;
+    }
+    
+    private Map inventortToJSON(){
+        Map<String, String> map = new HashMap<>();
+        
+        for(Item item : this.inventory){
+            map.putAll(item.toJSON());
+        }
+        return map;
     }
 }
