@@ -38,4 +38,9 @@ public class Saver extends Game{
             System.out.println(e.getMessage());
         }
     }
+    
+    //Returns if there is a save file available
+    public Boolean hasSave(){
+        return false; //PLACE HOLDER!!
+    }
 }

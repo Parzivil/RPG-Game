@@ -12,12 +12,16 @@ import java.util.Scanner;
 
 //// EVERYTHING IN HERE CAN BE MODIFYED, CURRENTLY FOR TESTING THINGS ////
 
+/*
+********** Dear Matthew:
+********** - COMMENT THE CODE YOU WRITE!!
+********** - Also if it can go in a class it should go there (keep this code minimal and abstract)
+*/
+
 public class SoftwareConstuction_RPGGame {
     static Player player;
-    
-    
-    
-    static Saver save = new Saver("C:\\Users\\robin\\downloads");
+
+    static Saver save = new Saver("C:\\Users\\robin\\downloads"); //Object to save
     
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -27,10 +31,16 @@ public class SoftwareConstuction_RPGGame {
         player = new Player(
                 Game.ask("Please enter a name for your character. ", scan), 
                 new Location(0, 0), 55,0);
+        
+        
         player.location.setHeading(Location.Direction.NORTH); //Set default player location
+        
         ArrayList<Character> enemies = new ArrayList<>();
+        
         Weapon bob = new Weapon("Wooden Sword of weakness",new Location(20,20), 2,2,2);
         player.GiveItem(bob);
+        
+        
         while(difficulty <= 0 || difficulty >= 4)
         {
             difficulty = Game.askNum("Hello "+player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n",scan);
@@ -95,10 +105,10 @@ public class SoftwareConstuction_RPGGame {
                     player.move_back();
                     break;
                 case Game.TURN_LEFT:
-                    TURN_LEFT();
+                    player.TURN_LEFT();
                     break;
                 case Game.TURN_RIGHT:
-                    TURN_RIGHT();
+                    player.TURN_RIGHT();
                     break;
                 case Game.SHOW_INVENTORY:
                     Game.print(player.Show_Inventory());
@@ -109,30 +119,16 @@ public class SoftwareConstuction_RPGGame {
                     player.equip(player.inventory.get(h));
                    
             } 
-        } 
-        
+        }   
     } 
     public static void Attack(ArrayList<Character> enemies, Weapon Wep)
     {
         if(Enemy_CHECK(enemies) != null)
         {
-            player.attack(Enemy_CHECK(enemies),Wep);;
+            player.attack(Enemy_CHECK(enemies),Wep);
         }
     }
-    public static void TURN_LEFT()
-    {
-        if(player.location.heading.equals(Location.Direction.NORTH)){player.location.setHeading(Location.Direction.WEST);}
-        if(player.location.heading.equals(Location.Direction.SOUTH)){player.location.setHeading(Location.Direction.EAST);}
-        if(player.location.heading.equals(Location.Direction.EAST)){player.location.setHeading(Location.Direction.NORTH);}
-        if(player.location.heading.equals(Location.Direction.WEST)){player.location.setHeading(Location.Direction.SOUTH);}
-    }
-    public static void TURN_RIGHT()
-    {
-        if(player.location.heading.equals(Location.Direction.NORTH)){player.location.setHeading(Location.Direction.EAST);}
-        if(player.location.heading.equals(Location.Direction.SOUTH)){player.location.setHeading(Location.Direction.WEST);}
-        if(player.location.heading.equals(Location.Direction.EAST)){player.location.setHeading(Location.Direction.SOUTH);}
-        if(player.location.heading.equals(Location.Direction.WEST)){player.location.setHeading(Location.Direction.NORTH);}
-    }
+
         
     public static Character Enemy_CHECK(ArrayList<Character> enemies)
     {

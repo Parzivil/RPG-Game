@@ -32,31 +32,14 @@ public class Game{
     protected int moves = 0; //Then number of moves the player has made
     
     //Functions for generating random numbers
-
-    /**
-     *
-     * @param min
-     * @param max
-     * @return
-     */
     public int random(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
     }
     
-    /**
-     *
-     * @param max
-     * @return
-     */
     public static int random(int max) {
         return (int) (Math.random() * max);
     }
     
-    /**
-     *
-     * @param strings
-     * @return
-     */
     public String randomString(String strings[]){
         rand.setSeed(System.currentTimeMillis()); //Reset the seed
         return strings[rand.nextInt(strings.length)];

@@ -4,12 +4,14 @@
  */
 package rpg.game;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author robin
  */
-//probable eeds to be abstract
-public class Item extends Game implements Comparable{
+public class Item extends Game {
     float weight;
     String name;
     
@@ -27,11 +29,7 @@ public class Item extends Game implements Comparable{
         this.weight = weight;
     }
     
-    /**
-     *
-     * @param object
-     * @return
-     */
+
     //It didnt like the override function
     public int compareTo(Object object){
         return object.toString().compareTo(this.name); //Compare the names of objects
@@ -43,5 +41,13 @@ public class Item extends Game implements Comparable{
         combo += "location:" + location.toString() + "; \n";
         
         return combo;
+    }
+    
+    public Map toJSON(){
+        Map<String, String> map = new HashMap<>();
+        map.put("name", name);
+        map.put("location", this.location.toString());
+        map.put("weight", Float.toString(weight));
+        return map;
     }
 }
