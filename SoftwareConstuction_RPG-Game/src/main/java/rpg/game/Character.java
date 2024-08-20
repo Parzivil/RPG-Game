@@ -28,7 +28,7 @@ public class Character extends Game {
         ALIVE,
         DEAD,
         UNCONSIOUS,
-        IMPORTAL
+        IMMORTAL
     }
 
     /**
@@ -46,7 +46,7 @@ public class Character extends Game {
         
         //Depending on the health given in the constructor sets the state
         if(health == 0) state = State.DEAD;
-        else if(health == Integer.MAX_VALUE) state = State.IMPORTAL;
+        else if(health == Integer.MAX_VALUE) state = State.IMMORTAL;
         else if(health < 0) state = State.UNCONSIOUS;
         else state = State.ALIVE;
     }
@@ -194,7 +194,7 @@ public class Character extends Game {
             break;
             
             //Imortal
-            case IMPORTAL:
+            case IMMORTAL:
                 this.Say(randomString(imortalEmotes));
             break;
         } 
@@ -243,7 +243,7 @@ public class Character extends Game {
         StringBuilder line = (new StringBuilder());
         for(Item I : inventory)
         {
-            line.append(i+", "+I+"\n");
+            line.append(i).append(", \"").append(I.name).append("\" weight = ").append(I.weight).append("\n");
             i++;
         }
         return line.toString();

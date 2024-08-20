@@ -16,6 +16,8 @@ import java.util.Scanner;
 ********** Dear Matthew:
 ********** - COMMENT THE CODE YOU WRITE!!
 ********** - Also if it can go in a class it should go there (keep this code minimal and abstract)
+
+***OKAY...
 */
 
 public class SoftwareConstuction_RPGGame {
@@ -35,13 +37,13 @@ public class SoftwareConstuction_RPGGame {
         
         player.location.setHeading(Location.Direction.NORTH); //Set default player location
         
-        ArrayList<Character> enemies = new ArrayList<>();
         
-        Weapon bob = new Weapon("Wooden Sword of weakness",new Location(20,20), 2,2,2);
-        player.GiveItem(bob);
+        ArrayList<Object> others = new ArrayList<>(); //The arraylist of everything thats not a character.
+        
+        Weapon Start_Weapon = new Weapon("Wooden Sword of weakness",new Location(20,20), 2,2,2);
         
         
-        while(difficulty <= 0 || difficulty >= 4)
+        while(difficulty <= 0 || difficulty >= 4) //finding out what difficulty they want.
         {
             difficulty = Game.askNum("Hello "+player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n",scan);
         }
@@ -51,15 +53,16 @@ public class SoftwareConstuction_RPGGame {
             case Game.EASY: //easy difficulty is a find the door with 3 enemies
             {
                 
-                enemies.add(new Character("Skeleton", new Location(0,0), 10,false));
-                enemies.add(new Character("Skeleton", new Location(0,0), 10,false));
-                enemies.add(new Character("Skeleton", new Location(0,0), 10,false));
-                for(Character e : enemies)
-                {
-                    e.location.random_location();
-                }
+                Game.enemies.add(new Character("Skeleton", new Location(0,1), 10,false));
+                Game.enemies.add(new Character("Skeleton", new Location(0,0), 10,false));
+                Game.enemies.add(new Character("Skeleton", new Location(0,0), 10,false));
+                //for(Character e : enemies) //For loop giving random locations within a set area.
+                //{
+                    //e.location.random_location();
+                //}
                 Object Door = new Object("Door",new Location(15,15),true);
-                
+                player.GiveItem(Start_Weapon);
+                player.equip(Start_Weapon);
                 break;
                 
             }
@@ -77,13 +80,12 @@ public class SoftwareConstuction_RPGGame {
         while(game_on)
         {
             String input;
-            Game.print("you are at"+player.location.toString());
-            input = Game.ask("What would you like to do? \nFor all the options type 'options'\n",scan);
-            String inputUpperCase = input.toUpperCase();
+            Game.print("you are at"+player.location.toString()); //reoccuring message informing player of location.
+            input = Game.ask("What would you like to do? \nFor all the options type 'options'\n",scan).toUpperCase().strip();
             
-            switch(inputUpperCase)
+            switch(input)
             {
-                case Game.OPTIONS:
+                case Game.OPTIONS: //prints out a list of options for things they can do
                     Game.println("Your options are: "
                             + "\nAttack"
                             + "\nInteract"
@@ -93,11 +95,12 @@ public class SoftwareConstuction_RPGGame {
                             + "\nTurn Right"
                             + "\nShow Inventory"
                             + "\nSet main hand");
-                case Game.ATTACK:
-                    Attack(enemies,(Weapon)player.get_main_hand());
+                case Game.ATTACK: //Attacks the square infront of them.
+                    Attack(Game.enemies,(Weapon)player.get_main_hand());
                     break;
-                case Game.INTERACT:
+                case Game.INTERACT: //Will Scan infront and interact with it
                     
+                    break;
                 case Game.MOVE_FORWARD:
                     player.move(player.location.heading);
                     break;
@@ -114,28 +117,35 @@ public class SoftwareConstuction_RPGGame {
                     Game.print(player.Show_Inventory());
                     break;
                 case Game.SET_MAIN_HAND:
-                    String in = Game.ask("What would you like to be in your hand?\n(Using the number)\n"+ player.Show_Inventory(),scan);
-                    int h = Integer.valueOf(in);
-                    player.equip(player.inventory.get(h));
-                   
+                    int in = Game.askNum("What would you like to be in your hand?\n(Using the number)\n"+ player.Show_Inventory(),scan);
+                    player.equip(player.inventory.get(in));
+                    Game.print(player.get_main_hand().name+" is now in your hand.");
+                    break;
+                case Game.LOOK:    
+                    
+                    break;
             } 
         }   
     } 
-    public static void Attack(ArrayList<Character> enemies, Weapon Wep)
+    public static void Attack(ArrayList<Character> enemies, Weapon Wep) //Checks for enemy and attacks if there is one. Should also have a object check and a wall check.
     {
         if(Enemy_CHECK(enemies) != null)
         {
             player.attack(Enemy_CHECK(enemies),Wep);
         }
+        else
+        {
+            Game.print("It does nothing.\n");
+        }
     }
 
         
-    public static Character Enemy_CHECK(ArrayList<Character> enemies)
+    public static Character Enemy_CHECK(ArrayList<Character> enemies) //looks for an enemy infront of them.
     {
         
         int x_char = 0;
         int y_char = 0;
-        switch(player.location.heading)
+        switch(player.location.heading) //sets the location of the square that is being checked
         {
             case NORTH:
                 y_char = player.location.yPosition + 1;
@@ -154,7 +164,7 @@ public class SoftwareConstuction_RPGGame {
                 y_char = player.location.yPosition;
                 break;
         }
-        for(Character e : enemies)
+        for(Character e : enemies) //checking through all enemy positions
         {
             int x = e.location.xPosition;
             int y = e.location.yPosition;

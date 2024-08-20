@@ -21,11 +21,12 @@ public class Game{
     public final static String TURN_RIGHT = "TURN RIGHT";
     public final static String SHOW_INVENTORY = "SHOW INVENTORY";
     public final static String SET_MAIN_HAND = "SET MAIN HAND";
+    public final static String LOOK = "LOOK";
         
     public final static int EASY = 1;
     public final static int MEDIUM = 2;
     public final static int HARD = 3;
-    
+    public static ArrayList<Character> enemies = new ArrayList<>(); // The array list of enemies 
     /**
      *
      */

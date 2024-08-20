@@ -53,7 +53,7 @@ public class Location {
     {
         return (" x = "+xPosition+" y = "+yPosition+" ");
     }
-    public void random_location()
+    public void random_location() //setting a random location to the set character within the borders of the map.
     {
         int x = Game.random(30)-16;
         int y = Game.random(30)-16;
