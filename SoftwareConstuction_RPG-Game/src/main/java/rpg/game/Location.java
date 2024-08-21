@@ -12,6 +12,7 @@ public class Location {
     
     int xPosition;
     int yPosition;
+    private String descriptor;
 
     Direction heading;
     
@@ -38,6 +39,16 @@ public class Location {
      */
     public void setHeading(Direction direction){
         this.heading = direction;
+    }
+    
+    //Sets the description of the current location
+    public void giveDescription(String description){
+        this.descriptor = description;
+    }
+    
+    //States the current location description
+    public void describeLocation(){
+        System.out.println(this.descriptor);
     }
 
     /**

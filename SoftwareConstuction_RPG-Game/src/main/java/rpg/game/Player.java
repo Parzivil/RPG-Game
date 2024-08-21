@@ -19,19 +19,20 @@ public class Player extends Character{
         this.score = score;
     }
 
-    public void move() {moves++;} //Make a move
+    public void makeMove() {moves++;} //Make a move
     
     public void attack(Character character, Weapon weapon){
         character.doDamageWith(weapon);
     }
     
+    //Is there a more efficent way of doing this?
     public void TURN_LEFT()
     {
         if(this.location.heading.equals(Location.Direction.NORTH)){this.location.setHeading(Location.Direction.WEST);}
         if(this.location.heading.equals(Location.Direction.SOUTH)){this.location.setHeading(Location.Direction.EAST);}
         if(this.location.heading.equals(Location.Direction.EAST)){this.location.setHeading(Location.Direction.NORTH);}
         if(this.location.heading.equals(Location.Direction.WEST)){this.location.setHeading(Location.Direction.SOUTH);}
-        this.move();
+        this.makeMove();
     }
     public void TURN_RIGHT()
     {
@@ -39,7 +40,7 @@ public class Player extends Character{
         if(this.location.heading.equals(Location.Direction.SOUTH)){this.location.setHeading(Location.Direction.WEST);}
         if(this.location.heading.equals(Location.Direction.EAST)){this.location.setHeading(Location.Direction.SOUTH);}
         if(this.location.heading.equals(Location.Direction.WEST)){this.location.setHeading(Location.Direction.NORTH);}
-        this.move();
+        this.makeMove();
     }
     
     public Map toJSON(){
