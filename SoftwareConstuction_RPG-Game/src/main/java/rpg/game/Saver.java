@@ -28,7 +28,7 @@ public class Saver extends Game{
     }
     
     //Saves the current game state to a txt file
-    public void SaveGame(Player player){
+    public void SaveGame(){
         JSONObject jo = new JSONObject(player.toJSON());
                 
         try{

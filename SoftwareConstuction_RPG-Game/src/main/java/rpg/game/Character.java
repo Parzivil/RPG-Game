@@ -21,7 +21,7 @@ public class Character extends Game {
     private int unconsiousLimit = 3;
     
     //Options for the character to say when damaged
-    public String deathEmotes[] = {"Oh man"};
+    public String deathEmotes[] = {"Dies of embarisment..."};
     public String damageEmotes[] = {"Ouch", "Far out that hurt", "Man"};
     public String imortalEmotes[] = {"Hahaha nice try", "Really trying to attack an imortal?"};
     public String unconsciousEmotes[] = {"Ooof"};
@@ -335,5 +335,13 @@ public class Character extends Game {
         return map;
     }
     
+    public String checkStats(){
+        String stats = "";
+        
+        stats += "Health = " + this.health;
+        stats += "\nState = " + this.state.toString() + "\n";
+        
+        return stats;
+    }
 
 }
