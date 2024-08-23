@@ -15,33 +15,18 @@ public class Player extends Character{
     int score;
 
     public Player(String name, Location location, int health,int score){
-        super(name, location, health, false);
+        super(name,"player",location, health, false);
         this.score = score;
     }
 
-    public void makeMove() {moves++;} //Make a move
+    
     
     public void attack(Character character, Weapon weapon){
         character.doDamageWith(weapon);
     }
     
     //Is there a more efficent way of doing this?
-    public void TURN_LEFT()
-    {
-        if(this.location.heading.equals(Location.Direction.NORTH)){this.location.setHeading(Location.Direction.WEST);}
-        if(this.location.heading.equals(Location.Direction.SOUTH)){this.location.setHeading(Location.Direction.EAST);}
-        if(this.location.heading.equals(Location.Direction.EAST)){this.location.setHeading(Location.Direction.NORTH);}
-        if(this.location.heading.equals(Location.Direction.WEST)){this.location.setHeading(Location.Direction.SOUTH);}
-        this.makeMove();
-    }
-    public void TURN_RIGHT()
-    {
-        if(this.location.heading.equals(Location.Direction.NORTH)){this.location.setHeading(Location.Direction.EAST);}
-        if(this.location.heading.equals(Location.Direction.SOUTH)){this.location.setHeading(Location.Direction.WEST);}
-        if(this.location.heading.equals(Location.Direction.EAST)){this.location.setHeading(Location.Direction.SOUTH);}
-        if(this.location.heading.equals(Location.Direction.WEST)){this.location.setHeading(Location.Direction.NORTH);}
-        this.makeMove();
-    }
+    
     
     public Map toJSON(){
         Map<String, String> map = new HashMap<>();

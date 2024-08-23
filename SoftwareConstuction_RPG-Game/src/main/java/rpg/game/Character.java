@@ -10,11 +10,13 @@ import java.util.Map;
 public class Character extends Game {
     String name;
     Location location;
+    String race;
     ArrayList<Item> inventory = new ArrayList<Item>(); //Stores players items
     private Item main_hand;
     private State state;
     int health;
     boolean boss;
+    
     
     private int unconsiousLimit = 3;
     
@@ -38,8 +40,9 @@ public class Character extends Game {
      * @param health
      * @param boss
      */
-    public Character(String name, Location location, int health, boolean boss){
+    public Character(String name,String race, Location location, int health, boolean boss){
         this.name = name;
+        this.race = race;
         this.location = location;
         this.health = health;
         this.boss = boss;
@@ -50,7 +53,7 @@ public class Character extends Game {
         else if(health < 0) state = State.UNCONSIOUS;
         else state = State.ALIVE;
     }
-    
+    public void makeMove() {moves++;} //Make a move
 
     /**
      *Move one place in any direction
@@ -78,6 +81,7 @@ public class Character extends Game {
                 this.location.xPosition--;
             break;
         }
+        this.makeMove();
     }
     /**
      *Move one place in the opposite direction they are facing
@@ -105,8 +109,64 @@ public class Character extends Game {
                 this.location.xPosition++;
             break;
         }
+        this.makeMove();
     }
     
+    public void Turn_Left()
+    {
+        switch(this.location.heading){
+            case NORTH:
+                //unless y = -15
+                this.location.setHeading(Location.Direction.WEST);
+            break;
+            case SOUTH:
+                //unless y = 15
+                this.location.setHeading(Location.Direction.EAST);
+            break;
+            case EAST:
+                //unless y = -15
+                this.location.setHeading(Location.Direction.NORTH);
+            break;
+            case WEST:
+                //unless y = 15
+                this.location.setHeading(Location.Direction.SOUTH);
+            break;
+        }
+        this.makeMove();
+    }
+
+    /**
+     *Hello
+     */
+    public void Turn_Right()
+    {
+        switch(this.location.heading){
+            case NORTH:
+                //unless y = -15
+                this.location.setHeading(Location.Direction.EAST);
+            break;
+            case SOUTH:
+                //unless y = 15
+                this.location.setHeading(Location.Direction.WEST);
+            break;
+            case EAST:
+                //unless y = -15
+                this.location.setHeading(Location.Direction.SOUTH);
+            break;
+            case WEST:
+                //unless y = 15
+                this.location.setHeading(Location.Direction.NORTH);
+            break;
+        }
+        this.makeMove();
+    }
+    
+    //Change the default limit
+
+    /**
+     * Set the value which bellow the character becomes Unconscious
+     * @param limit
+     */    
     //Change the default limit
 
     /**
@@ -274,4 +334,6 @@ public class Character extends Game {
         }
         return map;
     }
+    
+
 }
