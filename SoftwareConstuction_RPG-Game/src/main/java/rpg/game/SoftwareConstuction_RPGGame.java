@@ -19,24 +19,14 @@ import java.util.Scanner;
 
 public class SoftwareConstuction_RPGGame {
     
-    
-    
-    
-    
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
-        
-        
-        
-        
+
         Game.player = new Player(
                 Game.ask("Please enter a name for your character. ", scan), 
                 new Location(0, 0), 55,0);
         Game.player.location.setHeading(Location.Direction.NORTH); //Set default player location
-        
-        
-        
-        
+
         while(Game.difficulty <= 0 || Game.difficulty >= 4) //finding out what difficulty they want.
         {
             Game.difficulty = Game.askNum("Hello "+Game.player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n",scan);
