@@ -8,6 +8,8 @@ package rpg.game;
  *
  * @author robin
  */
+
+//Used for when encountering an enemy, can have multiple enounters going at once
 public abstract class Combat extends Game implements Runnable{
     Player player;
     Character enemy;

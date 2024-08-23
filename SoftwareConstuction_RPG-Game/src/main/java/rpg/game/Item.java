@@ -27,7 +27,8 @@ public class Item extends Game {
         this.weight = weight;
         this.damage = damage;
         
-        attackRate = (int)weight * 2000;
+        //Attack rate is a function of weight
+        attackRate = (int)weight * 2000; //May need adjusting
     }
     
 
