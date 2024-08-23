@@ -4,12 +4,19 @@
  */
 package rpg.game;
 import java.util.*;
+import org.json.*;
 /**
  *
  * @author robin
  */
 public class Game{
 
+    //Game Saving and loading objects
+    static Saver userSave = new Saver("saveFile.json"); //Object to save
+    static Saver easySave = new Saver("Level_1_Save.json"); //Object to save
+    static Saver mediumSave = new Saver("Level_2_Save.json"); //Object to save
+    static Saver hardSave = new Saver("Level_3_Save.json"); //Object to save
+    
     public Random rand = new Random();
     
     public final static String OPTIONS = "OPTIONS";
@@ -278,6 +285,17 @@ public class Game{
 
         System.out.println("** For all the options type 'options' **\n");
                 
+    }
+    
+    public JSONObject gameToJSON(){
+        JSONObject jo = new JSONObject();
+                
+        jo.put("player", player.playerToJSON()); //Add player to JSON
+        //Add all the enemies to the JSON
+        for(Character enemy : enemies){
+            jo.put("enemy", enemy.characterToJSON());
+        }
+        return jo;
     }
    
 }
