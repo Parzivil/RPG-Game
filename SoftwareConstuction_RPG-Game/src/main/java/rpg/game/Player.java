@@ -12,7 +12,7 @@ public class Player extends Character{
 
     
     
-    public void attack(Character character, Weapon weapon){
+    public void attack(Character character, Item weapon){
         character.doDamageWith(weapon);
     }
     

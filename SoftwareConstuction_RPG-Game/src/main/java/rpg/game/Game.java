@@ -31,7 +31,7 @@ public class Game{
     public final static String LOOK = "LOOK";
     public final static String SAVE = "SAVE";
     static Player player;
-    public static Weapon Start_Weapon = new Weapon("Wooden Sword of weakness",new Location(20,20), 2,2,2);
+    public static Item Start_Weapon = new Item("Wooden Sword of weakness", new Location(20,20), 2, 2);
     public static int difficulty = 0;
     public static Location doorLocation = new Location(15, 15);
     public final static int EASY = 1;
@@ -150,7 +150,7 @@ public class Game{
                         + "\nSet main hand");
                 break;
             case Game.ATTACK: //Attacks the square infront of them.
-                Attack(Game.enemies,(Weapon)player.get_main_hand());
+                Attack(Game.enemies, player.get_main_hand());
                 break;
             case Game.INTERACT: //Will Scan infront and interact with it
 
@@ -199,7 +199,7 @@ public class Game{
     
     
     
-    public static void Attack(ArrayList<Character> enemies, Weapon Wep) //Checks for enemy and attacks if there is one. Should also have a object check and a wall check.
+    public static void Attack(ArrayList<Character> enemies, Item Wep) //Checks for enemy and attacks if there is one. Should also have a object check and a wall check.
     {
         if(Enemy_CHECK(enemies) != null)
         {

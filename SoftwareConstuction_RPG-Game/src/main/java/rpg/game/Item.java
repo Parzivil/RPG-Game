@@ -16,18 +16,18 @@ public class Item extends Game {
     float weight;
     String name;
     
+    int damage;
+    int attackRate; //Rate between attacks in ms
+    
     Location location;
     
-    /**
-     *
-     * @param name
-     * @param location
-     * @param weight
-     */
-    public Item(String name, Location location, float weight){
+    public Item(String name, Location location, float weight, int damage){
         this.name = name;
         this.location = location;
         this.weight = weight;
+        this.damage = damage;
+        
+        attackRate = (int)weight * 2000;
     }
     
 

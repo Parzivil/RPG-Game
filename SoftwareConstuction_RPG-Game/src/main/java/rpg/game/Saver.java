@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package rpg.game;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.Writer;
 import org.json.*;
@@ -14,10 +15,12 @@ import org.json.*;
 ////WORK IN PROGRESS, NEEDS MORE WORK
 public class Saver extends Game{
     private Writer write;
+    private String path;
     
     public Saver(String path){        
         try{
             write = new FileWriter(path);
+            this.path = path;
         }
         catch(Exception e){
             System.out.println("FAILED TO OPEN FILE: " + path);
@@ -38,6 +41,15 @@ public class Saver extends Game{
     }
     
     public void LoadGame(){
+        try{
+            // Load the JSON file
+            FileInputStream fis = new FileInputStream(this.path);
+            JSONTokener tokener = new JSONTokener(fis);
+            JSONObject jo = new JSONObject(tokener);
+        }
         
+        catch(Exception e){
+            
+        }
     }
 }

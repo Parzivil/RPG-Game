@@ -1,18 +1,14 @@
 package rpg.game;
 import java.util.ArrayList;
 import org.json.JSONObject;
-/**
- * Character class for the game
- * @author Robin
- */
-//gonna need to implements Runnable
+
 public class Character extends Game {
     String name;
     Location location;
     String race;
     ArrayList<Item> inventory = new ArrayList<>(); //Stores players items
-    private Item main_hand;
-    private State state;
+    public Item main_hand;
+    public State state;
     int health;
     boolean boss;
     
@@ -47,10 +43,6 @@ public class Character extends Game {
     }
     public void makeMove() {moves++;} //Make a move
 
-    /**
-     *Move one place in any direction
-     * @param dir
-     */
     public void move(Location.Direction dir){
         switch(dir){
             case NORTH:
@@ -75,10 +67,7 @@ public class Character extends Game {
         }
         this.makeMove();
     }
-    /**
-     *Move one place in the opposite direction they are facing
-     * @param dir
-     */
+
     public void move_back(){
         switch(this.location.heading){
             case NORTH:
@@ -127,9 +116,6 @@ public class Character extends Game {
         this.makeMove();
     }
 
-    /**
-     *Hello
-     */
     public void Turn_Right()
     {
         switch(this.location.heading){
@@ -153,23 +139,6 @@ public class Character extends Game {
         this.makeMove();
     }
     
-    //Change the default limit
-
-    /**
-     * Set the value which bellow the character becomes Unconscious
-     * @param limit
-     */    
-    //Change the default limit
-
-    /**
-     * Set the value which bellow the character becomes Unconscious
-     * @param limit
-     */
-    public void setUnconsciousLimit(int limit){
-        this.unconsiousLimit = limit;
-    }
-
-
     /**
      *Set an entire new emote set
      * Array order:
@@ -186,18 +155,9 @@ public class Character extends Game {
         this.unconsciousEmotes = emotes[3];
     }
     
-    /**
-     * Returns the current state of the character
-     * @return
-     */
     public State getState() { return this.state;}
     
-
-    /**
-     *Do damage using a weapon
-     * @param weapon
-     */
-    public void doDamageWith(Weapon weapon){
+    public void doDamageWith(Item weapon){
         
         //Condition if they stab themselves
         if(this.inventory.contains(weapon)){
@@ -208,10 +168,6 @@ public class Character extends Game {
     }
     
 
-    /**
-     *Affects health and says a message
-     * @param damage
-     */
     public void doDamage(int damage){
         switch(state){
             
@@ -252,43 +208,34 @@ public class Character extends Game {
         } 
      }
 
-    /**
-     * Kill the character
-     */
     public void Kill(){
         state = State.DEAD;
         this.Say(randomString(deathEmotes));
     }
     
-    /**
-     * Gives an item to the character and adds it to their inventory
-     * @param item
-     */
     public void GiveItem(Item item){
         System.out.println("\n" + this.name + " is given " + item.name);
         inventory.add(item);
     }
     
-    /**
-     * Removes an item from the characters inventory
-     * @param item
-     */
+    //Gives an item silently
+    public void GiveItem_silent(Item item){
+        inventory.add(item);
+    }
+    
+    public void setInventory(ArrayList<Item> inventory){
+        this.inventory = inventory;
+    }
+    
     public void RemoveItem(Item item){
         inventory.remove(item);
     }
     
-    /**
-     * Speaks a message as the character
-     * @param message
-     */
     public void Say(String message){
         System.out.print(this.name + ": ");
         System.out.println(message);
     }
-    /**
-     * Shows the Inventory of the character
-     * 
-     */
+    
     public String Show_Inventory()
     {
         int i = 0;
@@ -338,5 +285,4 @@ public class Character extends Game {
         
         return stats;
     }
-
 }
