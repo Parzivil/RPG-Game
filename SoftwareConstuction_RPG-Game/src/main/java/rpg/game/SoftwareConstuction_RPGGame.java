@@ -19,10 +19,6 @@ import java.util.Scanner;
 
 public class SoftwareConstuction_RPGGame {
     
-    
-    
-    
-    
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
         

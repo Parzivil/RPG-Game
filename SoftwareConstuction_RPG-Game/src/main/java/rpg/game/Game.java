@@ -12,7 +12,7 @@ import org.json.*;
 public class Game{
 
     //Game Saving and loading objects
-    static Saver userSave = new Saver("saveFile.json"); //Object to save
+    static Saver userSave = new Saver("src\\main\\java\\rpg\\game\\saveFile.json"); //Object to save
     static Saver easySave = new Saver("Level_1_Save.json"); //Object to save
     static Saver mediumSave = new Saver("Level_2_Save.json"); //Object to save
     static Saver hardSave = new Saver("Level_3_Save.json"); //Object to save
@@ -29,6 +29,7 @@ public class Game{
     public final static String SHOW_INVENTORY = "SHOW INVENTORY";
     public final static String SET_MAIN_HAND = "SET MAIN HAND";
     public final static String LOOK = "LOOK";
+    public final static String SAVE = "SAVE";
     static Player player;
     public static Weapon Start_Weapon = new Weapon("Wooden Sword of weakness",new Location(20,20), 2,2,2);
     public static int difficulty = 0;
@@ -75,7 +76,7 @@ public class Game{
     /**
      *
      */
-    protected int moves = 0; //Then number of moves the player has made
+    protected static int moves = 0; //Then number of moves the player has made
     public static String get_dungeonDescription(){return dungeonDescription;}
     public static String get_doorDescription(){return doorDescription;}
     public static String get_pathDescription_1(){return pathDescription_1;}
@@ -130,6 +131,13 @@ public class Game{
 
         switch(input)
         {
+            //JUST USED FOR TESTING
+            //******
+            case Game.SAVE:
+                userSave.SaveGame(gameToJSON()); //Save the game
+            break;
+            //****** Needs propper implementation (just copy the above function
+            
             case Game.OPTIONS: //prints out a list of options for things they can do
                 Game.println("Your options are: "
                         + "\nAttack"
@@ -287,13 +295,18 @@ public class Game{
                 
     }
     
-    public JSONObject gameToJSON(){
+    public static JSONObject gameToJSON(){
         JSONObject jo = new JSONObject();
-                
+        jo.put("playing", playing);
+        jo.put("moves", moves);
         jo.put("player", player.playerToJSON()); //Add player to JSON
         //Add all the enemies to the JSON
+        
+        //JSON Object works like a hash map, so each element must have a unique key
+        int i = 0; 
         for(Character enemy : enemies){
-            jo.put("enemy", enemy.characterToJSON());
+            jo.put("enemy_"+i, enemy.characterToJSON());
+            i++;
         }
         return jo;
     }

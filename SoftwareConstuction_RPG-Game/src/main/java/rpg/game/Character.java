@@ -1,7 +1,5 @@
 package rpg.game;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import org.json.JSONObject;
 /**
  * Character class for the game
@@ -12,7 +10,7 @@ public class Character extends Game {
     String name;
     Location location;
     String race;
-    ArrayList<Item> inventory = new ArrayList<Item>(); //Stores players items
+    ArrayList<Item> inventory = new ArrayList<>(); //Stores players items
     private Item main_hand;
     private State state;
     int health;
@@ -34,13 +32,6 @@ public class Character extends Game {
         IMMORTAL
     }
 
-    /**
-     *Character Constructor
-     * @param name
-     * @param location
-     * @param health
-     * @param boss
-     */
     public Character(String name,String race, Location location, int health, boolean boss){
         this.name = name;
         this.race = race;
