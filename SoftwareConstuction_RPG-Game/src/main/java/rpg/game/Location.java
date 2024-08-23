@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package rpg.game;
+import org.json.JSONObject;
 
 /**
  *
@@ -70,6 +71,14 @@ public class Location {
         int y = Game.random(30)-16;
         this.xPosition = x;
         this.yPosition = y;
+    }
+    
+    public JSONObject locationToJSON(){
+        JSONObject jo = new JSONObject();
+        jo.put("x", xPosition);
+        jo.put("y", yPosition);
+        jo.put("heading", heading);
+        return jo;
     }
     
 }

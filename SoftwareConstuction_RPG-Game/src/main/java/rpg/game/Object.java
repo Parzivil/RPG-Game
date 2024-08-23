@@ -4,6 +4,8 @@
  */
 package rpg.game;
 
+import org.json.JSONObject;
+
 /**
 *
 * @author mjbak
@@ -25,14 +27,19 @@ public class Object {
         this.aim = aim;
     }        
     
-    
-    
-    
-    
     @Override
     public String toString()
     {
         return ("It is a "+name);
+    }
+    
+    public JSONObject objectToJSON(){
+        JSONObject jo = new JSONObject();
+        jo.put("name", name);
+        jo.put("location", this.location.locationToJSON());
+        jo.put("conversation", conversation);
+        jo.put("aim", aim);
+        return jo;
     }
     
 }

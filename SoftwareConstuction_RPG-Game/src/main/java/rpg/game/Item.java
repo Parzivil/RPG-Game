@@ -6,6 +6,7 @@ package rpg.game;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.json.*;
 
 /**
  *
@@ -43,11 +44,11 @@ public class Item extends Game {
         return combo;
     }
     
-    public Map toJSON(){
-        Map<String, String> map = new HashMap<>();
-        map.put("name", name);
-        map.put("location", this.location.toString());
-        map.put("weight", Float.toString(weight));
-        return map;
+    public JSONObject itemToJSON(){
+        JSONObject jo = new JSONObject();
+        jo.put("name", name);
+        jo.put("location", this.location.locationToJSON());
+        jo.put("weight", weight);
+        return jo;
     }
 }

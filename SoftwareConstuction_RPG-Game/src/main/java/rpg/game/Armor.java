@@ -4,6 +4,8 @@
  */
 package rpg.game;
 
+import org.json.JSONObject;
+
 /**
  *
  * @author Robin
@@ -24,5 +26,13 @@ public class Armor extends Item{
         super(name, location, weight);
         this.protection = protection;
         this.condition = condition;
+    }
+    
+    public JSONObject armorToJSON(){
+        JSONObject jo = new JSONObject();
+        jo.put("item", this.itemToJSON());
+        jo.put("protection", protection);
+        jo.put("condition", condition);
+        return jo;
     }
 }

@@ -2,6 +2,7 @@ package rpg.game;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import org.json.JSONObject;
 /**
  * Character class for the game
  * @author Robin
@@ -318,21 +319,24 @@ public class Character extends Game {
         return this.main_hand;
     }
     
-    public Map toJSON(){
-        Map<String, String> map = new HashMap<>();
-        map.put("name", this.name);
-        map.put("health", Integer.toString(this.health));
-        map.put("location", this.location.toString());  
-        return map;
+    public JSONObject characterToJSON(){
+        JSONObject jo = new JSONObject();
+        jo.put("name", name);
+        jo.put("health", health);
+        jo.put("location", location.locationToJSON());
+        jo.put("inventory", inventoryToJSON());
+        jo.put("race", race);
+        jo.put("state", state.toString());
+        return jo;
     }
     
-    private Map inventortToJSON(){
-        Map<String, String> map = new HashMap<>();
+    private JSONObject inventoryToJSON(){
+        JSONObject jo = new JSONObject();
         
         for(Item item : this.inventory){
-            map.putAll(item.toJSON());
+            jo.put("item", item.itemToJSON());
         }
-        return map;
+        return jo;
     }
     
     public String checkStats(){

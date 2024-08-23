@@ -13,34 +13,27 @@ import org.json.*;
 
 ////WORK IN PROGRESS, NEEDS MORE WORK
 public class Saver extends Game{
-    private String path;
+    private String path; //Path where the save is located
     private Writer write;
     
     public Saver(String path){
         this.path = path;
         
         try{
-            write = new FileWriter("saveData.json");
+            write = new FileWriter(path);
         }
         catch(Exception e){
             
         }
     }
     
-    //Saves the current game state to a txt file
-    public void SaveGame(){
-        JSONObject jo = new JSONObject(player.toJSON());
-                
+    //Saves the current game state to a JSON file
+    public void SaveGame(JSONObject jo){                
         try{
             write.write(jo.toString(1));
         }   
         catch(Exception e){
             System.out.println(e.getMessage());
         }
-    }
-    
-    //Returns if there is a save file available
-    public Boolean hasSave(){
-        return false; //PLACE HOLDER!!
     }
 }

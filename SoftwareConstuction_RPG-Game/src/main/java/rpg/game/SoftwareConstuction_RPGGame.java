@@ -3,7 +3,6 @@
  */
 
 package rpg.game;
-import java.util.ArrayList;
 import java.util.Scanner;
 /**
  *
@@ -22,7 +21,7 @@ public class SoftwareConstuction_RPGGame {
     
     
     
-    static Saver save = new Saver("path.path"); //Object to save
+    
     
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in); //Scanner object to take in inputs

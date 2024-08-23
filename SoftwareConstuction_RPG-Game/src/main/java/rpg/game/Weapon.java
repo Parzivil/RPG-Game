@@ -4,6 +4,8 @@
  */
 package rpg.game;
 
+import org.json.JSONObject;
+
 /**
  *
  * @author robin
@@ -16,6 +18,16 @@ public class Weapon extends Item {
         super(name, location, weight);
         this.range = range;
         this.damage = damage;
+    }
+    
+    public JSONObject weaponToJSON(){
+        JSONObject jo = new JSONObject();
+        jo.put("name", name);
+        jo.put("location", this.location.locationToJSON());
+        jo.put("weight", Float.toString(weight));
+        jo.put("range", Integer.toString(range));
+        jo.put("damage", Integer.toString(damage));
+        return jo;
     }
     
 }
