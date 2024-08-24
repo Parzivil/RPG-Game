@@ -47,9 +47,8 @@ public class Saver extends Game{
             JSONTokener tokener = new JSONTokener(fis);
             JSONObject jo = new JSONObject(tokener);
         }
-        
         catch(Exception e){
-            
+            System.out.println(e.getMessage());
         }
     }
 }
