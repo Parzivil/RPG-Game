@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 /**
  *
- * @author Robin
+ * @author robin, matthew
  */
 public class Location {
     

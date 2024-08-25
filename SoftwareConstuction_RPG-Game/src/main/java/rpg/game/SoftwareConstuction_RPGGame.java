@@ -50,7 +50,7 @@ public class SoftwareConstuction_RPGGame {
                 {
                     while(Game.medium_game_on)
                     {
-                        Game.Game_play();
+                        Game.Game_play(); //Implementation of all the different functions
                     }   
                     break;
                 }

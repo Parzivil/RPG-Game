@@ -2,6 +2,10 @@ package rpg.game;
 import java.util.ArrayList;
 import org.json.JSONObject;
 
+/**
+ *
+ * @author robin, matthew
+ */
 public class Character extends Game {
     String name;
     Location location;

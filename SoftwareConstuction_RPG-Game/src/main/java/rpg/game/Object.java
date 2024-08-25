@@ -7,9 +7,9 @@ package rpg.game;
 import org.json.JSONObject;
 
 /**
-*
-* @author mjbak
-**/
+ *
+ * @author robin, matthew
+ */
 public class Object extends Game{
     String name;
     Location location;

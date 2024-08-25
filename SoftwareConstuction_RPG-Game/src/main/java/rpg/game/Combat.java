@@ -6,7 +6,7 @@ package rpg.game;
 
 /**
  *
- * @author robin
+ * @author robin, matthew
  */
 
 //Used for when encountering an enemy, can have multiple enounters going at once
@@ -31,5 +31,10 @@ public abstract class Combat extends Game implements Runnable{
                 System.out.println(e.getMessage());
             }
         }
+        if(enemy.state == Character.State.DEAD)
+                {
+                    Game.enemies.remove(enemy);
+                    Game.player.score++;
+                }
     }
 }

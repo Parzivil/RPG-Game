@@ -7,7 +7,7 @@ import org.json.*;
 
 /**
  *
- * @author robin
+ * @author robin, matthew
  */
 public class Item extends Game {
     float weight;

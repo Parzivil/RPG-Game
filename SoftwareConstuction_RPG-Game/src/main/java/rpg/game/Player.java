@@ -1,6 +1,9 @@
 package rpg.game;
 import org.json.JSONObject;
-
+/**
+ *
+ * @author robin, matthew
+ */
 public class Player extends Character{
    
     int score;
