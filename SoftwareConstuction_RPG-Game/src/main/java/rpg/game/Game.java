@@ -32,7 +32,20 @@ public class Game{
     public final static String STATS = "STATS";
     public final static String SAVE = "SAVE";
     static Player player;
-    public static Item Start_Weapon = new Item("Wooden Sword of weakness", new Location(20,20), 2, 2);
+    
+    //Starting weapons
+    public static Item Easy_Weapon = new Item("Sword","Bad","Wooden", new Location(20,20), 2, 2);
+    public static Item Medium_Weapon = new Item("Sword","Decent","Wooden", new Location(20,20), 2, 4);
+    public static Item Hard_Weapon = new Item("Sword","Good","Wooden", new Location(20,20), 2, 6);
+    //Completion weapons
+    public static Item Easy_completion_weapon = new Item("Sword","Bad","Stone", new Location(20,20), 1, 5);
+    public static Item Medium_completion_weapon = new Item("Sword","Decent","Stone", new Location(20,20), 2, 7);
+    public static Item Hard_completion_weapon = new Item("Sword","Good","Stone", new Location(20,20), 1, 9);
+    
+    
+    
+    
+    
     public static int difficulty = 0;
     public static Location doorLocation = new Location(15, 15);
     public final static int EASY = 1;
@@ -40,15 +53,14 @@ public class Game{
     public final static int HARD = 3;
     
     
-    public static boolean easy_game_on = true; //Current Game state
-    public static boolean medium_game_on = true; //Current Game state
-    public static boolean hard_game_on = true; //Current Game state
+    public static boolean easy_game_on = false; //Current Game state
+    public static boolean medium_game_on = false; //Current Game state
+    public static boolean hard_game_on = false; //Current Game state
     
     public static boolean playing = true; //Current Game state
     
     public static ArrayList<Character> enemies = new ArrayList<>(); // The array list of enemies 
     public static ArrayList<Object> others = new ArrayList<>(); //The arraylist of everything thats not a character.
-    
 
     
 //This decription was generated using chat GPT    
@@ -88,7 +100,7 @@ public class Game{
     "Damp and uneven, the path in the dungeon echoes with every cautious step.\n",
     "The stone path in the dungeon is cold and uneven, lined with rusting metal and decaying remnants.\n",
     "Flickering torches cast eerie shadows along the damp, grimy stone path of the dungeon.\n",
-    "The stone path is flanked by ancient, crumbling walls that seem to close in as you walk.\n",
+    "The stone path is flanked by darkness that seems to close in as you walk.\n",
     "The oppressive silence of the dungeon makes each step on the stone path echo ominously.\n",
     "The path winds through the dungeon's dark corridors, illuminated only by the occasional flicker of a torch.\n"};
    
@@ -148,7 +160,26 @@ public class Game{
     }
     
     
-
+    public static void Difficulty_selector()
+    {
+        Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
+        while(Game.difficulty <= 0 || Game.difficulty >= 4) //finding out what difficulty they want.
+        {
+            Game.difficulty = Game.askNum("Hello "+Game.player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n",scan);
+            switch(Game.difficulty)
+            {
+                case Game.EASY:
+                    Game.easy_game_on = true;
+                    break;
+                case Game.MEDIUM:
+                    Game.medium_game_on = true;
+                    break;
+                case Game.HARD:
+                    Game.hard_game_on = true;
+                    break;
+            }
+        }
+    }
     
     
     
@@ -241,7 +272,7 @@ public class Game{
                 Game.print(player.get_main_hand().name+" is now in your hand.");
                 break;
                 
-            case Game.LOOK:
+            case Game.LOOK: //describes the block in front of them.
                 if(Look() != null)
                 {
                     print("There is a "+Look().name+" in front of you");
@@ -252,7 +283,13 @@ public class Game{
                     print(Enemy_CHECK().name +" the "+Enemy_CHECK().race+" is in front of you "+Enemy_CHECK().state+"\n");
                     break;
                 }
+                if(Wall_CHECK() == true)
+                {
+                    print(wall[random(8)]);
+                    break;
+                }
                 break;
+                
                 
             case Game.STATS:
                 print(player.checkStats());
@@ -267,6 +304,13 @@ public class Game{
                 for(Character e : enemies) //For loop giving random locations within a set area.
                 {
                     print(e.name+" = "+e.location.toString()+"\n");
+                }
+                break;
+                
+            case "LOCATE OBJECTS": //One of the admin commands
+                for(Object o : others) //For loop giving random locations within a set area.
+                {
+                    print(o.name+" is at "+o.location.toString()+"\n");
                 }
                 break;
         }
@@ -427,9 +471,14 @@ public class Game{
         enemies.add(new Character("Gob","Skeleton",new Location(0,0), 10,false));
         enemies.add(new Character("Job","Skeleton", new Location(0,0), 10,false));
         enemies.add(new Character("Bob","Skeleton", new Location(0,0), 10,false));
+        for(Character e : Game.enemies) //For loop giving random locations within a set area.
+        {
+            e.location.random_location();
+        }
+        //OBJECTS
         for(int i = 0; i <= 5; i++)
         {
-            others.add(new Object("tree",new Location(0,0),false));
+            others.add(new Object("column",new Location(0,0),false)); //creating 5 different objects for the level.
         }
         for(Object o : Game.others) //For loop giving random locations within a set area.
         {
@@ -450,13 +499,15 @@ public class Game{
         doorLocation.giveDescription(Game.get_doorDescription());
 
 
-        for(Character e : Game.enemies) //For loop giving random locations within a set area.
-        {
-            e.location.random_location();
-        }
+        
         Object Door = new Object("Door", doorLocation,true);
-        player.GiveItem(Start_Weapon);
-        player.equip(Start_Weapon);
+        player.GiveItem(Easy_Weapon);
+        player.equip(Easy_Weapon);
+        if(player.main_hand == null)
+        {
+            player.equip(Easy_Weapon);
+        }
+        
         player.location.heading = Location.Direction.NORTH; //Set heading
 
         dungeon.describeLocation();
@@ -465,7 +516,55 @@ public class Game{
                 
     }
     
-    
+    public static void Medium_Set_Up() //Sets up the medium difficulty
+    {
+        //Removing previous stuff
+        enemies.clear();
+        others.clear();
+        //Add the enemies to the game
+        enemies.add(new Character("Gob","Skeleton",new Location(0,0), 20,false));
+        enemies.add(new Character("Job","Skeleton", new Location(0,0), 20,false));
+        enemies.add(new Character("Bob","Skeleton", new Location(0,0), 20,false));
+        enemies.add(new Character("Lob","Skeleton",new Location(0,0), 20,false));
+        enemies.add(new Character("Mob","Skeleton", new Location(0,0), 20,false));
+        for(Character e : Game.enemies) //For loop giving random locations within a set area.
+        {
+            e.location.random_location();
+        }
+        //OBJECTS
+        for(int i = 0; i < 5; i++)
+        {
+            others.add(new Object("column",new Location(0,0),false)); //creating 5 different objects for the level.
+        }
+        others.add(new Object("Chest",new Location(0,0),true));
+        for(Object o : Game.others) //For loop giving random locations within a set area.
+        {
+            o.location.random_location();
+        }
+
+        
+        Game.player.location.setHeading(Location.Direction.NORTH); //Set default player location
+        Game.player.location.xPosition = 0; //Setting x position to 0
+        Game.player.location.yPosition = 0; //Setting y position to 0
+        player.GiveItem(Medium_Weapon); //medium starting weapon
+        if(player.main_hand == null)
+        {
+            player.equip(Medium_Weapon);
+        }
+        
+        //Create a location with a description
+        Location dungeon = new Location(0, 0);
+        dungeon.giveDescription(Game.get_dungeonDescription());
+        player.location = dungeon;
+        player.GiveItem(Medium_Weapon);
+        player.equip(Medium_Weapon);
+        player.location.heading = Location.Direction.NORTH; //Set heading
+
+        dungeon.describeLocation();
+
+        System.out.println("** For all the options type 'options' **\n");
+                
+    }
    
     /*
     Completions of the different levels
@@ -481,6 +580,19 @@ public class Game{
             {
                 easy_game_on = false;
                 difficulty = MEDIUM;  
+            }
+        } 
+    }
+    public static void Check_Medium_Completion()
+    {
+        Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
+        if(player.location.xPosition == others.get(5).location.xPosition && player.location.yPosition == others.get(5).location.yPosition)
+        {
+            String confirmation =  Game.ask("Would you like to move to the next level? \n ******YES or NO******\n", scan).toUpperCase();
+            if(confirmation.equals("YES"))
+            {
+                easy_game_on = false;
+                difficulty = HARD;  
             }
         } 
     }

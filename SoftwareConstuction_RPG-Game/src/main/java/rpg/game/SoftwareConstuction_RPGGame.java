@@ -22,18 +22,14 @@ public class SoftwareConstuction_RPGGame {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
 
+        
+        
         Game.player = new Player(
                 Game.ask("Please enter a name for your character. ", scan), 
                 new Location(0, 0), 55,0);
-        
-        
-        while(Game.difficulty <= 0 || Game.difficulty >= 4) //finding out what difficulty they want.
-        {
-            Game.difficulty = Game.askNum("Hello "+Game.player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n",scan);
-        }
-        
         while(Game.playing)
         {
+            Game.Difficulty_selector();
             switch(Game.difficulty) //this is the setup for the while game loop
             {
                 case Game.EASY: //easy difficulty is a find the door with 3 enemies
@@ -48,9 +44,11 @@ public class SoftwareConstuction_RPGGame {
                 }
                 case Game.MEDIUM: //medium is find the treasure with 5 enemies
                 {
+                    Game.Medium_Set_Up();
                     while(Game.medium_game_on)
                     {
                         Game.Game_play(); //Implementation of all the different functions
+                        Game.Check_Medium_Completion();
                     }   
                     break;
                 }

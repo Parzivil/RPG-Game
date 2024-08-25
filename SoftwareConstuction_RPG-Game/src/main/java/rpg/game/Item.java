@@ -12,14 +12,17 @@ import org.json.*;
 public class Item extends Game {
     float weight;
     String name;
+    String type; //Sword, mace, axe
+    String Quality; //Bad, Decent, Good, Amazing
+    String Material; //Wooden, Stone, Iron, Steel
     
     int damage;
     int attackRate; //Rate between attacks in ms
     
     Location location;
     
-    public Item(String name, Location location, float weight, int damage){
-        this.name = name;
+    public Item(String type,String Quality,String Material, Location location, float weight, int damage){
+        this.name = Quality+" "+Material+" "+type;
         this.location = location;
         this.weight = weight;
         this.damage = damage;

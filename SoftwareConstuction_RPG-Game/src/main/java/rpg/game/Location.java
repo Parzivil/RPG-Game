@@ -13,6 +13,8 @@ public class Location {
     
     int xPosition;
     int yPosition;
+    int width = 30;
+    int pos_width = 15;
     private String descriptor;
 
     Direction heading;
@@ -67,8 +69,8 @@ public class Location {
     }
     public void random_location() //setting a random location to the set character within the borders of the map.
     {
-        int x = Game.random(30)-16;
-        int y = Game.random(30)-16;
+        int x = Game.random(width)-pos_width;
+        int y = Game.random(width)-pos_width;
         this.xPosition = x;
         this.yPosition = y;
     }

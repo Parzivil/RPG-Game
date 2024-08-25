@@ -22,8 +22,9 @@ public class Armor extends Item{
      * @param protection
      * @param condition
      */
-    public Armor(String name, Location location, float weight, int protection, int condition){
-        super(name, location, weight, 0);
+    public Armor(String type,String Quality,String Material,String name, Location location, float weight, int protection, int condition){
+        super(type,Quality,Material, location, weight, 0);
+        this.name = Quality+" "+ Material+" "+type;
         this.protection = protection;
         this.condition = condition;
     }
