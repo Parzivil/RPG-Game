@@ -10,7 +10,7 @@ import org.json.JSONObject;
 *
 * @author mjbak
 **/
-public class Object {
+public class Object extends Game{
     String name;
     Location location;
     String conversation[];
