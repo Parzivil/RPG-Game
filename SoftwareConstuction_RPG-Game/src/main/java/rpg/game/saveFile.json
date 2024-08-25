@@ -1,0 +1,59 @@
+ {
+   "enemy_0": {
+      "race": "Skeleton",
+      "name": "Gob",
+      "health": 10,
+      "location": {
+         "x": -2,
+         "y": -7
+      },
+      "state": "ALIVE",
+      "inventory": {}
+   },
+   "moves": 0,
+   "enemy_2": {
+      "race": "Skeleton",
+      "name": "Bob",
+      "health": 10,
+      "location": {
+         "x": -2,
+         "y": 4
+      },
+      "state": "ALIVE",
+      "inventory": {}
+   },
+   "enemy_1": {
+      "race": "Skeleton",
+      "name": "Job",
+      "health": 10,
+      "location": {        
+         "x": -1,
+         "y": 8
+      },
+      "state": "ALIVE",
+      "inventory": {}
+   },
+   "playing": true,
+   "player": {
+      "score": 0,
+      "character": {
+         "race": "player",
+         "name": "bog",
+         "health": 55,
+         "location": {
+            "heading": "NORTH",
+            "x": 0,
+            "y": 0
+         },
+         "state": "ALIVE",
+         "inventory": {"item": {
+            "name": "Wooden Sword of weakness",
+            "weight": 2,
+            "location": {
+               "x": 20,
+               "y": 20
+            }
+         }}
+      }
+   }
+}
