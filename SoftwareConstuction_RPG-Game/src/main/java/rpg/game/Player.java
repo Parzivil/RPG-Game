@@ -13,6 +13,16 @@ public class Player extends Character{
         this.score = score;
     }
 
+    @Override
+    public String checkStats(){
+        String stats = "";
+        
+        stats += "Score = " + this.getScore()+ "\n";
+        stats += "Health = " + this.health;
+        stats += "\nState = " + this.state.toString() + "\n";
+        
+        return stats;
+    }
     
     
     public void attack(Character character, Item weapon){
@@ -26,10 +36,8 @@ public class Player extends Character{
         return jo;
     }
     
-    public int getscore()
+    public int getScore()
     {
         return this.score;
-    }
-    
-    
+    }  
 }

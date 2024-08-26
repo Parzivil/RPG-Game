@@ -5,39 +5,7 @@
          "goal": false,
          "name": "column",
          "location": {
-            "x": 10,
-            "y": 13
-         }
-      },
-      {
-         "goal": false,
-         "name": "column",
-         "location": {
-            "x": 13,
-            "y": 8
-         }
-      },
-      {
-         "goal": false,
-         "name": "column",
-         "location": {
-            "x": 2,
-            "y": 2
-         }
-      },
-      {
-         "goal": false,
-         "name": "column",
-         "location": {
-            "x": 6,
-            "y": 1
-         }
-      },
-      {
-         "goal": false,
-         "name": "column",
-         "location": {
-            "x": -2,
+            "x": -14,
             "y": -4
          }
       },
@@ -45,8 +13,40 @@
          "goal": false,
          "name": "column",
          "location": {
-            "x": -15,
-            "y": -15
+            "x": -8,
+            "y": -13
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": -8,
+            "y": -12
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": -1,
+            "y": 7
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": -10,
+            "y": -8
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": 5,
+            "y": -1
          }
       }
    ],
@@ -57,8 +57,8 @@
          "name": "Gob",
          "health": 10,
          "location": {
-            "x": -1,
-            "y": -12
+            "x": -14,
+            "y": -8
          },
          "state": "ALIVE",
          "inventory": []
@@ -68,8 +68,8 @@
          "name": "Job",
          "health": 10,
          "location": {
-            "x": -3,
-            "y": -6
+            "x": -7,
+            "y": 11
          },
          "state": "ALIVE",
          "inventory": []
@@ -79,8 +79,8 @@
          "name": "Bob",
          "health": 10,
          "location": {
-            "x": -9,
-            "y": -12
+            "x": 5,
+            "y": -13
          },
          "state": "ALIVE",
          "inventory": []
@@ -90,7 +90,7 @@
       "score": 0,
       "character": {
          "race": "player",
-         "name": "Name",
+         "name": "name",
          "health": 55,
          "location": {
             "heading": "NORTH",
