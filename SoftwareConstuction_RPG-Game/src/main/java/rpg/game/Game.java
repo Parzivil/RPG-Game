@@ -41,7 +41,7 @@ public class Game{
     public static Item Skeleweapon_1 = new Item("Club","Bad","Bone", new Location(20,20), 1, 2);
     public static Item Skeleweapon_2 = new Item("Club","Okay","Bone", new Location(20,20), 1, 3);
     public static Item Skeleweapon_3 = new Item("Club","Strong","Bone", new Location(20,20), 1, 5);
-    
+    public static Item Boss_Weapon = new Item("Mace","Massive","Bone", new Location(20,20), 2, 15);
     
     public static int difficulty = 0;
     public static Location doorLocation = new Location(15, 15);
@@ -56,6 +56,7 @@ public class Game{
     public static boolean hard_game_on = false; //Current Game state
     
     public static boolean playing = true; //Current Game state
+    public static boolean level_completed = false; //Current Game state
     
     public static ArrayList<Character> enemies = new ArrayList<>(); // The array list of enemies 
     public static ArrayList<Object> objects = new ArrayList<>(); //The arraylist of everything thats not a character.
@@ -163,19 +164,9 @@ public class Game{
         Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
         while(Game.difficulty <= 0 || Game.difficulty >= 4) //finding out what difficulty they want.
         {
-            Game.difficulty = Game.askNum("Hello "+Game.player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n",scan);
+            Game.difficulty = Game.askNum("Hello "+Game.player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n4) Load from previous save\n",scan);
             switch(Game.difficulty)
             {
-                case Game.EASY:
-                    Game.easy_game_on = true;
-                    break;
-                case Game.MEDIUM:
-                    Game.medium_game_on = true;
-                    break;
-                case Game.HARD:
-                    Game.hard_game_on = true;
-                    break;
-                    
                     ///IMPLEMENTED FOR TESTING, NEEDS PROPER IMPLMENTATION
                 case Game.LOAD:
                     userSave.LoadGame();
@@ -225,7 +216,7 @@ public class Game{
                 }
                 if(Look() != null)
                 {
-                    print("There is a "+Look().name+" in front of you");
+                    print("There is a "+Look().name+" in front of you\n");
                     break;
                 }
                 if(Wall_CHECK() == true)
@@ -233,36 +224,41 @@ public class Game{
                     print(wall[random(8)]);
                     break;
                 }
-                player.Say("Moved forward");
+                player.Say("Moved forward\n");
                 player.move(player.location.heading);
                 print(path[random(16)]);
                 break;
                 
             case Game.MOVE_BACKWARDS:
-                if(Enemy_CHECK() != null)
+                if(Behind_Enemy_CHECK() != null)
                 {
-                    print(Enemy_CHECK().name +" the "+Enemy_CHECK().race+" is in behind of you\n"
-                            + "turn and fight");
+                    print(Behind_Enemy_CHECK().name +" the "+Behind_Enemy_CHECK().race+" is in behind of you\n"
+                            + "turn and fight\n");
                     break;
                 }
-                if(Wall_CHECK() == true)
+                if(Behind_Wall_CHECK() == true)
                 {
                     print(wall[random(8)]);
                     break;
                 }
-                player.Say("Moved backward");
-                player.move_back(); //Do we need this? Could the player just turn 180? // Sort of but thats not much easier.
+                if(Look_Behind() != null)
+                {
+                    print("There is a "+Look_Behind().name+" behind you");
+                    break;
+                }
+                player.Say("Moved backward\n");
+                player.move_back(); 
                 print(path[random(16)]);
                 break;
                 
             case Game.TURN_LEFT:
                 player.Turn_Left();
-                player.Say("You turned Left");
+                player.Say("You turned Left\n");
                 break;
                 
             case Game.TURN_RIGHT:
                 player.Turn_Right();
-                player.Say("You turned Right");
+                player.Say("You turned Right\n");
                 break;
                 
             case Game.SHOW_INVENTORY:
@@ -272,13 +268,13 @@ public class Game{
             case Game.SET_MAIN_HAND:
                 int in = Game.askNum("What would you like to be in your hand?\n(Using the number)\n"+ player.Show_Inventory(),scan);
                 player.equip(player.inventory.get(in));
-                Game.print(player.get_main_hand().name+" is now in your hand.");
+                Game.print(player.get_main_hand().name+" is now in your hand.\n");
                 break;
                 
             case Game.LOOK: //describes the block in front of them.
                 if(Look() != null)
                 {
-                    print("There is a "+Look().name+" in front of you");
+                    print("There is a "+Look().name+" in front of you\n");
                     break;
                 }
                 if(Enemy_CHECK() != null)
@@ -291,7 +287,7 @@ public class Game{
                     print(wall[random(8)]);
                     break;
                 }
-                print("There is nothing but darkness");
+                print("There is nothing but darkness\n");
                 break;
                 
                 
@@ -377,7 +373,46 @@ public class Game{
         }
         return false;
     }
+    
+    public static boolean Behind_Wall_CHECK()
+    {
+        int x_char = 0;
+        int y_char = 0;
+        switch(player.location.heading) //sets the location of the square that is being checked
+        {
+            case NORTH:
+                y_char = player.location.yPosition - 1;
+                if(y_char == 16)
+                {
+                    return true;
+                }
+                break;
+            case SOUTH:
+                y_char = player.location.yPosition + 1;
+                if(y_char == -16)
+                {
+                    return true;
+                }
+                break;
+            case EAST:
+                x_char = player.location.xPosition - 1;
+                if(y_char == 16)
+                {
+                    return true;
+                }
+                break;
+            case WEST:
+                x_char =  player.location.xPosition + 1;
+                if(y_char == -16)
+                {
+                    return true;
+                }
+                break;
+        }
+        return false;
+    }
 
+    
     public static Object Look()
     {
         int x_char = 0;
@@ -413,6 +448,42 @@ public class Game{
         return null;
     }
     
+        public static Object Look_Behind()
+    {
+        int x_char = 0;
+        int y_char = 0;
+        switch(player.location.heading) //sets the location of the square that is being checked
+        {
+            case NORTH:
+                y_char = player.location.yPosition - 1;
+                x_char = player.location.xPosition;
+                break;
+            case SOUTH:
+                y_char = player.location.yPosition + 1;
+                x_char = player.location.xPosition;
+                break;
+            case EAST:
+                x_char = player.location.xPosition - 1;
+                y_char = player.location.yPosition;
+                break;
+            case WEST:
+                x_char =  player.location.xPosition + 1;
+                y_char = player.location.yPosition;
+                break;
+        }
+        for(Object o : objects) //checking through object positions
+        {
+            int x = o.location.xPosition;
+            int y = o.location.yPosition;
+            if((y_char == y) && (x_char == x))
+            {
+                return o;
+            }
+        }
+        return null;
+    }
+
+    
     public static Character Enemy_CHECK() //looks for an enemy infront of them.
     {
         int x_char = 0;
@@ -433,6 +504,42 @@ public class Game{
                 break;
             case WEST:
                 x_char =  player.location.xPosition - 1;
+                y_char = player.location.yPosition;
+                break;
+        }
+        for(Character e : enemies) //checking through all enemy positions
+        {
+            int x = e.location.xPosition;
+            int y = e.location.yPosition;
+            if((y_char == y) && (x_char == x))
+            {
+                return e;
+            }
+        }
+        return null;
+    }
+    
+    
+    public static Character Behind_Enemy_CHECK() //looks for an enemy infront of them.
+    {
+        int x_char = 0;
+        int y_char = 0;
+        switch(player.location.heading) //sets the location of the square that is being checked
+        {
+            case NORTH:
+                y_char = player.location.yPosition - 1;
+                x_char = player.location.xPosition;
+                break;
+            case SOUTH:
+                y_char = player.location.yPosition + 1;
+                x_char = player.location.xPosition;
+                break;
+            case EAST:
+                x_char = player.location.xPosition - 1;
+                y_char = player.location.yPosition;
+                break;
+            case WEST:
+                x_char =  player.location.xPosition + 1;
                 y_char = player.location.yPosition;
                 break;
         }
