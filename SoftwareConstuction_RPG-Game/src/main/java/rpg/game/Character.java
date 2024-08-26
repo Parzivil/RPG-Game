@@ -15,7 +15,7 @@ public class Character extends Game {
     public Item main_hand;
     public State state;
     int health;
-    boolean boss;
+    public boolean isBoss;
     
     
     private int unconsiousLimit = 3;
@@ -38,7 +38,7 @@ public class Character extends Game {
         this.race = race;
         this.location = location;
         this.health = health;
-        this.boss = boss;
+        this.isBoss = boss;
         
         //Depending on the health given in the constructor sets the state
         if(health == 0) state = State.DEAD;
@@ -166,9 +166,9 @@ public class Character extends Game {
         
         //Condition if they stab themselves
         if(this.inventory.contains(weapon)){
-            System.out.println("\n"+ this.name + " attacks themselves with " + weapon.name + " for " + weapon.damage + " damage!");
+            System.out.println("\n"+ this.race +" - "+ this.name + " attacks themselves with " + weapon.name + " for " + weapon.damage + " damage!");
         }
-        else System.out.println("\n"+ this.name + " is attacked with " + weapon.name + " for " + weapon.damage + " damage!");
+        else System.out.println("\n"+ this.race +" - "+ this.name + " is attacked with " + weapon.name + " for " + weapon.damage + " damage!");
         this.doDamage(weapon.damage);
     }
     

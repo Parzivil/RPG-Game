@@ -8,10 +8,10 @@ import org.json.*;
 public class Game{
 
     //Game Saving and loading objects
-    static Saver userSave = new Saver("src\\main\\java\\rpg\\game\\saveFile.json"); //Object to save
-    static Saver easySave = new Saver("src\\main\\java\\rpg\\game\\Level_1_Save.json"); //Object to save
-    static Saver mediumSave = new Saver("src\\main\\java\\rpg\\game\\Level_2_Save.json"); //Object to save
-    static Saver hardSave = new Saver("src\\main\\java\\rpg\\game\\Level_3_Save.json"); //Object to save
+    static SaveFile userSave = new SaveFile("src\\main\\java\\rpg\\game\\saveFile.json"); //Object to save
+    static SaveFile easySave = new SaveFile("src\\main\\java\\rpg\\game\\Level_1_Save.json"); //Object to save
+    static SaveFile mediumSave = new SaveFile("src\\main\\java\\rpg\\game\\Level_2_Save.json"); //Object to save
+    static SaveFile hardSave = new SaveFile("src\\main\\java\\rpg\\game\\Level_3_Save.json"); //Object to save
     
     public Random rand = new Random();
     
