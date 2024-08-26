@@ -28,7 +28,8 @@ public class Saver extends Game{
     }
     
     //Saves the current game state to a JSON file
-    public void SaveGame(JSONObject jo){                
+    public void SaveGame(){              
+        JSONObject jo = Game.gameToJSON();
         try{
             write.write(jo.toString(3));
             write.close();
@@ -49,10 +50,19 @@ public class Saver extends Game{
             
             Game.player = loadPlayer(jo); //Load the player
             
+            
+            // *** Load Enemies *** ///
             Game.enemies.clear(); //Empty the enemy array
             JSONArray enemiesJSON = jo.getJSONArray("enemies");
             for(int i = 0; i < enemiesJSON.length(); i++){
                 Game.enemies.add(loadCharacter(enemiesJSON.getJSONObject(i))); //Add enemies
+            }
+            
+            // *** Load Objects *** ///
+            Game.objects.clear(); //Empty the object array
+            JSONArray objectsJSONArray = jo.getJSONArray("objects");
+            for(int i = 0; i < objectsJSONArray.length(); i++){
+                Game.objects.add(loadObject(objectsJSONArray.getJSONObject(i))); //Add enemies
             }
             
         }
@@ -129,4 +139,23 @@ public class Saver extends Game{
         
         return character;   
     }
+    
+     private ArrayList<Object> loadObjects(JSONObject jo){
+            JSONArray objectJSON = jo.getJSONArray("objects");
+            ArrayList<Object> objectArray = new ArrayList<>();
+ 
+            for(int i = 0; i < objectJSON.length(); i++){
+                objectArray.add(loadObject(objectJSON.getJSONObject(i))); //Add enemies
+            }
+            
+            return objectArray;
+    }
+     
+     private Object loadObject(JSONObject jo){
+        JSONObject objectObj = jo.getJSONObject("object");
+        String name = objectObj.getString("name");
+        Location location = loadLocation(objectObj);
+        boolean aim = objectObj.getBoolean("aim");
+        return new Object(name, location, aim);
+     }
 }

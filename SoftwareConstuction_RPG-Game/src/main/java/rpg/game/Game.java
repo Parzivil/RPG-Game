@@ -60,7 +60,7 @@ public class Game{
     public static boolean playing = true; //Current Game state
     
     public static ArrayList<Character> enemies = new ArrayList<>(); // The array list of enemies 
-    public static ArrayList<Object> others = new ArrayList<>(); //The arraylist of everything thats not a character.
+    public static ArrayList<Object> objects = new ArrayList<>(); //The arraylist of everything thats not a character.
 
     
 //This decription was generated using chat GPT    
@@ -193,7 +193,7 @@ public class Game{
             //JUST USED FOR TESTING
             //******
             case Game.SAVE:
-                userSave.SaveGame(gameToJSON()); //Save the game
+                userSave.SaveGame(); //Save the game
             break;
             //****** Needs propper implementation (just copy the above function
             
@@ -308,7 +308,7 @@ public class Game{
                 break;
                 
             case "LOCATE OBJECTS": //One of the admin commands
-                for(Object o : others) //For loop giving random locations within a set area.
+                for(Object o : objects) //For loop giving random locations within a set area.
                 {
                     print(o.name+" is at "+o.location.toString()+"\n");
                 }
@@ -395,7 +395,7 @@ public class Game{
                 y_char = player.location.yPosition;
                 break;
         }
-        for(Object o : others) //checking through object positions
+        for(Object o : objects) //checking through object positions
         {
             int x = o.location.xPosition;
             int y = o.location.yPosition;
@@ -442,16 +442,7 @@ public class Game{
         return null;
     }
     
-    public static JSONObject gameToJSON(){
-        JSONObject jo = new JSONObject();
-        jo.put("playing", playing);
-        jo.put("moves", moves);
-        jo.put("player", player.playerToJSON()); //Add player to JSON
-        //Add all the enemies to the JSON
-        
-        jo.put("enemies", enemiesToJSON());
-        return jo;
-    }
+    
     
     /*
     Setting up all the different levels
@@ -461,7 +452,7 @@ public class Game{
     {
         //Removing previous stuff
         enemies.clear();
-        others.clear();
+        objects.clear();
         //Add the enemies to the game
         enemies.add(new Character("Gob","Skeleton",new Location(0,0), 10,false));
         enemies.add(new Character("Job","Skeleton", new Location(0,0), 10,false));
@@ -473,9 +464,9 @@ public class Game{
         //OBJECTS
         for(int i = 0; i <= 5; i++)
         {
-            others.add(new Object("column",new Location(0,0),false)); //creating 5 different objects for the level.
+            objects.add(new Object("column",new Location(0,0),false)); //creating 5 different objects for the level.
         }
-        for(Object o : Game.others) //For loop giving random locations within a set area.
+        for(Object o : Game.objects) //For loop giving random locations within a set area.
         {
             o.location.random_location();
         }
@@ -515,7 +506,7 @@ public class Game{
     {
         //Removing previous stuff
         enemies.clear();
-        others.clear();
+        objects.clear();
         //Add the enemies to the game
         enemies.add(new Character("Gob","Skeleton",new Location(0,0), 20,false));
         enemies.add(new Character("Job","Skeleton", new Location(0,0), 20,false));
@@ -529,10 +520,10 @@ public class Game{
         //OBJECTS
         for(int i = 0; i < 5; i++)
         {
-            others.add(new Object("column",new Location(0,0),false)); //creating 5 different objects for the level.
+            objects.add(new Object("column",new Location(0,0),false)); //creating 5 different objects for the level.
         }
-        others.add(new Object("Chest",new Location(0,0),true));
-        for(Object o : Game.others) //For loop giving random locations within a set area.
+        objects.add(new Object("Chest",new Location(0,0),true));
+        for(Object o : Game.objects) //For loop giving random locations within a set area.
         {
             o.location.random_location();
         }
@@ -581,7 +572,7 @@ public class Game{
     public static void Check_Medium_Completion()
     {
         Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
-        if(player.location.xPosition == others.get(5).location.xPosition && player.location.yPosition == others.get(5).location.yPosition)
+        if(player.location.xPosition == objects.get(5).location.xPosition && player.location.yPosition == objects.get(5).location.yPosition)
         {
             String confirmation =  Game.ask("Would you like to move to the next level? \n ******YES or NO******\n", scan).toUpperCase();
             if(confirmation.equals("YES"))
@@ -593,13 +584,36 @@ public class Game{
     }
     
     //Converts enemy array to a JSONArray
-    public static JSONArray enemiesToJSON(){
+    private static JSONArray enemiesToJSON(){
         JSONArray ja = new JSONArray();
         
         for(Character enemy : enemies){
             ja.put(enemy.characterToJSON());
         }
         return ja;
+    }
+    
+    //Convets game objects to JSON array
+    private static JSONArray objectsToJSON(){
+        JSONArray ja = new JSONArray();
+        
+        for(Object object : objects){
+            ja.put(object.objectToJSON());
+        }
+        return ja;
+    }
+    
+    //Saves the game as a JSON file
+    protected static JSONObject gameToJSON(){
+        JSONObject jo = new JSONObject();
+        jo.put("playing", playing);
+        jo.put("moves", moves);
+        jo.put("player", player.playerToJSON()); //Add player to JSON
+        //Add all the enemies to the JSON
+        
+        jo.put("enemies", enemiesToJSON());
+        jo.put("objects", objectsToJSON());
+        return jo;
     }
     
 }
