@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package rpg.game;
 
 /**
@@ -10,7 +7,7 @@ package rpg.game;
  */
 
 //Used for when encountering an enemy, can have multiple enounters going at once
-public abstract class Combat extends Game implements Runnable{
+public class Combat extends Game implements Runnable{
     Player player;
     Character enemy;
     
@@ -32,9 +29,9 @@ public abstract class Combat extends Game implements Runnable{
             }
         }
         if(enemy.state == Character.State.DEAD)
-                {
-                    Game.enemies.remove(enemy);
-                    Game.player.score++;
-                }
+        {
+            Game.enemies.remove(enemy);
+            Game.player.score++;
+        }
     }
 }
