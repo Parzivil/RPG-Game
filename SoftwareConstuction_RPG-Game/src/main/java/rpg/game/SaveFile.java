@@ -138,7 +138,7 @@ public class SaveFile extends Game{
         int health = characterObj.getInt("health"); 
         boolean boss = characterObj.optBoolean("boss", false);
         
-        Character character = new Character(name, race, characterLocation, health, boss);
+        Character character = new Character(name, race, characterLocation, health);
         character.inventory = loadInventory(characterObj);
         
         return character;   

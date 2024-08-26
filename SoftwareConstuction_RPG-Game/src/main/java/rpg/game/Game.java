@@ -560,9 +560,9 @@ public class Game{
         enemies.clear();
         objects.clear();
         //Add the enemies to the game
-        enemies.add(new Character("Gob","Skeleton",new Location(0,0), 10,false));
-        enemies.add(new Character("Job","Skeleton", new Location(0,0), 10,false));
-        enemies.add(new Character("Bob","Skeleton", new Location(0,0), 10,false));
+        enemies.add(new Character("Gob","Skeleton",new Location(0,0), 10));
+        enemies.add(new Character("Job","Skeleton", new Location(0,0), 10));
+        enemies.add(new Character("Bob","Skeleton", new Location(0,0), 10));
         for(Character e : Game.enemies) //For loop giving random locations within a set area.
         {
             e.GiveItem_silent(Skeleweapon_1);
@@ -617,11 +617,11 @@ public class Game{
         enemies.clear();
         objects.clear();
         //Add the enemies to the game
-        enemies.add(new Character("Gob","Skeleton",new Location(0,0), 20,false));
-        enemies.add(new Character("Job","Skeleton", new Location(0,0), 20,false));
-        enemies.add(new Character("Bob","Skeleton", new Location(0,0), 20,false));
-        enemies.add(new Character("Lob","Skeleton",new Location(0,0), 20,false));
-        enemies.add(new Character("Mob","Skeleton", new Location(0,0), 20,false));
+        enemies.add(new Character("Gob","Skeleton",new Location(0,0), 20));
+        enemies.add(new Character("Job","Skeleton", new Location(0,0), 20));
+        enemies.add(new Character("Bob","Skeleton", new Location(0,0), 20));
+        enemies.add(new Character("Lob","Skeleton",new Location(0,0), 20));
+        enemies.add(new Character("Mob","Skeleton", new Location(0,0), 20));
         for(Character e : Game.enemies) //For loop giving random locations within a set area.
         {
             e.location.random_location();
@@ -663,6 +663,59 @@ public class Game{
         mediumSave.SaveGame(); //Set the medium save setup
     }
    
+    public static void Hard_Set_Up() //Sets up the medium difficulty
+    {
+        //Removing previous stuff
+        enemies.clear();
+        objects.clear();
+        //Add the enemies to the game
+        enemies.add(new Character("Gob","Skeleton",new Location(0,0), 30));
+        enemies.add(new Character("Job","Skeleton", new Location(0,0), 30));
+        enemies.add(new Character("Bob","Skeleton", new Location(0,0), 30));
+        enemies.add(new Character("Lob","Skeleton",new Location(0,0), 30));
+        enemies.add(new Character("Mob","Skeleton", new Location(0,0), 30));
+        enemies.add(new Character("Steve Job","Skeleton", new Location(0,0), 30));
+        
+        for(Character e : Game.enemies) //For loop giving random locations within a set area.
+        {
+            e.location.random_location();
+        }
+        //OBJECTS
+        for(int i = 0; i < 7; i++)
+        {
+            objects.add(new Object("column",new Location(0,0),false)); //creating 5 different objects for the level.
+        }
+        for(Object o : Game.objects) //For loop giving random locations within a set area.
+        {
+            o.location.random_location();
+        }
+
+        
+        Game.player.location.setHeading(Location.Direction.NORTH); //Set default player location
+        Game.player.location.xPosition = 0; //Setting x position to 0
+        Game.player.location.yPosition = 0; //Setting y position to 0
+        player.GiveItem(Hard_Weapon); //Hard starting weapon
+        if(player.main_hand == null)
+        {
+            player.equip(Medium_Weapon);
+        }
+        
+        //Create a location with a description
+        Location dungeon = new Location(0, 0);
+        dungeon.giveDescription(Game.get_dungeonDescription());
+        player.location = dungeon;
+        player.GiveItem(Medium_Weapon);
+        player.equip(Medium_Weapon);
+        player.location.heading = Location.Direction.NORTH; //Set heading
+
+        dungeon.describeLocation();
+
+        System.out.println("** For all the options type 'options' **\n");
+            
+        
+        mediumSave.SaveGame(); //Set the medium save setup
+    }
+    
     /*
     Completions of the different levels
     */
@@ -695,6 +748,17 @@ public class Game{
         }
         return false;
     }
+    
+    public static boolean Check_Hard_Completion()
+    {
+        Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
+        if(enemies.isEmpty())
+        {
+            return true;
+        }
+        return false;
+    }
+    
     
     //Converts enemy array to a JSONArray
     private static JSONArray enemiesToJSON(){
