@@ -34,7 +34,6 @@ public class Saver extends Game{
         try{
             write.write(jo.toString(3));
             write.close();
-            System.out.println(jo.toString(3)); //Debug
             
         }   
         catch(Exception e){
