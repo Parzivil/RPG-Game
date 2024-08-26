@@ -37,9 +37,10 @@ public class Game{
     public static Item Easy_completion_weapon = new Item("Sword","Bad","Stone", new Location(20,20), 1, 5);
     public static Item Medium_completion_weapon = new Item("Sword","Decent","Stone", new Location(20,20), 2, 7);
     public static Item Hard_completion_weapon = new Item("Sword","Good","Stone", new Location(20,20), 1, 9);
-    
-    
-    
+    //Enemy weapon
+    public static Item Skeleweapon_1 = new Item("Club","Bad","Bone", new Location(20,20), 1, 2);
+    public static Item Skeleweapon_2 = new Item("Club","Okay","Bone", new Location(20,20), 1, 3);
+    public static Item Skeleweapon_3 = new Item("Club","Strong","Bone", new Location(20,20), 1, 5);
     
     
     public static int difficulty = 0;
@@ -290,6 +291,7 @@ public class Game{
                     print(wall[random(8)]);
                     break;
                 }
+                print("There is nothing but darkness");
                 break;
                 
                 
@@ -323,7 +325,9 @@ public class Game{
         if(Enemy_CHECK() != null)
         {
             player.attack(Enemy_CHECK(),Wep);
-            //Combat.run;
+            Combat encounter = new Combat(player,Enemy_CHECK());
+            Thread th = new Thread(encounter);
+            th.start();
         }
         else
         {
@@ -461,6 +465,8 @@ public class Game{
         enemies.add(new Character("Bob","Skeleton", new Location(0,0), 10,false));
         for(Character e : Game.enemies) //For loop giving random locations within a set area.
         {
+            e.GiveItem_silent(Skeleweapon_1);
+            e.equip(Skeleweapon_1);
             e.location.random_location();
         }
         //OBJECTS

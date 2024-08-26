@@ -10,7 +10,7 @@ package rpg.game;
  */
 
 //Used for when encountering an enemy, can have multiple enounters going at once
-public abstract class Combat extends Game implements Runnable{
+public class Combat extends Game implements Runnable{
     Player player;
     Character enemy;
     
@@ -34,7 +34,7 @@ public abstract class Combat extends Game implements Runnable{
         if(enemy.state == Character.State.DEAD)
                 {
                     Game.enemies.remove(enemy);
-                    Game.player.score++;
+                    Game.player.score += 10;
                 }
     }
 }
