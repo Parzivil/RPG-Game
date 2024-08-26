@@ -22,11 +22,14 @@ public class Item extends Game {
     Location location;
     
     public Item(String type,String Quality,String Material, Location location, float weight, int damage){
-        this.name = Quality+" "+Material+" "+type;
+        this.Quality = Quality;
+        this.type = type;
+        this.Material = Material;
         this.location = location;
         this.weight = weight;
         this.damage = damage;
         
+        this.name = Quality+" "+Material+" "+type;
         //Attack rate is a function of weight
         attackRate = (int)weight * 2000; //May need adjusting
     }

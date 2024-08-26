@@ -7,8 +7,8 @@
          "name": "Gob",
          "health": 10,
          "location": {
-            "x": -13,
-            "y": 14
+            "x": 12,
+            "y": -2
          },
          "state": "ALIVE",
          "inventory": []
@@ -18,8 +18,8 @@
          "name": "Job",
          "health": 10,
          "location": {
-            "x": 10,
-            "y": -2
+            "x": -4,
+            "y": -8
          },
          "state": "ALIVE",
          "inventory": []
@@ -29,8 +29,8 @@
          "name": "Bob",
          "health": 10,
          "location": {
-            "x": 1,
-            "y": 2
+            "x": 12,
+            "y": -4
          },
          "state": "ALIVE",
          "inventory": []
@@ -40,7 +40,7 @@
       "score": 0,
       "character": {
          "race": "player",
-         "name": "dog",
+         "name": "Dog",
          "health": 55,
          "location": {
             "heading": "NORTH",
@@ -50,11 +50,14 @@
          "state": "ALIVE",
          "inventory": [{
             "damage": 2,
+            "material": "Wooden",
             "weight": 2,
             "location": {
                "x": 20,
                "y": 20
-            }
+            },
+            "type": "Sword",
+            "quality": "Bad"
          }]
       }
    }

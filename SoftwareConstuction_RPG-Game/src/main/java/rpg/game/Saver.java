@@ -13,7 +13,6 @@ import org.json.*;
  * @author robin
  */
 
-////WORK IN PROGRESS, NEEDS MORE WORK
 public class Saver extends Game{
     private Writer write;
     private String path;
@@ -33,7 +32,7 @@ public class Saver extends Game{
         try{
             write.write(jo.toString(3));
             write.close();
-            System.out.println(jo.toString(3));
+            System.out.println(jo.toString(3)); //Debug
             
         }   
         catch(Exception e){
