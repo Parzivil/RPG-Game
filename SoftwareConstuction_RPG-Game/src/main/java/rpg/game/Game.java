@@ -449,12 +449,7 @@ public class Game{
         jo.put("player", player.playerToJSON()); //Add player to JSON
         //Add all the enemies to the JSON
         
-        //JSON Object works like a hash map, so each element must have a unique key
-        int i = 0; 
-        for(Character enemy : enemies){
-            jo.put("enemy_"+i, enemy.characterToJSON());
-            i++;
-        }
+        jo.put("enemies", enemiesToJSON());
         return jo;
     }
     
@@ -595,6 +590,16 @@ public class Game{
                 difficulty = HARD;  
             }
         } 
+    }
+    
+    //Converts enemy array to a JSONArray
+    public static JSONArray enemiesToJSON(){
+        JSONArray ja = new JSONArray();
+        
+        for(Character enemy : enemies){
+            ja.put(enemy.characterToJSON());
+        }
+        return ja;
     }
     
 }

@@ -25,8 +25,11 @@ public class Player extends Character{
         jo.put("character", this.characterToJSON());
         return jo;
     }
+    
     public int getscore()
     {
         return this.score;
     }
+    
+    
 }

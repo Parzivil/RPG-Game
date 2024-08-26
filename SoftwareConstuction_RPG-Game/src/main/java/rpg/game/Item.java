@@ -47,9 +47,12 @@ public class Item extends Game {
     
     public JSONObject itemToJSON(){
         JSONObject jo = new JSONObject();
-        jo.put("name", name);
+        jo.put("type", this.type);
+        jo.put("quality", this.Quality);
+        jo.put("material", this.Material);
         jo.put("location", this.location.locationToJSON());
-        jo.put("weight", weight);
+        jo.put("weight",this. weight);
+        jo.put("damage", this.damage);
         return jo;
     }
 }

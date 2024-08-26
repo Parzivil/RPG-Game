@@ -1,0 +1,61 @@
+{
+   "moves": 0,
+   "playing": true,
+   "enemies": [
+      {
+         "race": "Skeleton",
+         "name": "Gob",
+         "health": 10,
+         "location": {
+            "x": -13,
+            "y": 14
+         },
+         "state": "ALIVE",
+         "inventory": []
+      },
+      {
+         "race": "Skeleton",
+         "name": "Job",
+         "health": 10,
+         "location": {
+            "x": 10,
+            "y": -2
+         },
+         "state": "ALIVE",
+         "inventory": []
+      },
+      {
+         "race": "Skeleton",
+         "name": "Bob",
+         "health": 10,
+         "location": {
+            "x": 1,
+            "y": 2
+         },
+         "state": "ALIVE",
+         "inventory": []
+      }
+   ],
+   "player": {
+      "score": 0,
+      "character": {
+         "race": "player",
+         "name": "dog",
+         "health": 55,
+         "location": {
+            "heading": "NORTH",
+            "x": 0,
+            "y": 0
+         },
+         "state": "ALIVE",
+         "inventory": [{
+            "damage": 2,
+            "weight": 2,
+            "location": {
+               "x": 20,
+               "y": 20
+            }
+         }]
+      }
+   }
+}

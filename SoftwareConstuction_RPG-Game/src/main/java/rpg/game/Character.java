@@ -1,6 +1,8 @@
 package rpg.game;
 import java.util.ArrayList;
+import org.json.JSONArray;
 import org.json.JSONObject;
+import static rpg.game.Game.enemies;
 
 /**
  *
@@ -266,19 +268,19 @@ public class Character extends Game {
         jo.put("name", name);
         jo.put("health", health);
         jo.put("location", location.locationToJSON());
-        jo.put("inventory", inventoryToJSON());
+        jo.put("inventory", inventoryToJSONArray());
         jo.put("race", race);
         jo.put("state", state.toString());
         return jo;
     }
-    
-    private JSONObject inventoryToJSON(){
-        JSONObject jo = new JSONObject();
+
+    private JSONArray inventoryToJSONArray(){
+        JSONArray ja = new JSONArray();
         
         for(Item item : this.inventory){
-            jo.put("item", item.itemToJSON());
+            ja.put(item.itemToJSON());
         }
-        return jo;
+        return ja;
     }
     
     public String checkStats(){
