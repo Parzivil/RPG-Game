@@ -1,0 +1,14 @@
+rpg\game\Character.class
+rpg\game\Character$State.class
+rpg\game\SoftwareConstuction_RPGGame.class
+rpg\game\Armor.class
+rpg\game\Game.class
+rpg\game\Character$1.class
+rpg\game\Player.class
+rpg\game\Location$Direction.class
+rpg\game\Game$1.class
+rpg\game\Item.class
+rpg\game\Object.class
+rpg\game\SaveFile.class
+rpg\game\Combat.class
+rpg\game\Location.class

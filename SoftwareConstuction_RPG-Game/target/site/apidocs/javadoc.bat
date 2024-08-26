@@ -1,0 +1,1 @@
+cmd.exe /X /C ""C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot\bin\javadoc.exe" -J-Dhttp.proxyHost=156.62.1.21 -J-Dhttp.proxyPort=3128 -J-Dhttps.proxyHost=156.62.1.21 -J-Dhttps.proxyPort=3128 -J-Duser.language= -J-Duser.country= @options @packages"
