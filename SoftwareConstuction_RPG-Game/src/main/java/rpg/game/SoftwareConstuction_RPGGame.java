@@ -41,11 +41,11 @@ public class SoftwareConstuction_RPGGame
                 }
                 case Game.HARD: //defeat the boss and his 6 henchmen
                 {  
-                      
                     break;
                 }
                 case Game.LOAD:
                 {
+                    Game.userSave.LoadGame();
                     break;
                 }
             }

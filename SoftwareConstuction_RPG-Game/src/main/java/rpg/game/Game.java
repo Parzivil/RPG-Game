@@ -162,16 +162,9 @@ public class Game{
     public static void Difficulty_selector()
     {
         Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
-        while(Game.difficulty <= 0 || Game.difficulty >= 4) //finding out what difficulty they want.
+        while(Game.difficulty <= 0 || Game.difficulty > 4) //finding out what difficulty they want.
         {
             Game.difficulty = Game.askNum("Hello "+Game.player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n4) Load from previous save\n",scan);
-            switch(Game.difficulty)
-            {
-                    ///IMPLEMENTED FOR TESTING, NEEDS PROPER IMPLMENTATION
-                case Game.LOAD:
-                    userSave.LoadGame();
-                    break;
-            }
         }
     }
     
