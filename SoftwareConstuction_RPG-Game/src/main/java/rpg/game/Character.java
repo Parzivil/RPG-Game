@@ -4,7 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
- *
  * @author robin, matthew
  */
 public class Character extends Game {
@@ -33,6 +32,7 @@ public class Character extends Game {
         IMMORTAL
     }
 
+    
     public Character(String name,String race, Location location, int health, boolean boss){
         this.name = name;
         this.race = race;
