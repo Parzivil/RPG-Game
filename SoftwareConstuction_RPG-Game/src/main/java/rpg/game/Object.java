@@ -14,17 +14,17 @@ public class Object extends Game{
     String name;
     Location location;
     String conversation[];
-    Boolean aim;
+    Boolean goal;
     /*
     *Object constructor
     *
-    *name, location, boolean aim (Default is false but set to true if interacting completes the level.)
+    *name, location, boolean goal (Default is false but set to true if interacting completes the level.)
     */
-    public Object(String name, Location location,Boolean aim)
+    public Object(String name, Location location,Boolean goal)
     {
         this.name = name;
         this.location = location;
-        this.aim = aim;
+        this.goal = goal;
     }        
     
     @Override
@@ -38,7 +38,7 @@ public class Object extends Game{
         jo.put("name", name);
         jo.put("location", this.location.locationToJSON());
         jo.put("conversation", conversation);
-        jo.put("aim", aim);
+        jo.put("goal", goal);
         return jo;
     }
     

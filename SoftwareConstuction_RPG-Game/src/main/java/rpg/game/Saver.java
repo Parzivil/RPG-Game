@@ -18,17 +18,18 @@ public class Saver extends Game{
     private String path;
     
     public Saver(String path){        
+        this.path = path;
+    }
+    
+    //Saves the current game state to a JSON file
+    public void SaveGame(){  
         try{
-            write = new FileWriter(path);
-            this.path = path;
+            write = new FileWriter(this.path);
         }
         catch(Exception e){
             System.out.println("FAILED TO OPEN FILE: " + path);
         }
-    }
-    
-    //Saves the current game state to a JSON file
-    public void SaveGame(){              
+        
         JSONObject jo = Game.gameToJSON();
         try{
             write.write(jo.toString(3));
@@ -41,6 +42,7 @@ public class Saver extends Game{
         }
     }
     
+    //Loads the current game from the save path    
     public void LoadGame(){
         try{
             // Load the JSON file
@@ -155,7 +157,7 @@ public class Saver extends Game{
         JSONObject objectObj = jo.getJSONObject("object");
         String name = objectObj.getString("name");
         Location location = loadLocation(objectObj);
-        boolean aim = objectObj.getBoolean("aim");
-        return new Object(name, location, aim);
+        boolean goal = objectObj.getBoolean("goal");
+        return new Object(name, location, goal);
      }
 }

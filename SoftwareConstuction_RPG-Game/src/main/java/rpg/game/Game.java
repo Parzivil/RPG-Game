@@ -13,9 +13,9 @@ public class Game{
 
     //Game Saving and loading objects
     static Saver userSave = new Saver("src\\main\\java\\rpg\\game\\saveFile.json"); //Object to save
-    static Saver easySave = new Saver("Level_1_Save.json"); //Object to save
-    static Saver mediumSave = new Saver("Level_2_Save.json"); //Object to save
-    static Saver hardSave = new Saver("Level_3_Save.json"); //Object to save
+    static Saver easySave = new Saver("src\\main\\java\\rpg\\game\\Level_1_Save.json"); //Object to save
+    static Saver mediumSave = new Saver("src\\main\\java\\rpg\\game\\Level_2_Save.json"); //Object to save
+    static Saver hardSave = new Saver("src\\main\\java\\rpg\\game\\Level_3_Save.json"); //Object to save
     
     public Random rand = new Random();
     
@@ -500,6 +500,7 @@ public class Game{
 
         System.out.println("** For all the options type 'options' **\n");
                 
+        easySave.SaveGame(); //Save the easy save state
     }
     
     public static void Medium_Set_Up() //Sets up the medium difficulty
@@ -549,7 +550,9 @@ public class Game{
         dungeon.describeLocation();
 
         System.out.println("** For all the options type 'options' **\n");
-                
+            
+        
+        mediumSave.SaveGame(); //Set the medium save setup
     }
    
     /*

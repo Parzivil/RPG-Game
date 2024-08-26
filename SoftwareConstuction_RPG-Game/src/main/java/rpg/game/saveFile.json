@@ -1,52 +1,52 @@
 {
-   "moves": 0,
+   "moves": 4,
    "objects": [
       {
-         "aim": false,
+         "goal": false,
          "name": "column",
          "location": {
-            "x": -9,
-            "y": 14
+            "x": -4,
+            "y": 7
          }
       },
       {
-         "aim": false,
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": 4,
+            "y": 9
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": -6,
+            "y": 4
+         }
+      },
+      {
+         "goal": false,
          "name": "column",
          "location": {
             "x": -2,
-            "y": -10
+            "y": 11
          }
       },
       {
-         "aim": false,
+         "goal": false,
          "name": "column",
          "location": {
-            "x": 3,
+            "x": 6,
             "y": 14
          }
       },
       {
-         "aim": false,
+         "goal": false,
          "name": "column",
          "location": {
-            "x": 10,
-            "y": 14
-         }
-      },
-      {
-         "aim": false,
-         "name": "column",
-         "location": {
-            "x": 5,
-            "y": 14
-         }
-      },
-      {
-         "aim": false,
-         "name": "column",
-         "location": {
-            "x": -12,
-            "y": 5
+            "x": 2,
+            "y": -14
          }
       }
    ],
@@ -57,8 +57,8 @@
          "name": "Gob",
          "health": 10,
          "location": {
-            "x": -3,
-            "y": 14
+            "x": 14,
+            "y": 7
          },
          "state": "ALIVE",
          "inventory": []
@@ -68,8 +68,8 @@
          "name": "Job",
          "health": 10,
          "location": {
-            "x": -15,
-            "y": 8
+            "x": -14,
+            "y": 10
          },
          "state": "ALIVE",
          "inventory": []
@@ -79,8 +79,8 @@
          "name": "Bob",
          "health": 10,
          "location": {
-            "x": 7,
-            "y": -12
+            "x": 4,
+            "y": -3
          },
          "state": "ALIVE",
          "inventory": []
@@ -90,12 +90,12 @@
       "score": 0,
       "character": {
          "race": "player",
-         "name": "dog",
+         "name": "do",
          "health": 55,
          "location": {
-            "heading": "NORTH",
-            "x": 0,
-            "y": 0
+            "heading": "WEST",
+            "x": -1,
+            "y": 2
          },
          "state": "ALIVE",
          "inventory": [{

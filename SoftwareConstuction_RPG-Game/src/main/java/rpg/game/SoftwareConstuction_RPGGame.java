@@ -35,6 +35,7 @@ public class SoftwareConstuction_RPGGame {
                 case Game.EASY: //easy difficulty is a find the door with 3 enemies
                 {
                     Game.Easy_Set_Up();  //Sets up easy difficulty
+                    
                     while(Game.easy_game_on)
                     {
                         Game.Game_play(); //So we dont have to copy
@@ -45,6 +46,7 @@ public class SoftwareConstuction_RPGGame {
                 case Game.MEDIUM: //medium is find the treasure with 5 enemies
                 {
                     Game.Medium_Set_Up();
+                    
                     while(Game.medium_game_on)
                     {
                         Game.Game_play(); //Implementation of all the different functions
@@ -54,6 +56,7 @@ public class SoftwareConstuction_RPGGame {
                 }
                 case Game.HARD: //defeat the boss and his 6 henchmen
                 {
+                    
                     while(Game.hard_game_on)
                     {
                         Game.Game_play();

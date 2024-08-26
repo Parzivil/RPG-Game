@@ -1,0 +1,114 @@
+{
+   "moves": 0,
+   "objects": [
+      {
+         "aim": false,
+         "name": "column",
+         "location": {
+            "x": 14,
+            "y": -1
+         }
+      },
+      {
+         "aim": false,
+         "name": "column",
+         "location": {
+            "x": 12,
+            "y": -9
+         }
+      },
+      {
+         "aim": false,
+         "name": "column",
+         "location": {
+            "x": 12,
+            "y": -14
+         }
+      },
+      {
+         "aim": false,
+         "name": "column",
+         "location": {
+            "x": -5,
+            "y": -7
+         }
+      },
+      {
+         "aim": false,
+         "name": "column",
+         "location": {
+            "x": -9,
+            "y": -1
+         }
+      },
+      {
+         "aim": false,
+         "name": "column",
+         "location": {
+            "x": 9,
+            "y": -13
+         }
+      }
+   ],
+   "playing": true,
+   "enemies": [
+      {
+         "race": "Skeleton",
+         "name": "Gob",
+         "health": 10,
+         "location": {
+            "x": 13,
+            "y": -8
+         },
+         "state": "ALIVE",
+         "inventory": []
+      },
+      {
+         "race": "Skeleton",
+         "name": "Job",
+         "health": 10,
+         "location": {
+            "x": -11,
+            "y": 2
+         },
+         "state": "ALIVE",
+         "inventory": []
+      },
+      {
+         "race": "Skeleton",
+         "name": "Bob",
+         "health": 10,
+         "location": {
+            "x": 6,
+            "y": 2
+         },
+         "state": "ALIVE",
+         "inventory": []
+      }
+   ],
+   "player": {
+      "score": 0,
+      "character": {
+         "race": "player",
+         "name": "dog",
+         "health": 55,
+         "location": {
+            "heading": "NORTH",
+            "x": 0,
+            "y": 0
+         },
+         "state": "ALIVE",
+         "inventory": [{
+            "damage": 2,
+            "material": "Wooden",
+            "weight": 2,
+            "location": {
+               "x": 20,
+               "y": 20
+            },
+            "type": "Sword",
+            "quality": "Bad"
+         }]
+      }
+   }
+}
