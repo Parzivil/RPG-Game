@@ -14,7 +14,6 @@ public class Character extends Game {
     public Item main_hand;
     public State state;
     int health;
-    public boolean isBoss;
     
     
     private int unconsiousLimit = 3;
@@ -39,12 +38,11 @@ public class Character extends Game {
     }
 
     
-    public Character(String name,String race, Location location, int health, boolean boss){
+    public Character(String name,String race, Location location, int health){
         this.name = name;
         this.race = race;
         this.location = location;
         this.health = health;
-        this.isBoss = boss;
         
         //Depending on the health given in the constructor sets the state
         if(health == 0) state = State.DEAD;
@@ -294,7 +292,8 @@ public class Character extends Game {
     public String checkStats(){
         String stats = "";
         
-        stats += "Health = " + this.health;
+        stats += "Name = " + this.name;
+        stats += "\nHealth = " + this.health;
         stats += "\nState = " + this.state.toString() + "\n";
         
         return stats;

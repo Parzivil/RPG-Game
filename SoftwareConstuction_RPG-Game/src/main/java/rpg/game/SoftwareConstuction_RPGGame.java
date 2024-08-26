@@ -41,6 +41,7 @@ public class SoftwareConstuction_RPGGame
                 }
                 case Game.HARD: //defeat the boss and his 6 henchmen
                 {  
+                    Game.Hard_Set_Up();
                     break;
                 }
                 case Game.LOAD:
@@ -54,6 +55,7 @@ public class SoftwareConstuction_RPGGame
                 Game.Game_play();
                 if(Game.difficulty == Game.EASY && Game.Check_Easy_Completion())Game.level_completed = true;
                 if(Game.difficulty == Game.MEDIUM && Game.Check_Medium_Completion())Game.level_completed = true;
+                if(Game.difficulty == Game.HARD && Game.Check_Hard_Completion())Game.level_completed = true;
             }  
             break;
         }  

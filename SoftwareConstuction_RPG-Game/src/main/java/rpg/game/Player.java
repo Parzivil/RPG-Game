@@ -9,7 +9,7 @@ public class Player extends Character{
     int score;
 
     public Player(String name, Location location, int health,int score){
-        super(name,"Player",location, health, false);
+        super(name,"Player",location, health);
         this.score = score;
     }
 
