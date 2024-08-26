@@ -2,7 +2,6 @@ package rpg.game;
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import static rpg.game.Game.enemies;
 
 /**
  *
@@ -222,11 +221,13 @@ public class Character extends Game {
     public void GiveItem(Item item){
         System.out.println("\n" + this.name + " is given " + item.name);
         inventory.add(item);
+        item.location = this.location;
     }
     
     //Gives an item silently
     public void GiveItem_silent(Item item){
         inventory.add(item);
+        item.location = this.location;
     }
     
     public void setInventory(ArrayList<Item> inventory){
@@ -235,6 +236,7 @@ public class Character extends Game {
     
     public void RemoveItem(Item item){
         inventory.remove(item);
+        item.location = this.location;
     }
     
     public void Say(String message){
