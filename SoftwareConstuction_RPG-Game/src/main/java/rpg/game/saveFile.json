@@ -118,15 +118,15 @@
       }
    ],
    "player": {
-      "score": 0,
+      "score": 4,
       "character": {
          "race": "Player",
          "name": "g",
          "health": 55,
          "location": {
             "heading": "NORTH",
-            "x": 0,
-            "y": 0
+            "x": -5,
+            "y": 10
          },
          "state": "ALIVE",
          "inventory": [

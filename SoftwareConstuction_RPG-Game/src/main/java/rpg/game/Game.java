@@ -173,8 +173,9 @@ public class Game{
     public static void Game_play()
    {
         Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
-        Game.print("You are at: "+player.location.toString()+"\nFacing "+player.location.heading.toString()+"\n"); //reoccuring message informing player of location.
-        String input = Game.ask("What would you like to do? \n",scan).toUpperCase().strip();
+        Game.print("\nYou are at: "+player.location.toString()+"\nFacing "+player.location.heading.toString()+"\n"); //reoccuring message informing player of location.
+        Game.print("--------------------------------------------------");
+        String input = Game.ask("\nWhat would you like to do? \n",scan).toUpperCase().strip();
         switch(input)
         {
             //JUST USED FOR TESTING
@@ -294,10 +295,12 @@ public class Game{
                 break;
                 
             case "LOCATE ENEMIES": //One of the admin commands
+                println("|--------------------|");
                 for(Character e : enemies) //For loop giving random locations within a set area.
                 {
-                    print(e.name+" = "+e.location.toString()+"\n");
+                    println("|"+e.name+" = "+e.location.toString()+"|");
                 }
+                println("|--------------------|");
                 break;
                 
             case "LOCATE OBJECTS": //One of the admin commands

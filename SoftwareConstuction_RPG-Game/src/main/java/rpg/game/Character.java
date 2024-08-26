@@ -19,12 +19,18 @@ public class Character extends Game {
     
     private int unconsiousLimit = 3;
     
-    //Options for the character to say when damaged
-    public String deathEmotes[] = {"Dies of embarisment..."};
-    public String damageEmotes[] = {"Ouch", "Far out that hurt", "Man"};
-    public String imortalEmotes[] = {"Hahaha nice try", "Really trying to attack an imortal?"};
-    public String unconsciousEmotes[] = {"Ooof"};
-    
+    //Options for the character to say when damaged (Partially AI genereated) 
+    public String deathEmotes[] = {"Collapses dramatically...", "Gone too soon...", "The end is nigh...", "Fallen...", "Fade to black..."};
+    public String damageEmotes[] = {
+        "Ow, that hurt!", "Seriously?", "That’s gonna leave a mark!", 
+        "I felt that one!", "Not cool, bro!", "Ouch!", 
+        "Why me?", "That was uncalled for!", "You hit like a truck!", 
+        "Really?", "Could you not?", "That’s gonna sting later.", 
+        "You’re asking for it!", "Hey, watch it!", "Come on, I just healed!"
+    };    
+    public String imortalEmotes[] = {"You can't defeat me!", "Is that your best?", "Still standing!", "Invincible, remember?", "Nice try, but I'm still here!"};
+    public String unconsciousEmotes[] = {"*is out cold*", "Down for the count...", "Lights out...", "Fainted...", "*is knocked out*"};
+
     enum State{
         ALIVE,
         DEAD,
@@ -166,9 +172,9 @@ public class Character extends Game {
         
         //Condition if they stab themselves
         if(this.inventory.contains(weapon)){
-            System.out.println("\n"+ this.race +" - "+ this.name + " attacks themselves with " + weapon.name + " for " + weapon.damage + " damage!");
+            System.out.println("\n\n"+ this.race +" - "+ this.name + " attacks themselves with " + weapon.name + " for " + weapon.damage + " damage!");
         }
-        else System.out.println("\n"+ this.race +" - "+ this.name + " is attacked with " + weapon.name + " for " + weapon.damage + " damage!");
+        else System.out.println("\n\n"+ this.race +" - "+ this.name + " is attacked with " + weapon.name + " for " + weapon.damage + " damage!");
         this.doDamage(weapon.damage);
     }
     
@@ -240,8 +246,8 @@ public class Character extends Game {
     }
     
     public void Say(String message){
-        System.out.print(this.name + ": ");
-        System.out.println(message);
+        System.out.print(this.name + ": \"");
+        System.out.println(message + "\"");
     }
     
     public String Show_Inventory()
