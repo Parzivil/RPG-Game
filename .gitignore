@@ -1,2 +1,3 @@
 /SoftwareConstuction_RPG-Game/target/
 *.json
+!spec/*.json
