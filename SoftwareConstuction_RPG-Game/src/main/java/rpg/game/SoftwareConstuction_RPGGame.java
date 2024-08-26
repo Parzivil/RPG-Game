@@ -22,8 +22,7 @@ public class SoftwareConstuction_RPGGame {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
 
-        
-        
+
         Game.player = new Player(
                 Game.ask("Please enter a name for your character. ", scan), 
                 new Location(0, 0), 55,0);

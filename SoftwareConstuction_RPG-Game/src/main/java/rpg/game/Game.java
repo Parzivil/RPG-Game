@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package rpg.game;
 import java.util.*;
 import org.json.*;
@@ -51,6 +47,7 @@ public class Game{
     public final static int EASY = 1;
     public final static int MEDIUM = 2;
     public final static int HARD = 3;
+    public final static int LOAD = 4;
     
     
     public static boolean easy_game_on = false; //Current Game state
@@ -176,6 +173,11 @@ public class Game{
                     break;
                 case Game.HARD:
                     Game.hard_game_on = true;
+                    break;
+                    
+                    ///IMPLEMENTED FOR TESTING, NEEDS PROPER IMPLMENTATION
+                case Game.LOAD:
+                    userSave.LoadGame();
                     break;
             }
         }
