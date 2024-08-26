@@ -52,8 +52,8 @@ public class SoftwareConstuction_RPGGame
             while(Game.level_completed != true)
             {
                 Game.Game_play();
-                if(Game.difficulty == Game.EASY){Game.Check_Easy_Completion();Game.level_completed = true;}
-                if(Game.difficulty == Game.MEDIUM){Game.Check_Medium_Completion();Game.level_completed = true;}
+                if(Game.difficulty == Game.EASY && Game.Check_Easy_Completion())Game.level_completed = true;
+                if(Game.difficulty == Game.MEDIUM && Game.Check_Medium_Completion())Game.level_completed = true;
             }  
             break;
         }  

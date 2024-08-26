@@ -666,7 +666,7 @@ public class Game{
     /*
     Completions of the different levels
     */
-    public static void Check_Easy_Completion()
+    public static boolean Check_Easy_Completion()
     {
         Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
         if(player.location.xPosition == doorLocation.xPosition && player.location.yPosition == doorLocation.yPosition)
@@ -675,12 +675,13 @@ public class Game{
             String confirmation =  Game.ask("Would you like to move to the next level? \n ******YES or NO******\n", scan).toUpperCase();
             if(confirmation.equals("YES"))
             {
-                easy_game_on = false;
                 difficulty = MEDIUM;  
+                return true;
             }
         } 
+        return false;
     }
-    public static void Check_Medium_Completion()
+    public static boolean Check_Medium_Completion()
     {
         Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
         if(player.location.xPosition == objects.get(5).location.xPosition && player.location.yPosition == objects.get(5).location.yPosition)
@@ -688,10 +689,11 @@ public class Game{
             String confirmation =  Game.ask("Would you like to move to the next level? \n ******YES or NO******\n", scan).toUpperCase();
             if(confirmation.equals("YES"))
             {
-                easy_game_on = false;
-                difficulty = HARD;  
+                difficulty = HARD; 
+                return true;
             }
-        } 
+        }
+        return false;
     }
     
     //Converts enemy array to a JSONArray
