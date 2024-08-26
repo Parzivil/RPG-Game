@@ -66,6 +66,10 @@ public class SaveFile extends Game{
                 Game.objects.add(loadObject(objectsJSONArray.getJSONObject(i))); //Add enemies
             }
             
+            Game.difficulty = jo.getInt("difficulty");
+            Game.playing = jo.getBoolean("playing");
+            Game.moves = jo.getInt("moves");
+            
         }
         catch(Exception e){
             System.out.println(e.getMessage());

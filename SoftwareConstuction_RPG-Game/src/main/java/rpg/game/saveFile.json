@@ -1,11 +1,36 @@
 {
-   "moves": 4,
+   "difficulty": 1,
+   "moves": 0,
    "objects": [
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": -4,
+            "x": -2,
+            "y": 8
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": -3,
+            "y": -10
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": 11,
+            "y": 1
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": -13,
             "y": 7
          }
       },
@@ -13,24 +38,8 @@
          "goal": false,
          "name": "column",
          "location": {
-            "x": 4,
-            "y": 9
-         }
-      },
-      {
-         "goal": false,
-         "name": "column",
-         "location": {
-            "x": -6,
-            "y": 4
-         }
-      },
-      {
-         "goal": false,
-         "name": "column",
-         "location": {
             "x": -2,
-            "y": 11
+            "y": 13
          }
       },
       {
@@ -38,15 +47,7 @@
          "name": "column",
          "location": {
             "x": 6,
-            "y": 14
-         }
-      },
-      {
-         "goal": false,
-         "name": "column",
-         "location": {
-            "x": 2,
-            "y": -14
+            "y": 10
          }
       }
    ],
@@ -57,11 +58,21 @@
          "name": "Gob",
          "health": 10,
          "location": {
-            "x": 14,
-            "y": 7
+            "x": -2,
+            "y": -13
          },
          "state": "ALIVE",
-         "inventory": []
+         "inventory": [{
+            "damage": 2,
+            "material": "Bone",
+            "weight": 1,
+            "location": {
+               "x": 9,
+               "y": -1
+            },
+            "type": "Club",
+            "quality": "Bad"
+         }]
       },
       {
          "race": "Skeleton",
@@ -69,33 +80,53 @@
          "health": 10,
          "location": {
             "x": -14,
-            "y": 10
+            "y": -3
          },
          "state": "ALIVE",
-         "inventory": []
+         "inventory": [{
+            "damage": 2,
+            "material": "Bone",
+            "weight": 1,
+            "location": {
+               "x": 9,
+               "y": -1
+            },
+            "type": "Club",
+            "quality": "Bad"
+         }]
       },
       {
          "race": "Skeleton",
          "name": "Bob",
          "health": 10,
          "location": {
-            "x": 4,
-            "y": -3
+            "x": 9,
+            "y": -1
          },
          "state": "ALIVE",
-         "inventory": []
+         "inventory": [{
+            "damage": 2,
+            "material": "Bone",
+            "weight": 1,
+            "location": {
+               "x": 9,
+               "y": -1
+            },
+            "type": "Club",
+            "quality": "Bad"
+         }]
       }
    ],
    "player": {
       "score": 0,
       "character": {
-         "race": "player",
-         "name": "do",
+         "race": "Player",
+         "name": "g",
          "health": 55,
          "location": {
-            "heading": "WEST",
-            "x": -1,
-            "y": 2
+            "heading": "NORTH",
+            "x": 0,
+            "y": 0
          },
          "state": "ALIVE",
          "inventory": [{
@@ -103,8 +134,9 @@
             "material": "Wooden",
             "weight": 2,
             "location": {
-               "x": 20,
-               "y": 20
+               "heading": "NORTH",
+               "x": 0,
+               "y": 0
             },
             "type": "Sword",
             "quality": "Bad"

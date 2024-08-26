@@ -619,6 +619,7 @@ public class Game{
         JSONObject jo = new JSONObject();
         jo.put("playing", playing);
         jo.put("moves", moves);
+        jo.put("difficulty", difficulty);
         jo.put("player", player.playerToJSON()); //Add player to JSON
         //Add all the enemies to the JSON
         
