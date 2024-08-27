@@ -24,7 +24,11 @@ public class SoftwareConstuction_RPGGame
         Game.player = new Player(
                 Game.ask("Please enter a name for your character. ", scan), 
                 new Location(0, 0), 55,0);
-        Game.Difficulty_selector();
+        while(Game.currentDifficultyState <= 0 || Game.currentDifficultyState > 4) //finding out what difficulty they want.
+        {
+            Game.currentDifficultyState = Game.askNum("Hello "+Game.player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n4) Load from previous save\n",scan);
+
+        }
         while(Game.playing)
         {   
             switch(Game.currentDifficultyState) //this is the setup for the while game loop
@@ -52,10 +56,10 @@ public class SoftwareConstuction_RPGGame
             }
             while(Game.level_completed != true)
             {
-                Game.Game_play();
-                if(Game.currentDifficultyState == Game.EASY_KEYCODE && Game.Check_Easy_Completion())Game.level_completed = true;
-                if(Game.currentDifficultyState == Game.MEDIUM_KEYCODE && Game.Check_Medium_Completion())Game.level_completed = true;
-                if(Game.currentDifficultyState == Game.HARD_KEYCODE && Game.Check_Hard_Completion())Game.level_completed = true;
+                Game.Game_play(scan);
+                if(Game.currentDifficultyState == Game.EASY_KEYCODE && Game.Check_Easy_Completion(scan))Game.level_completed = true;
+                if(Game.currentDifficultyState == Game.MEDIUM_KEYCODE && Game.Check_Medium_Completion(scan))Game.level_completed = true;
+                if(Game.currentDifficultyState == Game.HARD_KEYCODE && Game.Check_Hard_Completion(scan))Game.level_completed = true;
             }  
             break;
         }  

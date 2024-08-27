@@ -25,16 +25,38 @@ public class Location {
 
     protected Direction heading;
     
+    /**
+     * Creates a new random location
+     */
+    public Location(){
+        this.randomizeLocation();
+    }
     
+    /**
+     * Creates a new location with set x and y positions
+     * @param x
+     * @param y 
+     */
     public Location(int x, int y){
         this.xPosition = x;
         this.yPosition = y;
     }
     
+    /**
+     * Creates a new location with set x, y positions and heading
+     * @param x
+     * @param y
+     * @param heading 
+     */
     public Location(int x, int y, Direction heading){
         this.xPosition = x;
         this.yPosition = y;
         this.heading = heading;
+    }
+    
+    @Override
+    public String toString(){
+        return "x: " + this.xPosition + " - y: " + this.yPosition + "\n";
     }
 
     /**
@@ -55,7 +77,7 @@ public class Location {
         System.out.println(this.descriptor);
     }
     
-    public void random_location() //setting a random location to the set character within the borders of the map.
+    protected void randomizeLocation() //setting a random location to the set character within the borders of the map.
     {
         int x = Game.random(width)-pos_width;
         int y = Game.random(width)-pos_width;

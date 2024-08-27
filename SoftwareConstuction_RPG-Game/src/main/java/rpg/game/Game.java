@@ -63,7 +63,6 @@ public class Game{
     
     public static ArrayList<Character> enemies = new ArrayList<>(); // The array list of enemies 
     public static ArrayList<Object> objects = new ArrayList<>(); //The arraylist of everything thats not a character.
-
     
 //This decription was generated using chat GPT    
     private final static String DUNGEON_DESCRIPTION = 
@@ -136,19 +135,16 @@ public class Game{
      * Main game-play loop function
      * @Return
      */
-    public static void Game_play() {
-        Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
+    public static void Game_play(Scanner scan) {
         Game.print("\nYou are at: "+player.location.toString()+"\nFacing "+player.location.heading.toString()+"\n"); //reoccuring message informing player of location.
         Game.print("--------------------------------------------------");
         String input = Game.ask("\nWhat would you like to do? \n",scan).toUpperCase().strip();
         switch(input)
         {
-            //JUST USED FOR TESTING
-            //******
+
             case Game.SAVE:
                 userSave.SaveGame(); //Save the game
             break;
-            //****** Needs propper implementation (just copy the above function
             
             case Game.OPTIONS: //prints out a list of options for things they can do
                 Game.println("Your options are: "
@@ -160,6 +156,7 @@ public class Game{
                         + "\nTurn Right"
                         + "\nShow Inventory"
                         + "\nSet main hand"
+                        + "\nSave"
                         + "\nStats");
                 break;
                 
@@ -254,6 +251,8 @@ public class Game{
                 print(player.checkStats());
                 break;
                 
+                
+            //********** ADMIN COMMANDS **************//
             case "TP PLAYER": //One of the admin commands
                 player.location.xPosition = askNum("x = ",scan);
                 player.location.yPosition = askNum("y = ",scan);
@@ -526,24 +525,21 @@ public class Game{
         //Removing previous stuff
         enemies.clear();
         objects.clear();
+        
         //Add the enemies to the game
-        enemies.add(new Character("Gob","Skeleton",new Location(0,0), 10));
-        enemies.add(new Character("Job","Skeleton", new Location(0,0), 10));
-        enemies.add(new Character("Bob","Skeleton", new Location(0,0), 10));
+        enemies.add(new Character("Gob","Skeleton",new Location(), 10));
+        enemies.add(new Character("Job","Skeleton", new Location(), 10));
+        enemies.add(new Character("Bob","Skeleton", new Location(), 10));
         for(Character enemy : Game.enemies) //For loop giving random locations within a set area.
         {
             enemy.GiveItem_silent(Skeleweapon_1);
             enemy.equip(Skeleweapon_1);
-            enemy.location.random_location();
         }
+        
+        
         //OBJECTS
-        for(int i = 0; i <= 5; i++)
-        {
-            objects.add(new Object("column",new Location(0,0),false)); //creating 5 different objects for the level.
-        }
-        for(Object object : Game.objects) //For loop giving random locations within a set area.
-        {
-            object.location.random_location();
+        for(int i = 0; i <= 5; i++) {
+            objects.add(new Object("column",new Location(),false)); //creating 5 different objects for the level.
         }
         
         Game.player.location = new Location(0, 0, Location.Direction.NORTH);        
@@ -579,25 +575,18 @@ public class Game{
         enemies.clear();
         objects.clear();
         //Add the enemies to the game
-        enemies.add(new Character("Gob","Skeleton",new Location(0,0), 20));
-        enemies.add(new Character("Job","Skeleton", new Location(0,0), 20));
-        enemies.add(new Character("Bob","Skeleton", new Location(0,0), 20));
-        enemies.add(new Character("Lob","Skeleton",new Location(0,0), 20));
-        enemies.add(new Character("Mob","Skeleton", new Location(0,0), 20));
-        for(Character e : Game.enemies) //For loop giving random locations within a set area.
-        {
-            e.location.random_location();
-        }
+        enemies.add(new Character("Gob","Skeleton",new Location(), 20));
+        enemies.add(new Character("Job","Skeleton", new Location(), 20));
+        enemies.add(new Character("Bob","Skeleton", new Location(), 20));
+        enemies.add(new Character("Lob","Skeleton",new Location(), 20));
+        enemies.add(new Character("Mob","Skeleton", new Location(), 20));
+        
         //OBJECTS
         for(int i = 0; i < 5; i++)
         {
-            objects.add(new Object("column",new Location(0,0),false)); //creating 5 different objects for the level.
+            objects.add(new Object("column",new Location(),false)); //creating 5 different objects for the level.
         }
-        objects.add(new Object("Chest",new Location(0,0),true));
-        for(Object object : Game.objects) //For loop giving random locations within a set area.
-        {
-            object.location.random_location();
-        }
+        objects.add(new Object("Chest",new Location(),true));
 
         //Set the player location
         Game.player.location = new Location(0, 0, Location.Direction.NORTH);        
@@ -620,7 +609,6 @@ public class Game{
 
         System.out.println("** For all the options type 'options' **\n");
             
-        
         mediumSave.SaveGame(); //Set the medium save setup
     }
    
@@ -630,25 +618,17 @@ public class Game{
         enemies.clear();
         objects.clear();
         //Add the enemies to the game
-        enemies.add(new Character("Gob","Skeleton",new Location(0,0), 30));
-        enemies.add(new Character("Job","Skeleton", new Location(0,0), 30));
-        enemies.add(new Character("Bob","Skeleton", new Location(0,0), 30));
-        enemies.add(new Character("Lob","Skeleton",new Location(0,0), 30));
-        enemies.add(new Character("Mob","Skeleton", new Location(0,0), 30));
-        enemies.add(new Character("Steve Job","Skeleton", new Location(0,0), 30));
+        enemies.add(new Character("Gob","Skeleton",new Location(), 30));
+        enemies.add(new Character("Job","Skeleton", new Location(), 30));
+        enemies.add(new Character("Bob","Skeleton", new Location(), 30));
+        enemies.add(new Character("Lob","Skeleton",new Location(), 30));
+        enemies.add(new Character("Mob","Skeleton", new Location(), 30));
+        enemies.add(new Character("Steve Job","Skeleton", new Location(), 30));
         
-        for(Character e : Game.enemies) //For loop giving random locations within a set area.
-        {
-            e.location.random_location();
-        }
         //OBJECTS
         for(int i = 0; i < 7; i++)
         {
-            objects.add(new Object("column",new Location(0,0),false)); //creating 5 different objects for the level.
-        }
-        for(Object object : Game.objects) //For loop giving random locations within a set area.
-        {
-            object.location.random_location();
+            objects.add(new Object("column",new Location(),false)); //creating 5 different objects for the level.
         }
         
         Game.player.location = new Location(0, 0, Location.Direction.NORTH);        
@@ -676,9 +656,8 @@ public class Game{
     /*
     Completions of the different levels
     */
-    public static boolean Check_Easy_Completion()
+    public final static boolean Check_Easy_Completion(Scanner scan)
     {
-        Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
         if(player.location.xPosition == doorLocation.xPosition && player.location.yPosition == doorLocation.yPosition)
         {
             doorLocation.describeLocation();//Describe the door
@@ -691,9 +670,8 @@ public class Game{
         } 
         return false;
     }
-    public static boolean Check_Medium_Completion()
+    public final static boolean Check_Medium_Completion(Scanner scan)
     {
-        Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
         if(player.location.xPosition == objects.get(5).location.xPosition && player.location.yPosition == objects.get(5).location.yPosition)
         {
             String confirmation =  Game.ask("Would you like to move to the next level? \n ******YES or NO******\n", scan).toUpperCase();
@@ -706,12 +684,18 @@ public class Game{
         return false;
     }
     
-    public static boolean Check_Hard_Completion()
+    public final static boolean Check_Hard_Completion(Scanner scan)
     { 
         return enemies.isEmpty();
     }
     
-        //Functions for generating random numbers
+    
+    /**
+     * Generates a random number between given values
+     * @param min
+     * @param max
+     * @return 
+     */
     public int random(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
     }
@@ -725,7 +709,6 @@ public class Game{
         return strings[rand.nextInt(strings.length)];
     }
     
-     //Print functions because I am sick of typing the system out thing
     public static void print(String str) {System.out.print(str);}
     public static void println(String str) {System.out.println(str);}
     
@@ -743,23 +726,17 @@ public class Game{
             }
 
             catch(Exception e){
-                System.out.println("\n Input error, try again");         
+                System.out.println("\n **Input error, try again!**\n");   
+                scan.next();
             }
         } while(true);
     }
     
-    
-    public static void Difficulty_selector()
-    {
-        Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
-        while(Game.currentDifficultyState <= 0 || Game.currentDifficultyState > 4) //finding out what difficulty they want.
-        {
-            Game.currentDifficultyState = Game.askNum("Hello "+Game.player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n4) Load from previous save\n",scan);
-        }
-    }
-    
-    
-    //******** Saving and Loading functions ********//
+    /*
+        **********************************************
+            **** Saving and Loading functions ****
+        **********************************************
+    */
     /**
      * Converts enemy array to a JSONArray
      * @return 
