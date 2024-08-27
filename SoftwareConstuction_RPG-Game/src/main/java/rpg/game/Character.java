@@ -186,8 +186,7 @@ public class Character extends Game {
      * @param message 
      */
     public void Say(String message){
-        System.out.print(this.name + ": \"");
-        System.out.println(message + "\"");
+        System.out.println(this.name + ": " + message);
     }
     
     /**

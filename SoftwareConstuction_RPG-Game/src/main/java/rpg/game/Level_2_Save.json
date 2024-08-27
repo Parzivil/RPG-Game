@@ -1,61 +1,53 @@
 {
-   "difficulty": 3,
+   "difficulty": 2,
    "moves": 0,
    "objects": [
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": 13,
-            "y": 10
+            "x": -2,
+            "y": -5
          }
       },
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": -5,
-            "y": 6
+            "x": 12,
+            "y": -6
          }
       },
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": 3,
-            "y": 9
+            "x": -9,
+            "y": -10
          }
       },
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": 4,
-            "y": -3
+            "x": 5,
+            "y": -2
          }
       },
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": -4,
-            "y": 11
-         }
-      },
-      {
-         "goal": false,
-         "name": "column",
-         "location": {
-            "x": 10,
+            "x": 9,
             "y": -15
          }
       },
       {
-         "goal": false,
-         "name": "column",
+         "goal": true,
+         "name": "Chest",
          "location": {
-            "x": -7,
-            "y": -2
+            "x": 8,
+            "y": 3
          }
       }
    ],
@@ -64,10 +56,10 @@
       {
          "race": "Skeleton",
          "name": "Gob",
-         "health": 30,
+         "health": 20,
          "location": {
-            "x": 8,
-            "y": 7
+            "x": -8,
+            "y": 10
          },
          "state": "ALIVE",
          "inventory": []
@@ -75,10 +67,10 @@
       {
          "race": "Skeleton",
          "name": "Job",
-         "health": 30,
+         "health": 20,
          "location": {
-            "x": -15,
-            "y": 8
+            "x": -1,
+            "y": 9
          },
          "state": "ALIVE",
          "inventory": []
@@ -86,10 +78,10 @@
       {
          "race": "Skeleton",
          "name": "Bob",
-         "health": 30,
+         "health": 20,
          "location": {
-            "x": -3,
-            "y": 13
+            "x": -2,
+            "y": -9
          },
          "state": "ALIVE",
          "inventory": []
@@ -97,10 +89,10 @@
       {
          "race": "Skeleton",
          "name": "Lob",
-         "health": 30,
+         "health": 20,
          "location": {
-            "x": -9,
-            "y": -7
+            "x": -13,
+            "y": -4
          },
          "state": "ALIVE",
          "inventory": []
@@ -108,21 +100,10 @@
       {
          "race": "Skeleton",
          "name": "Mob",
-         "health": 30,
+         "health": 20,
          "location": {
-            "x": -4,
-            "y": -14
-         },
-         "state": "ALIVE",
-         "inventory": []
-      },
-      {
-         "race": "Skeleton",
-         "name": "Steve Job",
-         "health": 30,
-         "location": {
-            "x": 13,
-            "y": -13
+            "x": 10,
+            "y": -7
          },
          "state": "ALIVE",
          "inventory": []
@@ -142,7 +123,7 @@
          "state": "ALIVE",
          "inventory": [
             {
-               "damage": 6,
+               "damage": 4,
                "material": "Wooden",
                "weight": 2,
                "location": {
@@ -151,7 +132,7 @@
                   "y": 0
                },
                "type": "Sword",
-               "quality": "Good"
+               "quality": "Decent"
             },
             {
                "damage": 4,

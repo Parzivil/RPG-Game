@@ -56,12 +56,14 @@ public class SoftwareConstuction_RPGGame
             }
             while(Game.level_completed != true)
             {
-                Game.Game_play(scan);
                 if(Game.currentDifficultyState == Game.EASY_KEYCODE && Game.Check_Easy_Completion(scan))Game.level_completed = true;
                 if(Game.currentDifficultyState == Game.MEDIUM_KEYCODE && Game.Check_Medium_Completion(scan))Game.level_completed = true;
                 if(Game.currentDifficultyState == Game.HARD_KEYCODE && Game.Check_Hard_Completion(scan))Game.level_completed = true;
+               
+                Game.Game_play(scan);
             }  
             break;
         }  
+        scan.close();
     } 
 }

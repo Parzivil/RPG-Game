@@ -100,20 +100,20 @@ public class Game{
           You can feel a smooth stone beneath you
           Cold to the touch
           """, //GPT from here
-    "In the dark, the stone path feels like a labyrinth, leading deeper into the unknown.\n",
-    "The cold, smooth stones of the path are barely discernible as night swallows their form.\n",
-    "The dim glow of lanterns reveals just enough of the stone path to hint at its winding course.\n",
-    "The stone path stretches out into impenetrable darkness, disappearing into the void.\n",
-    "The path beneath feels cold and rough, but its surroundings remain obscured by utter blackness.\n",
-    "With no visible landmarks, the stone path is a solitary route through an all-encompassing gloom.\n",
-    "The texture of the stone path is the only hint of direction in the pitch-black cave.\n",
-    "The silence and darkness make the stone path seem like a thin thread connecting you to the unknown.\n",
-    "The path’s surface glistens with moisture, hinting at the hidden wonders within the cave.\n",
-    "Damp and uneven, the path in the dungeon echoes with every cautious step.\n",
-    "The stone path in the dungeon is cold and uneven, lined with rusting metal and decaying remnants.\n",
-    "Flickering torches cast eerie shadows along the damp, grimy stone path of the dungeon.\n",
-    "The stone path is flanked by darkness that seems to close in as you walk.\n",
-    "The oppressive silence of the dungeon makes each step on the stone path echo ominously.\n",
+    "In the dark, the stone path feels like a labyrinth, leading deeper into the unknown.",
+    "The cold, smooth stones of the path are barely discernible as night swallows their form.",
+    "The dim glow of lanterns reveals just enough of the stone path to hint at its winding course.",
+    "The stone path stretches out into impenetrable darkness, disappearing into the void.",
+    "The path beneath feels cold and rough, but its surroundings remain obscured by utter blackness.",
+    "With no visible landmarks, the stone path is a solitary route through an all-encompassing gloom.",
+    "The texture of the stone path is the only hint of direction in the pitch-black cave.",
+    "The silence and darkness make the stone path seem like a thin thread connecting you to the unknown.",
+    "The path’s surface glistens with moisture, hinting at the hidden wonders within the cave.",
+    "Damp and uneven, the path in the dungeon echoes with every cautious step.",
+    "The stone path in the dungeon is cold and uneven, lined with rusting metal and decaying remnants.",
+    "Flickering torches cast eerie shadows along the damp, grimy stone path of the dungeon.",
+    "The stone path is flanked by darkness that seems to close in as you walk.",
+    "The oppressive silence of the dungeon makes each step on the stone path echo ominously.",
     "The path winds through the dungeon's dark corridors, illuminated only by the occasional flicker of a torch.\n"};
    
     static String[] wall = //all gpt
@@ -136,9 +136,9 @@ public class Game{
      * @Return
      */
     public static void Game_play(Scanner scan) {
-        Game.print("\nYou are at: "+player.location.toString()+"\nFacing "+player.location.heading.toString()+"\n"); //reoccuring message informing player of location.
-        Game.print("--------------------------------------------------");
+
         String input = Game.ask("\nWhat would you like to do? \n",scan).toUpperCase().strip();
+        Game.print("--------------------------------------------------\n");
         switch(input)
         {
 
@@ -182,7 +182,10 @@ public class Game{
                 }
                 player.Say("Moved forward\n");
                 player.move(player.location.heading);
-                print(path[random(16)]);
+                Game.print("You are at: "+player.location.toString()+"    Facing "+player.location.heading.toString()+"\n"); //reoccuring message informing player of location.
+
+                print("\n\""+path[random(16)] + "\"");
+
                 break;
                 
             case Game.MOVE_BACKWARDS:
@@ -204,17 +207,24 @@ public class Game{
                 }
                 player.Say("Moved backward\n");
                 player.move_back(); 
-                print(path[random(16)]);
+                Game.print("You are at: "+player.location.toString()+"    Facing "+player.location.heading.toString()+"\n"); //reoccuring message informing player of location.
+
+                print("\n\""+path[random(16)] + "\"");
+
                 break;
                 
             case Game.TURN_LEFT:
                 player.Turn_Left();
                 player.Say("You turned Left\n");
+                Game.print("You are facing "+player.location.heading.toString()+"\n"); //reoccuring message informing player of location.
+
                 break;
                 
             case Game.TURN_RIGHT:
                 player.Turn_Right();
                 player.Say("You turned Right\n");
+                Game.print("You are facing "+player.location.heading.toString()+"\n"); //reoccuring message informing player of location.
+
                 break;
                 
             case Game.SHOW_INVENTORY:
