@@ -141,7 +141,6 @@ public class Game{
         Game.print("--------------------------------------------------\n");
         switch(input)
         {
-
             case Game.SAVE:
                 userSave.SaveGame(); //Save the game
             break;
@@ -789,5 +788,4 @@ public class Game{
         jo.put("objects", objectsToJSON());
         return jo;
     }
-    
 }
