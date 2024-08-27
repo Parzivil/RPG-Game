@@ -66,7 +66,7 @@ public class SaveFile extends Game{
                 Game.objects.add(loadObject(objectsJSONArray.getJSONObject(i))); //Add enemies
             }
             
-            Game.difficulty = jo.getInt("difficulty");
+            Game.currentDifficultyState = jo.getInt("difficulty");
             Game.playing = jo.getBoolean("playing");
             Game.moves = jo.getInt("moves");
             
@@ -101,11 +101,11 @@ public class SaveFile extends Game{
         JSONObject playerCharacterObj = playerObj.getJSONObject("character");
         
         Location playerLocation = loadLocation(playerCharacterObj);
-        Player player = new Player(playerCharacterObj.getString("name"), playerLocation, playerCharacterObj.getInt("health"), playerObj.getInt("score"));
+        Player loadedPlayer = new Player(playerCharacterObj.getString("name"), playerLocation, playerCharacterObj.getInt("health"), playerObj.getInt("score"));
         
-        player.inventory = loadInventory(playerCharacterObj);
+        loadedPlayer.inventory = loadInventory(playerCharacterObj);
         
-        return player;
+        return loadedPlayer;
     }
     
     private ArrayList<Item> loadInventory(JSONObject jo){
@@ -136,23 +136,11 @@ public class SaveFile extends Game{
         String race = characterObj.getString("race");
         Location characterLocation = loadLocation(characterObj);
         int health = characterObj.getInt("health"); 
-        boolean boss = characterObj.optBoolean("boss", false);
         
         Character character = new Character(name, race, characterLocation, health);
         character.inventory = loadInventory(characterObj);
         
         return character;   
-    }
-    
-     private ArrayList<Object> loadObjects(JSONObject jo){
-            JSONArray objectJSON = jo.getJSONArray("objects");
-            ArrayList<Object> objectArray = new ArrayList<>();
- 
-            for(int i = 0; i < objectJSON.length(); i++){
-                objectArray.add(loadObject(objectJSON.getJSONObject(i))); //Add enemies
-            }
-            
-            return objectArray;
     }
      
      private Object loadObject(JSONObject objectObj){

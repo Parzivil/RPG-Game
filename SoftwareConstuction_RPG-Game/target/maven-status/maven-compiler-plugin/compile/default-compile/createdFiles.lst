@@ -1,8 +1,8 @@
 rpg\game\Character.class
 rpg\game\Character$State.class
+rpg\game\Player$1.class
 rpg\game\SoftwareConstuction_RPGGame.class
 rpg\game\Game.class
-rpg\game\Character$1.class
 rpg\game\Player.class
 rpg\game\Location$Direction.class
 rpg\game\Game$1.class

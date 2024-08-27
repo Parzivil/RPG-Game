@@ -27,24 +27,24 @@ public class SoftwareConstuction_RPGGame
         Game.Difficulty_selector();
         while(Game.playing)
         {   
-            switch(Game.difficulty) //this is the setup for the while game loop
+            switch(Game.currentDifficultyState) //this is the setup for the while game loop
             {
-                case Game.EASY: //easy difficulty is a find the door with 3 enemies
+                case Game.EASY_KEYCODE: //easy difficulty is a find the door with 3 enemies
                 {
                     Game.Easy_Set_Up();  //Sets up easy difficulty
                     break;
                 }
-                case Game.MEDIUM: //medium is find the treasure with 5 enemies
+                case Game.MEDIUM_KEYCODE: //medium is find the treasure with 5 enemies
                 {
                     Game.Medium_Set_Up();
                     break;
                 }
-                case Game.HARD: //defeat the boss and his 6 henchmen
+                case Game.HARD_KEYCODE: //defeat the boss and his 6 henchmen
                 {  
                     Game.Hard_Set_Up();
                     break;
                 }
-                case Game.LOAD:
+                case Game.LOAD_KEYCODE:
                 {
                     Game.userSave.LoadGame();
                     break;
@@ -53,9 +53,9 @@ public class SoftwareConstuction_RPGGame
             while(Game.level_completed != true)
             {
                 Game.Game_play();
-                if(Game.difficulty == Game.EASY && Game.Check_Easy_Completion())Game.level_completed = true;
-                if(Game.difficulty == Game.MEDIUM && Game.Check_Medium_Completion())Game.level_completed = true;
-                if(Game.difficulty == Game.HARD && Game.Check_Hard_Completion())Game.level_completed = true;
+                if(Game.currentDifficultyState == Game.EASY_KEYCODE && Game.Check_Easy_Completion())Game.level_completed = true;
+                if(Game.currentDifficultyState == Game.MEDIUM_KEYCODE && Game.Check_Medium_Completion())Game.level_completed = true;
+                if(Game.currentDifficultyState == Game.HARD_KEYCODE && Game.Check_Hard_Completion())Game.level_completed = true;
             }  
             break;
         }  

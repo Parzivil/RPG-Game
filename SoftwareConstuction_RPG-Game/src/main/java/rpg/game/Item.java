@@ -10,6 +10,8 @@ import org.json.*;
  * @author robin, matthew
  */
 public class Item extends Game {
+    private final int attackRatePerKG = 2000; //The time to attack per kg
+    
     float weight;
     String name;
     String type; //Sword, mace, axe
@@ -29,24 +31,16 @@ public class Item extends Game {
         this.weight = weight;
         this.damage = damage;
         
-        this.name = Quality+" "+Material+" "+type;
+        this.name = Quality + " " + Material + " " + type;
         //Attack rate is a function of weight
-        attackRate = (int)weight * 2000; //May need adjusting
+        attackRate = (int)weight * attackRatePerKG; 
     }
     
-
-    //It didnt like the override function
-    public int compareTo(Object object){
-        return object.toString().compareTo(this.name); //Compare the names of objects
-    }
-    
-    @Override
-    public String toString(){
-        String combo = "name:" + name + "weight:" + Float.toString(weight);
-        combo += "location:" + location.toString() + "; \n";
-        
-        return combo;
-    }
+    /*
+        **********************************************
+            **** Saving and Loading functions ****
+        **********************************************
+    */
     
     public JSONObject itemToJSON(){
         JSONObject jo = new JSONObject();

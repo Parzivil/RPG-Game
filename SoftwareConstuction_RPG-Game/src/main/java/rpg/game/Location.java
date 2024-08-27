@@ -10,30 +10,31 @@ import org.json.JSONObject;
  * @author robin, matthew
  */
 public class Location {
-    
-    int xPosition;
-    int yPosition;
-    int width = 30;
-    int pos_width = 15;
-    private String descriptor;
-
-    Direction heading;
-    
     enum Direction{
         NORTH,
         EAST,
         SOUTH,
         WEST
     }
+    
+    int xPosition;
+    int yPosition;
+    private final int width = 30;
+    private final int pos_width = 15;
+    private String descriptor;
 
-    /**
-     *
-     * @param x
-     * @param y
-     */
+    protected Direction heading;
+    
+    
     public Location(int x, int y){
         this.xPosition = x;
         this.yPosition = y;
+    }
+    
+    public Location(int x, int y, Direction heading){
+        this.xPosition = x;
+        this.yPosition = y;
+        this.heading = heading;
     }
 
     /**
@@ -53,20 +54,7 @@ public class Location {
     public void describeLocation(){
         System.out.println(this.descriptor);
     }
-
-    /**
-     *
-     * @return
-     */
-    public int[] getCoordinates(){
-        int[] coord = {xPosition, yPosition};
-        return coord;
-    }
-    @Override
-    public String toString()
-    {
-        return (" x = "+xPosition+" y = "+yPosition+" ");
-    }
+    
     public void random_location() //setting a random location to the set character within the borders of the map.
     {
         int x = Game.random(width)-pos_width;
@@ -74,6 +62,12 @@ public class Location {
         this.xPosition = x;
         this.yPosition = y;
     }
+    
+    /*
+        **********************************************
+            **** Saving and Loading functions ****
+        **********************************************
+    */
     
     public JSONObject locationToJSON(){
         JSONObject jo = new JSONObject();

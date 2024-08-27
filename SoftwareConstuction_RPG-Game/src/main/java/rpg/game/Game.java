@@ -13,8 +13,7 @@ public class Game{
     static SaveFile mediumSave = new SaveFile("src\\main\\java\\rpg\\game\\Level_2_Save.json"); //Object to save
     static SaveFile hardSave = new SaveFile("src\\main\\java\\rpg\\game\\Level_3_Save.json"); //Object to save
     
-    public Random rand = new Random();
-    
+    //List of commands that the user can activate
     public final static String OPTIONS = "OPTIONS";
     public final static String ATTACK = "ATTACK";
     public final static String INTERACT = "INTERACT";
@@ -27,6 +26,8 @@ public class Game{
     public final static String LOOK = "LOOK";
     public final static String STATS = "STATS";
     public final static String SAVE = "SAVE";
+    
+    public Random rand = new Random();
     static Player player;
     
     //Starting weapons
@@ -42,13 +43,15 @@ public class Game{
     public static Item Skeleweapon_2 = new Item("Club","Okay","Bone", new Location(20,20), 1, 3);
     public static Item Skeleweapon_3 = new Item("Club","Strong","Bone", new Location(20,20), 1, 5);
     public static Item Boss_Weapon = new Item("Mace","Massive","Bone", new Location(20,20), 2, 15);
-    
-    public static int difficulty = 0;
     public static Location doorLocation = new Location(15, 15);
-    public final static int EASY = 1;
-    public final static int MEDIUM = 2;
-    public final static int HARD = 3;
-    public final static int LOAD = 4;
+    
+    
+    public static int currentDifficultyState = 0;
+    
+    public final static int EASY_KEYCODE = 1;
+    public final static int MEDIUM_KEYCODE = 2;
+    public final static int HARD_KEYCODE = 3;
+    public final static int LOAD_KEYCODE = 4;
     
     
     public static boolean easy_game_on = false; //Current Game state
@@ -63,30 +66,41 @@ public class Game{
 
     
 //This decription was generated using chat GPT    
-    private final static String dungeonDescription = 
-    "You find yourself in a dimly lit dungeon,\n"
-    + "where the air is thick with mildew and the walls are cold and damp.\n"
-    + "Flickering torches cast long shadows, and the floor is uneven, making each step treacherous.\n"
-    + "The silence is broken only by distant dripping water and the skittering of unseen creatures.\n"
-    + "\n"
-    + "As you venture deeper, the corridors twist and turn,\n"
-    + "leading to dead ends or eerie, abandoned chambers.\n"
-    + "Yet, amid the oppressive darkness, you sense a faint draft; an indication that somewhere nearby,\n"
-    + "a hidden door awaits discovery...\n\n\n";
+    private final static String DUNGEON_DESCRIPTION = 
+    """
+    You find yourself in a dimly lit dungeon,
+    where the air is thick with mildew and the walls are cold and damp.
+    Flickering torches cast long shadows, and the floor is uneven, making each step treacherous.
+    The silence is broken only by distant dripping water and the skittering of unseen creatures.
     
-    private final static String doorDescription = 
-    "As you carefully trace the cold, damp wall with your hand, \n"
-    + "you suddenly feel a subtle shift—a stone that gives way under your touch. \n"
-    + "A low rumble echoes through the corridor as a hidden door swings open, \n"
-    + "revealing a narrow passageway beyond. \n"
-    + "The draft grows stronger, carrying with it a musty smell, \n"
-    + "and the faintest hint of something unknown lurking in the darkness ahead... \n\n\n";
+    As you venture deeper, the corridors twist and turn,
+    leading to dead ends or eerie, abandoned chambers.
+    Yet, amid the oppressive darkness, you sense a faint draft; an indication that somewhere nearby,
+    a hidden door awaits discovery...
+    
+    
+    """;
+    
+    private final static String DOOR_DESCRIPTION = 
+    """
+    As you carefully trace the cold, damp wall with your hand, 
+    you suddenly feel a subtle shift\u2014a stone that gives way under your touch. 
+    A low rumble echoes through the corridor as a hidden door swings open, 
+    revealing a narrow passageway beyond. 
+    The draft grows stronger, carrying with it a musty smell, 
+    and the faintest hint of something unknown lurking in the darkness ahead... 
+    
+    
+    """;
              //   17 different path descriptions
    static String[] path = 
-    {"You are standing on cobblestone path"
-    + " \nThere is nothing in front of you\n",
-    "You can feel a smooth stone beneath you\n"
-    + "Cold to the touch\n", //GPT from here
+    {"""
+     You are standing on cobblestone path 
+     There is nothing in front of you
+     """, """
+          You can feel a smooth stone beneath you
+          Cold to the touch
+          """, //GPT from here
     "In the dark, the stone path feels like a labyrinth, leading deeper into the unknown.\n",
     "The cold, smooth stones of the path are barely discernible as night swallows their form.\n",
     "The dim glow of lanterns reveals just enough of the stone path to hint at its winding course.\n",
@@ -114,64 +128,15 @@ public class Game{
     "Uneven and jagged, the stone wall is uncomfortable to lean against, its surface rough and abrasive.",
     "The chill from the stone wall penetrates through your clothing, intensifying the dungeon’s oppressive atmosphere.",
     "The coarse texture of the stone wall is both harsh and unwelcoming, adding to the sense of confinement and desolation."};
-    /**
-     *
-     */
+
+    
     protected static int moves = 0; //Then number of moves the player has made
-    public static String get_dungeonDescription(){return dungeonDescription;}
-    public static String get_doorDescription(){return doorDescription;}
-
-    //Functions for generating random numbers
-    public int random(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
-    }
     
-    public static int random(int max) {
-        return (int) (Math.random() * max);
-    }
-    
-    public String randomString(String strings[]){
-        rand.setSeed(System.currentTimeMillis()); //Reset the seed
-        return strings[rand.nextInt(strings.length)];
-    }
-    
-     //Print functions because I am sick of typing the system out thing
-    public static void print(String str) {System.out.print(str);}
-    public static void println(String str) {System.out.println(str);}
-    
-    public static String ask(String question, Scanner scan){
-        System.out.print(question);
-        return scan.nextLine();
-    } 
-    
-    public static int askNum(String question, Scanner scan)
-    { 
-        do{
-            System.out.print(question);
-            try{
-                return scan.nextInt(); //Break out of the loop
-            }
-
-            catch(Exception e){
-                System.out.println("\n Input error, try again");         
-            }
-        } while(true);
-    }
-    
-    
-    public static void Difficulty_selector()
-    {
-        Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
-        while(Game.difficulty <= 0 || Game.difficulty > 4) //finding out what difficulty they want.
-        {
-            Game.difficulty = Game.askNum("Hello "+Game.player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n4) Load from previous save\n",scan);
-        }
-    }
-    
-    
-    
-    public static void Game_play()
-   {
+    /**
+     * Main game-play loop function
+     * @Return
+     */
+    public static void Game_play() {
         Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
         Game.print("\nYou are at: "+player.location.toString()+"\nFacing "+player.location.heading.toString()+"\n"); //reoccuring message informing player of location.
         Game.print("--------------------------------------------------");
@@ -199,7 +164,7 @@ public class Game{
                 break;
                 
             case Game.ATTACK: //Attacks the square infront of them.
-                Attack(Game.enemies, player.get_main_hand());
+                Attack(Game.enemies, player.getMainHandItem());
                 break;
                 
             case Game.MOVE_FORWARD: //Checks for collision with enemy,object and wall/border before moving forward.
@@ -262,7 +227,7 @@ public class Game{
             case Game.SET_MAIN_HAND:
                 int in = Game.askNum("What would you like to be in your hand?\n(Using the number)\n"+ player.Show_Inventory(),scan);
                 player.equip(player.inventory.get(in));
-                Game.print(player.get_main_hand().name+" is now in your hand.\n");
+                Game.print(player.getMainHandItem().name+" is now in your hand.\n");
                 break;
                 
             case Game.LOOK: //describes the block in front of them.
@@ -556,7 +521,6 @@ public class Game{
     /*
     Setting up all the different levels
     */
-    
     public static void Easy_Set_Up() //Sets up the easy difficulty
     {
         //Removing previous stuff
@@ -566,36 +530,31 @@ public class Game{
         enemies.add(new Character("Gob","Skeleton",new Location(0,0), 10));
         enemies.add(new Character("Job","Skeleton", new Location(0,0), 10));
         enemies.add(new Character("Bob","Skeleton", new Location(0,0), 10));
-        for(Character e : Game.enemies) //For loop giving random locations within a set area.
+        for(Character enemy : Game.enemies) //For loop giving random locations within a set area.
         {
-            e.GiveItem_silent(Skeleweapon_1);
-            e.equip(Skeleweapon_1);
-            e.location.random_location();
+            enemy.GiveItem_silent(Skeleweapon_1);
+            enemy.equip(Skeleweapon_1);
+            enemy.location.random_location();
         }
         //OBJECTS
         for(int i = 0; i <= 5; i++)
         {
             objects.add(new Object("column",new Location(0,0),false)); //creating 5 different objects for the level.
         }
-        for(Object o : Game.objects) //For loop giving random locations within a set area.
+        for(Object object : Game.objects) //For loop giving random locations within a set area.
         {
-            o.location.random_location();
+            object.location.random_location();
         }
         
-        Game.player.location.setHeading(Location.Direction.NORTH); //Set default player location
-        Game.player.location.xPosition = 0; //Setting x position to 0
-        Game.player.location.yPosition = 0; //Setting y position to 0
-        
+        Game.player.location = new Location(0, 0, Location.Direction.NORTH);        
 
         //Create a location with a description
         Location dungeon = new Location(0, 0);
-        dungeon.giveDescription(Game.get_dungeonDescription());
+        dungeon.giveDescription(DUNGEON_DESCRIPTION);
         player.location = dungeon;
 
         
-        doorLocation.giveDescription(Game.get_doorDescription());
-
-
+        doorLocation.giveDescription(DOOR_DESCRIPTION);
         
         Object Door = new Object("Door", doorLocation,true);
         player.GiveItem(Easy_Weapon);
@@ -635,15 +594,14 @@ public class Game{
             objects.add(new Object("column",new Location(0,0),false)); //creating 5 different objects for the level.
         }
         objects.add(new Object("Chest",new Location(0,0),true));
-        for(Object o : Game.objects) //For loop giving random locations within a set area.
+        for(Object object : Game.objects) //For loop giving random locations within a set area.
         {
-            o.location.random_location();
+            object.location.random_location();
         }
 
+        //Set the player location
+        Game.player.location = new Location(0, 0, Location.Direction.NORTH);        
         
-        Game.player.location.setHeading(Location.Direction.NORTH); //Set default player location
-        Game.player.location.xPosition = 0; //Setting x position to 0
-        Game.player.location.yPosition = 0; //Setting y position to 0
         player.GiveItem(Medium_Weapon); //medium starting weapon
         if(player.main_hand == null)
         {
@@ -652,7 +610,7 @@ public class Game{
         
         //Create a location with a description
         Location dungeon = new Location(0, 0);
-        dungeon.giveDescription(Game.get_dungeonDescription());
+        dungeon.giveDescription(DUNGEON_DESCRIPTION);
         player.location = dungeon;
         player.GiveItem(Medium_Weapon);
         player.equip(Medium_Weapon);
@@ -688,15 +646,12 @@ public class Game{
         {
             objects.add(new Object("column",new Location(0,0),false)); //creating 5 different objects for the level.
         }
-        for(Object o : Game.objects) //For loop giving random locations within a set area.
+        for(Object object : Game.objects) //For loop giving random locations within a set area.
         {
-            o.location.random_location();
+            object.location.random_location();
         }
-
         
-        Game.player.location.setHeading(Location.Direction.NORTH); //Set default player location
-        Game.player.location.xPosition = 0; //Setting x position to 0
-        Game.player.location.yPosition = 0; //Setting y position to 0
+        Game.player.location = new Location(0, 0, Location.Direction.NORTH);        
         player.GiveItem(Hard_Weapon); //Hard starting weapon
         if(player.main_hand == null)
         {
@@ -705,7 +660,7 @@ public class Game{
         
         //Create a location with a description
         Location dungeon = new Location(0, 0);
-        dungeon.giveDescription(Game.get_dungeonDescription());
+        dungeon.giveDescription(DUNGEON_DESCRIPTION);
         player.location = dungeon;
         player.GiveItem(Medium_Weapon);
         player.equip(Medium_Weapon);
@@ -715,7 +670,6 @@ public class Game{
 
         System.out.println("** For all the options type 'options' **\n");
             
-        
         mediumSave.SaveGame(); //Set the medium save setup
     }
     
@@ -731,7 +685,7 @@ public class Game{
             String confirmation =  Game.ask("Would you like to move to the next level? \n ******YES or NO******\n", scan).toUpperCase();
             if(confirmation.equals("YES"))
             {
-                difficulty = MEDIUM;  
+                currentDifficultyState = MEDIUM_KEYCODE;  
                 return true;
             }
         } 
@@ -745,7 +699,7 @@ public class Game{
             String confirmation =  Game.ask("Would you like to move to the next level? \n ******YES or NO******\n", scan).toUpperCase();
             if(confirmation.equals("YES"))
             {
-                difficulty = HARD; 
+                currentDifficultyState = HARD_KEYCODE; 
                 return true;
             }
         }
@@ -753,17 +707,63 @@ public class Game{
     }
     
     public static boolean Check_Hard_Completion()
-    {
-        Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
-        if(enemies.isEmpty())
-        {
-            return true;
-        }
-        return false;
+    { 
+        return enemies.isEmpty();
+    }
+    
+        //Functions for generating random numbers
+    public int random(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
+    
+    public static int random(int max) {
+        return (int) (Math.random() * max);
+    }
+    
+    public String randomString(String strings[]){
+        rand.setSeed(System.currentTimeMillis()); //Reset the seed
+        return strings[rand.nextInt(strings.length)];
+    }
+    
+     //Print functions because I am sick of typing the system out thing
+    public static void print(String str) {System.out.print(str);}
+    public static void println(String str) {System.out.println(str);}
+    
+    public static String ask(String question, Scanner scan){
+        System.out.print(question);
+        return scan.nextLine();
+    } 
+    
+    public static int askNum(String question, Scanner scan)
+    { 
+        do{
+            System.out.print(question);
+            try{
+                return scan.nextInt(); //Break out of the loop
+            }
+
+            catch(Exception e){
+                System.out.println("\n Input error, try again");         
+            }
+        } while(true);
     }
     
     
-    //Converts enemy array to a JSONArray
+    public static void Difficulty_selector()
+    {
+        Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
+        while(Game.currentDifficultyState <= 0 || Game.currentDifficultyState > 4) //finding out what difficulty they want.
+        {
+            Game.currentDifficultyState = Game.askNum("Hello "+Game.player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n4) Load from previous save\n",scan);
+        }
+    }
+    
+    
+    //******** Saving and Loading functions ********//
+    /**
+     * Converts enemy array to a JSONArray
+     * @return 
+     */
     private static JSONArray enemiesToJSON(){
         JSONArray ja = new JSONArray();
         
@@ -773,7 +773,10 @@ public class Game{
         return ja;
     }
     
-    //Convets game objects to JSON array
+    /**
+     * Converts game objects to JSON array
+     * @return 
+     */
     private static JSONArray objectsToJSON(){
         JSONArray ja = new JSONArray();
         
@@ -783,12 +786,15 @@ public class Game{
         return ja;
     }
     
-    //Saves the game as a JSON file
+    /**
+     * Saves the game as a JSON file
+     * @return 
+     */
     protected static JSONObject gameToJSON(){
         JSONObject jo = new JSONObject();
         jo.put("playing", playing);
         jo.put("moves", moves);
-        jo.put("difficulty", difficulty);
+        jo.put("difficulty", currentDifficultyState);
         jo.put("player", player.playerToJSON()); //Add player to JSON
         //Add all the enemies to the JSON
         
