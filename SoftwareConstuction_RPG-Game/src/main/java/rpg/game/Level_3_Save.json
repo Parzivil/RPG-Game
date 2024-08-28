@@ -1,3 +1,195 @@
 {
-    "name": "robin"
+   "difficulty": 3,
+   "moves": 0,
+   "objects": [
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": 1,
+            "y": -5
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": -9,
+            "y": -12
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": 4,
+            "y": 5
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": 4,
+            "y": -15
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": -6,
+            "y": -1
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": 14,
+            "y": -11
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": -6,
+            "y": -7
+         }
+      }
+   ],
+   "playing": true,
+   "enemies": [
+      {
+         "race": "Skeleton",
+         "name": "Gob",
+         "health": 30,
+         "location": {
+            "x": 6,
+            "y": -3
+         },
+         "state": "ALIVE",
+         "inventory": []
+      },
+      {
+         "race": "Skeleton",
+         "name": "Job",
+         "health": 30,
+         "location": {
+            "x": -8,
+            "y": -8
+         },
+         "state": "ALIVE",
+         "inventory": []
+      },
+      {
+         "race": "Skeleton",
+         "name": "Bob",
+         "health": 30,
+         "location": {
+            "x": -10,
+            "y": -11
+         },
+         "state": "ALIVE",
+         "inventory": []
+      },
+      {
+         "race": "Skeleton",
+         "name": "Lob",
+         "health": 30,
+         "location": {
+            "x": -10,
+            "y": -2
+         },
+         "state": "ALIVE",
+         "inventory": []
+      },
+      {
+         "race": "Skeleton",
+         "name": "Mob",
+         "health": 30,
+         "location": {
+            "x": -11,
+            "y": -1
+         },
+         "state": "ALIVE",
+         "inventory": []
+      },
+      {
+         "race": "Skeleton",
+         "name": "Steve Job",
+         "health": 30,
+         "location": {
+            "x": 6,
+            "y": -15
+         },
+         "state": "ALIVE",
+         "inventory": []
+      }
+   ],
+   "player": {
+      "score": 0,
+      "character": {
+         "race": "Player",
+         "name": "Bob",
+         "health": 55,
+         "location": {
+            "heading": "NORTH",
+            "x": 0,
+            "y": 0
+         },
+         "state": "ALIVE",
+         "inventory": [
+            {
+               "damage": 2,
+               "material": "Wooden",
+               "weight": 2,
+               "location": {
+                  "heading": "NORTH",
+                  "x": 0,
+                  "y": 0
+               },
+               "type": "Sword",
+               "quality": "Bad"
+            },
+            {
+               "damage": 4,
+               "material": "Wooden",
+               "weight": 2,
+               "location": {
+                  "heading": "NORTH",
+                  "x": -4,
+                  "y": 0
+               },
+               "type": "Sword",
+               "quality": "Decent"
+            },
+            {
+               "damage": 4,
+               "material": "Wooden",
+               "weight": 2,
+               "location": {
+                  "heading": "NORTH",
+                  "x": -4,
+                  "y": 0
+               },
+               "type": "Sword",
+               "quality": "Decent"
+            },
+            {
+               "damage": 6,
+               "material": "Wooden",
+               "weight": 2,
+               "location": {
+                  "heading": "NORTH",
+                  "x": 0,
+                  "y": 0
+               },
+               "type": "Sword",
+               "quality": "Good"
+            }
+         ]
+      }
+   }
 }

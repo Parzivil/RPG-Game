@@ -20,14 +20,14 @@ import java.util.Scanner;
 public class SoftwareConstuction_RPGGame 
 {    
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
+        
         Game.player = new Player(
-                Game.ask("Please enter a name for your character. ", scan), 
+                Game.ask("Please enter a name for your character. ", Game.scan), 
                 new Location(0, 0), 55,0);
+        Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
         while(Game.currentDifficultyState <= 0 || Game.currentDifficultyState > 4) //finding out what difficulty they want.
         {
             Game.currentDifficultyState = Game.askNum("Hello "+Game.player.name+"\nPlease enter a difficulty \n1) Easy\n2) Medium\n3) Hard\n4) Load from previous save\n",scan);
-
         }
         while(Game.playing)
         {   
@@ -54,16 +54,24 @@ public class SoftwareConstuction_RPGGame
                     break;
                 }
             }
-            while(Game.level_completed != true)
-            {
-                if(Game.currentDifficultyState == Game.EASY_KEYCODE && Game.Check_Easy_Completion(scan))Game.level_completed = true;
-                if(Game.currentDifficultyState == Game.MEDIUM_KEYCODE && Game.Check_Medium_Completion(scan))Game.level_completed = true;
-                if(Game.currentDifficultyState == Game.HARD_KEYCODE && Game.Check_Hard_Completion(scan))Game.level_completed = true;
-               
+            while(Game.level_completed != true){
                 Game.Game_play(scan);
-            }  
-            break;
+            }
         }  
-        scan.close();
+        Game.scan.close();
+        Game.print("Why");
+        
+        
+        
+        
+        
+        
+        
+        
     } 
 }
+
+
+
+
+

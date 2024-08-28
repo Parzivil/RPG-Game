@@ -26,6 +26,7 @@ public class Game{
     public final static String LOOK = "LOOK";
     public final static String STATS = "STATS";
     public final static String SAVE = "SAVE";
+    public static Scanner scan = new Scanner(System.in); //Scanner object to take in inputs
     
     public Random rand = new Random();
     static Player player;
@@ -52,7 +53,7 @@ public class Game{
     public final static int MEDIUM_KEYCODE = 2;
     public final static int HARD_KEYCODE = 3;
     public final static int LOAD_KEYCODE = 4;
-    
+    public static String input_move;
     
     public static boolean easy_game_on = false; //Current Game state
     public static boolean medium_game_on = false; //Current Game state
@@ -137,14 +138,14 @@ public class Game{
      */
     public static void Game_play(Scanner scan) {
 
-        String input = Game.ask("\nWhat would you like to do? \n",scan).toUpperCase().strip();
+        input_move = Game.ask("\nWhat would you like to do? \n", Game.scan).toUpperCase().trim();
         Game.print("--------------------------------------------------\n");
-        switch(input)
+        switch(input_move)
         {
             case Game.SAVE:
                 userSave.SaveGame(); //Save the game
-            break;
-            
+                break;
+
             case Game.OPTIONS: //prints out a list of options for things they can do
                 Game.println("Your options are: "
                         + "\nAttack"
@@ -158,11 +159,11 @@ public class Game{
                         + "\nSave"
                         + "\nStats");
                 break;
-                
+
             case Game.ATTACK: //Attacks the square infront of them.
                 Attack(Game.enemies, player.getMainHandItem());
                 break;
-                
+
             case Game.MOVE_FORWARD: //Checks for collision with enemy,object and wall/border before moving forward.
                 if(Enemy_CHECK() != null)
                 {
@@ -184,9 +185,8 @@ public class Game{
                 Game.print("You are at: "+player.location.toString()+"    Facing "+player.location.heading.toString()+"\n"); //reoccuring message informing player of location.
 
                 print("\n\""+path[random(16)] + "\"");
-
                 break;
-                
+
             case Game.MOVE_BACKWARDS:
                 if(Behind_Enemy_CHECK() != null)
                 {
@@ -209,33 +209,30 @@ public class Game{
                 Game.print("You are at: "+player.location.toString()+"    Facing "+player.location.heading.toString()+"\n"); //reoccuring message informing player of location.
 
                 print("\n\""+path[random(16)] + "\"");
-
                 break;
-                
+
             case Game.TURN_LEFT:
                 player.Turn_Left();
                 player.Say("You turned Left\n");
                 Game.print("You are facing "+player.location.heading.toString()+"\n"); //reoccuring message informing player of location.
-
                 break;
-                
+
             case Game.TURN_RIGHT:
                 player.Turn_Right();
                 player.Say("You turned Right\n");
                 Game.print("You are facing "+player.location.heading.toString()+"\n"); //reoccuring message informing player of location.
-
                 break;
-                
+
             case Game.SHOW_INVENTORY:
                 Game.print(player.Show_Inventory());
                 break;
-                
+
             case Game.SET_MAIN_HAND:
                 int in = Game.askNum("What would you like to be in your hand?\n(Using the number)\n"+ player.Show_Inventory(),scan);
                 player.equip(player.inventory.get(in));
                 Game.print(player.getMainHandItem().name+" is now in your hand.\n");
                 break;
-                
+
             case Game.LOOK: //describes the block in front of them.
                 if(Look() != null)
                 {
@@ -254,19 +251,19 @@ public class Game{
                 }
                 print("There is nothing but darkness\n");
                 break;
-                
-                
+
+
             case Game.STATS:
                 print(player.checkStats());
                 break;
-                
-                
+
+
             //********** ADMIN COMMANDS **************//
             case "TP PLAYER": //One of the admin commands
                 player.location.xPosition = askNum("x = ",scan);
                 player.location.yPosition = askNum("y = ",scan);
                 break;
-                
+
             case "LOCATE ENEMIES": //One of the admin commands
                 println("|--------------------|");
                 for(Character e : enemies) //For loop giving random locations within a set area.
@@ -275,7 +272,7 @@ public class Game{
                 }
                 println("|--------------------|");
                 break;
-                
+
             case "LOCATE OBJECTS": //One of the admin commands
                 for(Object o : objects) //For loop giving random locations within a set area.
                 {
@@ -283,6 +280,10 @@ public class Game{
                 }
                 break;
         }
+        
+        if(Game.currentDifficultyState == Game.EASY_KEYCODE)Game.Check_Easy_Completion();
+        if(Game.currentDifficultyState == Game.MEDIUM_KEYCODE)Game.Check_Medium_Completion();
+        if(Game.currentDifficultyState == Game.HARD_KEYCODE)Game.Check_Hard_Completion();
     }
     
     public static void Attack(ArrayList<Character> enemies, Item Wep) //Checks for enemy and attacks if there is one. Should also have a object check and a wall check.
@@ -531,6 +532,8 @@ public class Game{
     */
     public static void Easy_Set_Up() //Sets up the easy difficulty
     {
+        //Objective
+        print("\n***The objective is to find the door***\n\n");
         //Removing previous stuff
         enemies.clear();
         objects.clear();
@@ -576,10 +579,13 @@ public class Game{
         System.out.println("** For all the options type 'options' **\n");
                 
         easySave.SaveGame(); //Save the easy save state
+        level_completed = false;
     }
     
     public static void Medium_Set_Up() //Sets up the medium difficulty
     {
+        //Objective
+        print("\n***The objective is to find the chest***\n\n");
         //Removing previous stuff
         enemies.clear();
         objects.clear();
@@ -598,7 +604,9 @@ public class Game{
         objects.add(new Object("Chest",new Location(),true));
 
         //Set the player location
-        Game.player.location = new Location(0, 0, Location.Direction.NORTH);        
+        Game.player.location.xPosition=0;        
+        Game.player.location.yPosition=0; 
+        Game.player.location.heading=Location.Direction.NORTH;
         
         player.GiveItem(Medium_Weapon); //medium starting weapon
         if(player.main_hand == null)
@@ -619,10 +627,13 @@ public class Game{
         System.out.println("** For all the options type 'options' **\n");
             
         mediumSave.SaveGame(); //Set the medium save setup
+        level_completed = false;
     }
    
-    public static void Hard_Set_Up() //Sets up the medium difficulty
+    public static void Hard_Set_Up() //Sets up the hard difficulty
     {
+        //Objective
+        print("\n***The objective is clear kill all the mobs and the boss***\n\n");
         //Removing previous stuff
         enemies.clear();
         objects.clear();
@@ -647,57 +658,59 @@ public class Game{
             player.equip(Medium_Weapon);
         }
         
+        level_completed = false;
+        
         //Create a location with a description
         Location dungeon = new Location(0, 0);
         dungeon.giveDescription(DUNGEON_DESCRIPTION);
         player.location = dungeon;
-        player.GiveItem(Medium_Weapon);
-        player.equip(Medium_Weapon);
         player.location.heading = Location.Direction.NORTH; //Set heading
-
         dungeon.describeLocation();
 
         System.out.println("** For all the options type 'options' **\n");
             
-        mediumSave.SaveGame(); //Set the medium save setup
+        hardSave.SaveGame(); //Set the hard save setup
+        level_completed = false;
     }
     
     /*
     Completions of the different levels
     */
-    public final static boolean Check_Easy_Completion(Scanner scan)
+    public final static void Check_Easy_Completion()
     {
         if(player.location.xPosition == doorLocation.xPosition && player.location.yPosition == doorLocation.yPosition)
         {
             doorLocation.describeLocation();//Describe the door
-            String confirmation =  Game.ask("Would you like to move to the next level? \n ******YES or NO******\n", scan).toUpperCase();
-            if(confirmation.equals("YES"))
-            {
-                currentDifficultyState = MEDIUM_KEYCODE;  
-                return true;
-            }
+            Check_Next_Level(scan);
         } 
-        return false;
     }
-    public final static boolean Check_Medium_Completion(Scanner scan)
+    public final static void Check_Medium_Completion()
     {
         if(player.location.xPosition == objects.get(5).location.xPosition && player.location.yPosition == objects.get(5).location.yPosition)
         {
-            String confirmation =  Game.ask("Would you like to move to the next level? \n ******YES or NO******\n", scan).toUpperCase();
-            if(confirmation.equals("YES"))
-            {
-                currentDifficultyState = HARD_KEYCODE; 
-                return true;
-            }
+            Check_Next_Level(scan);
         }
-        return false;
     }
     
-    public final static boolean Check_Hard_Completion(Scanner scan)
+    public final static boolean Check_Hard_Completion()
     { 
         return enemies.isEmpty();
     }
     
+    public final static void Check_Next_Level(Scanner scan)
+    {
+        String confirmation =  Game.ask("Would you like to move to the next level? \n ******YES or NO******\n", scan).toUpperCase();
+            if((currentDifficultyState != 3) && confirmation.equals("YES"))
+            {
+                currentDifficultyState++; 
+                level_completed = true;
+            }
+            if(confirmation.equals("NO"))
+            {
+                userSave.SaveGame(); //Save the game
+                playing = false;
+            }
+    }
     
     /**
      * Generates a random number between given values
@@ -723,7 +736,8 @@ public class Game{
     
     public static String ask(String question, Scanner scan){
         System.out.print(question);
-        return scan.nextLine();
+        String bob =  scan.nextLine();
+        return bob;
     } 
     
     public static int askNum(String question, Scanner scan)

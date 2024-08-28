@@ -6,15 +6,23 @@
          "goal": false,
          "name": "column",
          "location": {
-            "x": -2,
-            "y": -5
+            "x": 0,
+            "y": -1
          }
       },
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": 12,
+            "x": 6,
+            "y": -7
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": 3,
             "y": -6
          }
       },
@@ -22,32 +30,24 @@
          "goal": false,
          "name": "column",
          "location": {
-            "x": -9,
-            "y": -10
+            "x": -14,
+            "y": 8
          }
       },
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": 5,
-            "y": -2
-         }
-      },
-      {
-         "goal": false,
-         "name": "column",
-         "location": {
-            "x": 9,
-            "y": -15
+            "x": -11,
+            "y": -14
          }
       },
       {
          "goal": true,
          "name": "Chest",
          "location": {
-            "x": 8,
-            "y": 3
+            "x": -4,
+            "y": 0
          }
       }
    ],
@@ -58,8 +58,8 @@
          "name": "Gob",
          "health": 20,
          "location": {
-            "x": -8,
-            "y": 10
+            "x": -15,
+            "y": 3
          },
          "state": "ALIVE",
          "inventory": []
@@ -69,8 +69,8 @@
          "name": "Job",
          "health": 20,
          "location": {
-            "x": -1,
-            "y": 9
+            "x": -15,
+            "y": -2
          },
          "state": "ALIVE",
          "inventory": []
@@ -80,8 +80,8 @@
          "name": "Bob",
          "health": 20,
          "location": {
-            "x": -2,
-            "y": -9
+            "x": 5,
+            "y": 5
          },
          "state": "ALIVE",
          "inventory": []
@@ -91,8 +91,8 @@
          "name": "Lob",
          "health": 20,
          "location": {
-            "x": -13,
-            "y": -4
+            "x": 1,
+            "y": -12
          },
          "state": "ALIVE",
          "inventory": []
@@ -102,8 +102,8 @@
          "name": "Mob",
          "health": 20,
          "location": {
-            "x": 10,
-            "y": -7
+            "x": 8,
+            "y": -13
          },
          "state": "ALIVE",
          "inventory": []
@@ -113,7 +113,7 @@
       "score": 0,
       "character": {
          "race": "Player",
-         "name": "Robin",
+         "name": "Bob",
          "health": 55,
          "location": {
             "heading": "NORTH",
@@ -122,6 +122,18 @@
          },
          "state": "ALIVE",
          "inventory": [
+            {
+               "damage": 2,
+               "material": "Wooden",
+               "weight": 2,
+               "location": {
+                  "heading": "NORTH",
+                  "x": 0,
+                  "y": 0
+               },
+               "type": "Sword",
+               "quality": "Bad"
+            },
             {
                "damage": 4,
                "material": "Wooden",
