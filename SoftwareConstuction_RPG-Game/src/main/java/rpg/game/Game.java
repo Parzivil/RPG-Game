@@ -64,22 +64,9 @@ public class Game{
     
     public static ArrayList<Character> enemies = new ArrayList<>(); // The array list of enemies 
     public static ArrayList<Object> objects = new ArrayList<>(); //The arraylist of everything thats not a character.
-    
-//This decription was generated using chat GPT    
-    private final static String DUNGEON_DESCRIPTION = 
-    """
-    You find yourself in a dimly lit dungeon,
-    where the air is thick with mildew and the walls are cold and damp.
-    Flickering torches cast long shadows, and the floor is uneven, making each step treacherous.
-    The silence is broken only by distant dripping water and the skittering of unseen creatures.
-    
-    As you venture deeper, the corridors twist and turn,
-    leading to dead ends or eerie, abandoned chambers.
-    Yet, amid the oppressive darkness, you sense a faint draft; an indication that somewhere nearby,
-    a hidden door awaits discovery...
+
     
     
-    """;
     
     private final static String DOOR_DESCRIPTION = 
     """
@@ -558,7 +545,8 @@ public class Game{
 
         //Create a location with a description
         Location dungeon = new Location(0, 0);
-        dungeon.giveDescription(DUNGEON_DESCRIPTION);
+
+        dungeon.Add_Text_Description(Location.DUNGEON_DESCRIPTION_1);
         player.location = dungeon;
 
         
@@ -574,7 +562,7 @@ public class Game{
         
         player.location.heading = Location.Direction.NORTH; //Set heading
 
-        dungeon.describeLocation();
+        dungeon.Read_Text_Description();
 
         System.out.println("** For all the options type 'options' **\n");
                 
@@ -608,7 +596,7 @@ public class Game{
         Game.player.location.yPosition=0; 
         Game.player.location.heading=Location.Direction.NORTH;
         
-        player.GiveItem(Medium_Weapon); //medium starting weapon
+        player.GiveItem_silent(Medium_Weapon); //medium starting weapon
         if(player.main_hand == null)
         {
             player.equip(Medium_Weapon);
@@ -616,13 +604,13 @@ public class Game{
         
         //Create a location with a description
         Location dungeon = new Location(0, 0);
-        dungeon.giveDescription(DUNGEON_DESCRIPTION);
+        dungeon.Add_Text_Description(Location.DUNGEON_DESCRIPTION_2);
         player.location = dungeon;
         player.GiveItem(Medium_Weapon);
         player.equip(Medium_Weapon);
         player.location.heading = Location.Direction.NORTH; //Set heading
 
-        dungeon.describeLocation();
+        dungeon.Read_Text_Description();
 
         System.out.println("** For all the options type 'options' **\n");
             
@@ -662,10 +650,10 @@ public class Game{
         
         //Create a location with a description
         Location dungeon = new Location(0, 0);
-        dungeon.giveDescription(DUNGEON_DESCRIPTION);
+        dungeon.Add_Text_Description(Location.DUNGEON_DESCRIPTION_3);
         player.location = dungeon;
         player.location.heading = Location.Direction.NORTH; //Set heading
-        dungeon.describeLocation();
+        dungeon.Read_Text_Description();
 
         System.out.println("** For all the options type 'options' **\n");
             
@@ -802,4 +790,6 @@ public class Game{
         jo.put("objects", objectsToJSON());
         return jo;
     }
+    
+    
 }

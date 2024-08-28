@@ -6,23 +6,15 @@
          "goal": false,
          "name": "column",
          "location": {
-            "x": 6,
-            "y": 14
+            "x": -11,
+            "y": -3
          }
       },
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": 12,
-            "y": -14
-         }
-      },
-      {
-         "goal": false,
-         "name": "column",
-         "location": {
-            "x": -1,
+            "x": 8,
             "y": 2
          }
       },
@@ -30,24 +22,32 @@
          "goal": false,
          "name": "column",
          "location": {
-            "x": -5,
-            "y": 8
+            "x": 11,
+            "y": -10
          }
       },
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": -8,
-            "y": 4
+            "x": -15,
+            "y": 2
          }
       },
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": 0,
-            "y": 8
+            "x": 9,
+            "y": -5
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": -15,
+            "y": -10
          }
       }
    ],
@@ -58,8 +58,8 @@
          "name": "Gob",
          "health": 10,
          "location": {
-            "x": -15,
-            "y": 11
+            "x": 3,
+            "y": 9
          },
          "state": "ALIVE",
          "inventory": [{
@@ -67,8 +67,8 @@
             "material": "Bone",
             "weight": 1,
             "location": {
-               "x": 6,
-               "y": 7
+               "x": -15,
+               "y": -7
             },
             "type": "Club",
             "quality": "Bad"
@@ -79,8 +79,8 @@
          "name": "Job",
          "health": 10,
          "location": {
-            "x": -9,
-            "y": 3
+            "x": 9,
+            "y": -2
          },
          "state": "ALIVE",
          "inventory": [{
@@ -88,8 +88,8 @@
             "material": "Bone",
             "weight": 1,
             "location": {
-               "x": 6,
-               "y": 7
+               "x": -15,
+               "y": -7
             },
             "type": "Club",
             "quality": "Bad"
@@ -100,8 +100,8 @@
          "name": "Bob",
          "health": 10,
          "location": {
-            "x": 6,
-            "y": 7
+            "x": -15,
+            "y": -7
          },
          "state": "ALIVE",
          "inventory": [{
@@ -109,8 +109,8 @@
             "material": "Bone",
             "weight": 1,
             "location": {
-               "x": 6,
-               "y": 7
+               "x": -15,
+               "y": -7
             },
             "type": "Club",
             "quality": "Bad"
