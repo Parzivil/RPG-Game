@@ -59,7 +59,7 @@ public class SoftwareConstuction_RPGGame
             }
         }  
         Game.scan.close();
-        Game.print("Why");
+        Game.print("Bye");
     } 
 }
 

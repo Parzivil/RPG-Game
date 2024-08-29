@@ -674,7 +674,7 @@ public class Game{
     }
     public final static void Check_Medium_Completion()
     {
-        if(player.location.xPosition == objects.get(5).location.xPosition && player.location.yPosition == objects.get(5).location.yPosition)
+        if(Game.Look() == objects.get(5))
         {
             Check_Next_Level(scan);
         }

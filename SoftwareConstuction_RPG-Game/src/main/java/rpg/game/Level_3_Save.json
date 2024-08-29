@@ -6,15 +6,23 @@
          "goal": false,
          "name": "column",
          "location": {
-            "x": 10,
-            "y": 0
+            "x": -10,
+            "y": -13
          }
       },
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": 1,
+            "x": -13,
+            "y": 6
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": 5,
             "y": 7
          }
       },
@@ -23,31 +31,23 @@
          "name": "column",
          "location": {
             "x": 6,
-            "y": 13
+            "y": -14
          }
       },
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": 8,
-            "y": -7
+            "x": 6,
+            "y": -2
          }
       },
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": -2,
-            "y": 2
-         }
-      },
-      {
-         "goal": false,
-         "name": "column",
-         "location": {
-            "x": -4,
-            "y": 7
+            "x": -15,
+            "y": 5
          }
       },
       {
@@ -55,7 +55,7 @@
          "name": "column",
          "location": {
             "x": -4,
-            "y": 3
+            "y": -15
          }
       }
    ],
@@ -66,8 +66,8 @@
          "name": "Gob",
          "health": 30,
          "location": {
-            "x": -11,
-            "y": -15
+            "x": -3,
+            "y": -5
          },
          "state": "ALIVE",
          "inventory": []
@@ -77,8 +77,8 @@
          "name": "Job",
          "health": 30,
          "location": {
-            "x": 4,
-            "y": -13
+            "x": 6,
+            "y": -6
          },
          "state": "ALIVE",
          "inventory": []
@@ -88,8 +88,8 @@
          "name": "Bob",
          "health": 30,
          "location": {
-            "x": -9,
-            "y": -6
+            "x": -1,
+            "y": 11
          },
          "state": "ALIVE",
          "inventory": []
@@ -99,8 +99,8 @@
          "name": "Lob",
          "health": 30,
          "location": {
-            "x": -14,
-            "y": 5
+            "x": -1,
+            "y": -3
          },
          "state": "ALIVE",
          "inventory": []
@@ -110,8 +110,8 @@
          "name": "Mob",
          "health": 30,
          "location": {
-            "x": -3,
-            "y": -5
+            "x": 6,
+            "y": 6
          },
          "state": "ALIVE",
          "inventory": []
@@ -121,8 +121,8 @@
          "name": "Steve Job",
          "health": 30,
          "location": {
-            "x": -12,
-            "y": -8
+            "x": 6,
+            "y": 4
          },
          "state": "ALIVE",
          "inventory": []
@@ -132,7 +132,7 @@
       "score": 0,
       "character": {
          "race": "Player",
-         "name": "Bob",
+         "name": "nod",
          "health": 55,
          "location": {
             "heading": "NORTH",
@@ -140,18 +140,44 @@
             "y": 0
          },
          "state": "ALIVE",
-         "inventory": [{
-            "damage": 6,
-            "material": "Wooden",
-            "weight": 2,
-            "location": {
-               "heading": "NORTH",
-               "x": 0,
-               "y": 0
+         "inventory": [
+            {
+               "damage": 4,
+               "material": "Wooden",
+               "weight": 2,
+               "location": {
+                  "heading": "NORTH",
+                  "x": -14,
+                  "y": 4
+               },
+               "type": "Sword",
+               "quality": "Decent"
             },
-            "type": "Sword",
-            "quality": "Good"
-         }]
+            {
+               "damage": 4,
+               "material": "Wooden",
+               "weight": 2,
+               "location": {
+                  "heading": "NORTH",
+                  "x": -14,
+                  "y": 4
+               },
+               "type": "Sword",
+               "quality": "Decent"
+            },
+            {
+               "damage": 6,
+               "material": "Wooden",
+               "weight": 2,
+               "location": {
+                  "heading": "NORTH",
+                  "x": 0,
+                  "y": 0
+               },
+               "type": "Sword",
+               "quality": "Good"
+            }
+         ]
       }
    }
 }

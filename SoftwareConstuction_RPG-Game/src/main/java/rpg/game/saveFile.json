@@ -1,13 +1,37 @@
 {
    "difficulty": 1,
-   "moves": 0,
+   "moves": 1,
    "objects": [
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": -11,
+            "x": 5,
             "y": -14
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": 4,
+            "y": 7
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": 6,
+            "y": 5
+         }
+      },
+      {
+         "goal": false,
+         "name": "column",
+         "location": {
+            "x": -7,
+            "y": 2
          }
       },
       {
@@ -15,39 +39,15 @@
          "name": "column",
          "location": {
             "x": 1,
-            "y": -12
+            "y": 8
          }
       },
       {
          "goal": false,
          "name": "column",
          "location": {
-            "x": -14,
-            "y": -14
-         }
-      },
-      {
-         "goal": false,
-         "name": "column",
-         "location": {
-            "x": 11,
-            "y": -11
-         }
-      },
-      {
-         "goal": false,
-         "name": "column",
-         "location": {
-            "x": 7,
-            "y": -11
-         }
-      },
-      {
-         "goal": false,
-         "name": "column",
-         "location": {
-            "x": 10,
-            "y": 10
+            "x": -2,
+            "y": 6
          }
       }
    ],
@@ -58,7 +58,7 @@
          "name": "Gob",
          "health": 10,
          "location": {
-            "x": 13,
+            "x": -14,
             "y": 1
          },
          "state": "ALIVE",
@@ -67,8 +67,8 @@
             "material": "Bone",
             "weight": 1,
             "location": {
-               "x": -10,
-               "y": 11
+               "x": 0,
+               "y": 0
             },
             "type": "Club",
             "quality": "Bad"
@@ -79,8 +79,8 @@
          "name": "Job",
          "health": 10,
          "location": {
-            "x": -8,
-            "y": 4
+            "x": 14,
+            "y": -7
          },
          "state": "ALIVE",
          "inventory": [{
@@ -88,8 +88,8 @@
             "material": "Bone",
             "weight": 1,
             "location": {
-               "x": -10,
-               "y": 11
+               "x": 0,
+               "y": 0
             },
             "type": "Club",
             "quality": "Bad"
@@ -100,8 +100,8 @@
          "name": "Bob",
          "health": 10,
          "location": {
-            "x": -10,
-            "y": 11
+            "x": 0,
+            "y": 0
          },
          "state": "ALIVE",
          "inventory": [{
@@ -109,8 +109,8 @@
             "material": "Bone",
             "weight": 1,
             "location": {
-               "x": -10,
-               "y": 11
+               "x": 0,
+               "y": 0
             },
             "type": "Club",
             "quality": "Bad"
@@ -118,43 +118,29 @@
       }
    ],
    "player": {
-      "score": 4,
+      "score": 0,
       "character": {
          "race": "Player",
-         "name": "g",
+         "name": "Matthew",
          "health": 55,
          "location": {
             "heading": "NORTH",
-            "x": -5,
-            "y": 10
+            "x": 0,
+            "y": 1
          },
          "state": "ALIVE",
-         "inventory": [
-            {
-               "damage": 2,
-               "material": "Wooden",
-               "weight": 2,
-               "location": {
-                  "heading": "NORTH",
-                  "x": 0,
-                  "y": 0
-               },
-               "type": "Sword",
-               "quality": "Bad"
+         "inventory": [{
+            "damage": 2,
+            "material": "Wooden",
+            "weight": 2,
+            "location": {
+               "heading": "NORTH",
+               "x": 0,
+               "y": 1
             },
-            {
-               "damage": 2,
-               "material": "Wooden",
-               "weight": 2,
-               "location": {
-                  "heading": "NORTH",
-                  "x": 0,
-                  "y": 0
-               },
-               "type": "Sword",
-               "quality": "Bad"
-            }
-         ]
+            "type": "Sword",
+            "quality": "Bad"
+         }]
       }
    }
 }
